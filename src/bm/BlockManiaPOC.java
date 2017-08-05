@@ -3,6 +3,8 @@ package bm;
 import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -18,9 +20,18 @@ public class BlockManiaPOC extends JFrame
   private final static int FRAME_HEIGHT = 300;  
   JButton btn01, btn02, btn03;
   
+  private UserInput request = UserInput.NONE;
+  
+	public static enum UserInput
+	{
+		NONE, START_GAME, NEXT_BLOCK, ROTATE, FLIP, MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN
+	}
+	
   public BlockManiaPOC()
   {       
     super("BlockManiaPOC");
+    
+    this.addKeyListener(new keyPressedEventHandler());
     
     Container cont = getContentPane();
     cont.setLayout(null);
@@ -103,5 +114,75 @@ public class BlockManiaPOC extends JFrame
   {
     System.err.println("Button 03 clicked.");
   }
+  
+	class keyPressedEventHandler extends KeyAdapter
+	{
+		private int currentKey;
+
+		@Override
+		public void keyPressed(KeyEvent e)
+		{
+			// System.out.println(String.format("keyPressed : %s ", e.getKeyCode()));
+
+			currentKey = e.getKeyCode();
+			switch (currentKey)
+			{
+//				case KeyEvent.VK_1 :
+//					switchToWelcomeState();
+//					break;
+//				case KeyEvent.VK_2 :
+//					switchToUserplayState();
+//					break;
+//				case KeyEvent.VK_3 :
+//					switchToComputerplayState();
+//					break;
+
+				case KeyEvent.VK_S :
+					setUserRequest(UserInput.START_GAME);
+					break;
+				case KeyEvent.VK_N :
+					setUserRequest(UserInput.NEXT_BLOCK);
+					break;
+
+				case KeyEvent.VK_R :
+					setUserRequest(UserInput.ROTATE);
+					break;
+				case KeyEvent.VK_F :
+					setUserRequest(UserInput.FLIP);
+					break;
+
+				case KeyEvent.VK_UP :
+					setUserRequest(UserInput.MOVE_UP);
+					break;
+				case KeyEvent.VK_DOWN :
+					setUserRequest(UserInput.MOVE_DOWN);
+					break;
+				case KeyEvent.VK_LEFT :
+					setUserRequest(UserInput.MOVE_LEFT);
+					break;
+				case KeyEvent.VK_RIGHT :
+					setUserRequest(UserInput.MOVE_RIGHT);
+					break;
+			}
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e)
+		{
+			int kc = e.getKeyCode();
+			if (kc == currentKey)
+				setUserRequest(UserInput.NONE);
+		}
+	}
+
+	public synchronized void setUserRequest(UserInput req)
+	{
+		request = req;
+	}
+
+	public synchronized UserInput getUserRequest()
+	{
+		return request;
+	}
   
 }
