@@ -1,0 +1,164 @@
+BlockMania - globale beschrijving :
+
+-----
+Definitie van een block :
+
+Van ieder block is een definitie opgeslagen in een 
+twee-dimensionale, boolean array. Dit block bv :
+
+[][]      heeft als definitie :   [1][1][0]
+  [][]                            [0][1][1]
+                                  [0][0][0]
+                                  
+-----
+Als een block op het speelveld gezet moet worden, dan worden
+hiervoor met de block-definitie de coords berekend.
+
+-----
+Coords van een block :
+
+De coords van een block worden opgeslagen in twee arrays, 
+één met rij-nummers en één met kolom-nummers.
+
+Deze arrays heten 'currentRows' en 'currentCols'.
+
+Als een block verplaatst moeten worden, bv één stap naar rechts, 
+dan wordt bij alle waardes van currentCols één opgeteld.
+
+-----
+Speelveld :
+
+Het speelveld bevat een X-aantal vakjes, allemaal met een eigen
+rij- en kolom-nummer.
+
+Voor iedere vakje wordt bijgehouden of het vrij of bezet is.
+
+Met behulp van een rij- en een kolom-offset en de currentRows 
+en currentCols van een block kan een block op het speelveld 
+geplaatst worden.
+
+-----
+Een block verplaatsen van preview naar speelveld :
+
+Om een block van de preview naar het speelveld te verplaatsen 
+moet het volgende gebeuren : 
+
+1. check of de gewenste posities op het speelveld vrij zijn.
+
+2. teken de blokjes (die samen het block vormen) op het speelveld.
+   
+3. markeer de betreffende vakjes in de speelveld-data-array als bezet.
+    
+Als een block verplaatst, geroteerd of gespiegeld moet worden, dan 
+moet het block in zijn huidige hoedanigheid eerst worden gewist. 
+Daarvoor moeten ook beide bovenstaande punten doorlopen worden, 
+met als verschil dat de blockjes nu 'weggetekend' moeten worden 
+en de vakjes als vrij gemarkeerd moeten worden.  
+
+-----
+Een block verplaatsen :
+
+Als een block verplaatst moet worden, dan worden er eerst copies
+gemaakt van zijn currentRows en currentCols. Deze copies worden 
+'wantedRows' en 'WantedCols' genoemd omdat deze gebruikt gaan 
+worden om de coords op te slaan die het block WIL gaan krijgen.
+
+Vervolgens wordt er bij alle waardes van wantedRows of WantedCols
+één opgeteld of afgetrokken (afhankelijk van de gewenste verplaatsings-
+richting) en gecheckt of de nieuwe coords vrij zijn op het speelveld.
+
+Als dat het geval is, dan worden de coords van currentRows en currentCols
+op het speelveld gewist. Op de coords van wantedRows en WantedCols
+wordt het block opnieuw getekend.
+
+De waardes van wantedRows en WantedCols worden verplaats naar 
+currentRows en currentCols, de wanted-waardes zijn nu immers
+current-waardes geworden. 
+  
+-----
+Blocks en hun views :
+
+De verschillende standen van een block worden 'views' genoemd.
+De meeste blocks hebben vier basis-views, maar bij sommige blocks 
+zijn slechts twee views wenselijk. Bijvoorbeeld :
+
+  []       []                  []
+[][][]     [][]    [][][]    [][]  : Dit block heeft vier views nodig.
+           []        []        []
+          
+view 0    view 1   view 2    view 3          
+          
+[][]        []          
+  [][]    [][]  : Dit block heeft maar twee views nodig.
+          []
+        
+In de 'nrOfViews'-array is vastgelegd hoeveel views een bepaald block kent.
+ 
+-----
+Alle views (rotatie en spiegeling) van een bepaald block :
+
+
+view 10    view 11    view 12    view 13   : basis-views (rechtsom roterend)
+
+[]          [][]                  []         
+[][][]      []       [][][]       []
+            []           []     [][]
+
+
+view 21    view 21    view 22    view 23   : horizontaal gespiegelde views
+
+    []     [][]                   []           
+[][][]       []      [][][]       []
+             []      []           [][]
+
+-----
+Blocks roteren :
+
+Voor het roteren van een block wordt een 'roteer'-
+bewerking uitgevoerd op de definitie van het block, bv : 
+
+def 0         view 10                      def 1         view 11
+                          roteren :
+[1][1][0]      [][]                       [0][0][1]        []
+[0][1][1]        [][]                     [0][1][1]      [][]            
+[0][0][0]                                 [0][1][0]      []      
+
+
+Voor het roteren geldt dezelfde procedure als bij het verplaatsen. 
+Er wordt een copy gemaakt van currentDef, deze copy heet wantedDef. 
+Op wantedDef wordt de roteerbewerking uitgevoerd.
+
+Vervolgens worden er met wantedDef wantedRows en WantedCols berekend.
+Als de wantedRows en WantedCols op het speelveld vrij zijn, dan worden 
+de coords van currentRows en currentCols op het speelveld gewist. 
+Met behulp van de coords van wantedRows en WantedCols wordt het block 
+nu geroteerd getekend.
+
+De waardes van wantedRows en WantedCols worden verplaats naar 
+currentRows en currentCols en de waardes van wantedDef worden 
+verplaats naar currentDef.
+
+-----
+Blocks spiegelen :
+
+Voor het spiegelen van blocks wordt dezelfde procedure gevolgd als bij het
+roteren, behalve dat de 'roteer'-bewerking dan een 'spiegel'-bewerking is.
+
+-----
+Draairichting :
+
+Om een block te laten roteren kun je 
+zijn views oplopend doorlopen : 
+
+Rechtsom : oplopend (view 10, 11, 12, 13, 10, etc)
+
+Als je een bepaalde view gespiegeld wilt gaan 
+weergeven, tel er dan 10  bij op :
+
+view 11 -> spiegelen -> view 21
+
+
+Als je bent overgegaan in gespiegelde view, dan moet je, 
+om het block rechtsom te laten blijven roteren, de views 
+daarna AFLOPEND gaan doorlopen.
+
