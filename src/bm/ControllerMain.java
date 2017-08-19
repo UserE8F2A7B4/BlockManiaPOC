@@ -1,6 +1,9 @@
 package bm;
 
-public class Controller
+import bm.block_handling.ControllerBlockHandling;
+import bm.line_removal.ControllerLineRemoval;
+
+public class ControllerMain
 {
 	private ControllerBlockHandling controllerBlockHandling;
 	private ControllerLineRemoval controllerLineRemoval;
@@ -12,17 +15,17 @@ public class Controller
 		BLOCK_HANDLING, LINE_REMOVAL
 	}
 
-	private static Controller instance;
-	public static Controller getInstance()
+	private static ControllerMain instance;
+	public static ControllerMain getInstance()
 	{
 		if (instance == null)
 		{
-			instance = new Controller();
+			instance = new ControllerMain();
 		}
 		return instance;
 	}
 
-	private Controller()
+	private ControllerMain()
 	{
 		controllerBlockHandling = ControllerBlockHandling.getInstance();
 		controllerLineRemoval = ControllerLineRemoval.getInstance();

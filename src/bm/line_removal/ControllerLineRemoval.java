@@ -1,4 +1,4 @@
-package bm;
+package bm.line_removal;
 
 public class ControllerLineRemoval
 {
@@ -19,4 +19,5 @@ public class ControllerLineRemoval
 	public void handleGameTick()
 	{
 	}
+
 }

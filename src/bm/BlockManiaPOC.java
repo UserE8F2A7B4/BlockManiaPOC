@@ -85,6 +85,7 @@ public class BlockManiaPOC extends JFrame
 		Runnable runnable = new Runnable()
 		{
 			@Override
+			@SuppressWarnings("unused")
 			public void run() { new BlockManiaPOC(); }
 		};
 		EventQueue.invokeLater(runnable);
@@ -165,6 +166,7 @@ public class BlockManiaPOC extends JFrame
 				case KeyEvent.VK_RIGHT :
 					setUserRequest(UserInput.MOVE_RIGHT);
 					break;
+				default:
 			}
 		}
 

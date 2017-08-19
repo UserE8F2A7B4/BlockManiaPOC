@@ -1,4 +1,4 @@
-package bm;
+package bm.block_handling;
 
 public class ControllerBlockHandling
 {
@@ -19,4 +19,5 @@ public class ControllerBlockHandling
 	public void handleGameTick()
 	{
 	}
+
 }
