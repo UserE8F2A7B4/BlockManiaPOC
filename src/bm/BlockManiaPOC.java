@@ -22,6 +22,7 @@ public class BlockManiaPOC extends JFrame
 	private final static int FRAME_HEIGHT = 300;
 	JButton btn01, btn02, btn03;
 
+	private ControllerMain controllerMain;
 	private UserInput request = UserInput.NONE;
 
 	public static enum UserInput
@@ -33,6 +34,7 @@ public class BlockManiaPOC extends JFrame
 	{
 		super(GlobalData.APPLICATION_NAME);
 
+		controllerMain = ControllerMain.getInstance();
 		this.addKeyListener(new keyPressedEventHandler());
 
 		Container cont = getContentPane();
@@ -50,7 +52,7 @@ public class BlockManiaPOC extends JFrame
 
 		Y += height + 10;
 		btn01 = new JButton(action01);
-		btn01.setText("button 01");
+		btn01.setText("Simulate game-tick");
 		width  = (int) btn01.getPreferredSize().getWidth();
 		height = (int) btn01.getPreferredSize().getHeight();
 		btn01.setBounds(X, Y, width, height);
@@ -105,7 +107,8 @@ public class BlockManiaPOC extends JFrame
 
 	void handleButton01()
 	{
-		System.err.println("Button 01 clicked.");
+		//		System.err.println("Button 01 clicked.");
+		controllerMain.handleGameTick();
 	}
 
 	void handleButton02()

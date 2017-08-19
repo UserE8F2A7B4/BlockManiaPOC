@@ -40,6 +40,10 @@ public class ControllerMain
 
 	public void handleGameTick()
 	{
+		// TODO : check for user-input (?).
+
+		// UserInput request = gui.getUserRequest();
+
 		switch (gameState)
 		{
 			case BLOCK_HANDLING  : controllerBlockHandling.handleGameTick() ; break;

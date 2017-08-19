@@ -18,6 +18,7 @@ public class ControllerBlockHandling
 
 	public void handleGameTick()
 	{
+		System.err.println("ControllerBlockHandling.handleGameTick");
 	}
 
 }

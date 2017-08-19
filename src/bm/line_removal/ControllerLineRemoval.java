@@ -18,6 +18,7 @@ public class ControllerLineRemoval
 
 	public void handleGameTick()
 	{
+		System.err.println("ControllerLineRemoval.handleGameTick");
 	}
 
 }
