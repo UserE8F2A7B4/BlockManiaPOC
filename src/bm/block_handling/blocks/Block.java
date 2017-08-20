@@ -1,61 +1,36 @@
 package bm.block_handling.blocks;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public abstract class Block
 {
-	//private Engine engine;
 	protected int blockNumber;
 
 	private static int VIEW_MIN = 0;
 	private static int VIEW_MAX = 3;
 
-	public Tile[][] regularViews;
-	public Tile[][] flippedViews;
+	Tile[][] regularViews;
+	Tile[][] flippedViews;
 
 	private enum ViewMode
 	{
 		REGULAR, FLIPPED
 	}
-	private ViewMode currentViewMode;
-	private int currentView;
-
-	private Tile[] locationsWanted;
-	private Tile[] locationsCurrent; // Used to clear block.
-
-	private int viewWanted;
-	private ViewMode viewModeWanted;
+	private ViewMode viewMode; // 'Regular' or 'Flipped'.
+	private int rotationIndex; // 'Not rotated', '1-step-rotated', etc.
 
 	private int offsetRow;
 	private int offsetColumn;
 
-	// private int trackNumber;
-
 	public Block()
 	{
-		//engine = Engine.getInstance();
-	}
-
-	private void reset()
-	{
-		currentViewMode = ViewMode.REGULAR;
-		currentView = 0;
+		viewMode = ViewMode.REGULAR;
+		rotationIndex = 0;
 
 		offsetRow = 0;
 		offsetColumn = 0;
-
-		locationsCurrent = new Tile[0];
-	}
-
-	public void enterPreview()
-	{
-		reset();
-		offsetRow = -1;
-		offsetColumn = 1;
-
-		//Location[] locations = getLocations();
-		// engine.addPreview(locations);
-
-		Tile[] tiles = getLocations();
-
 	}
 
 	//	public boolean canEnterGame()
@@ -82,35 +57,21 @@ public abstract class Block
 	//		return command;
 	//	}
 
-	// private void setTrackNumber(Tile[] tiles)
-	// {
-	// trackNumber++;
-	// if (trackNumber == Integer.MAX_VALUE)
-	// {
-	// trackNumber = 1;
-	// }
+	//	private int getRowOffset()
+	//	{
+	//		Tile[] locations = regularViews[0];
+	//		int rowOffset = locations[0].getRow();
 	//
-	// for (Tile t : tiles)
-	// {
-	// t.setTrackNumber(trackNumber);
-	// }
-	// }
-
-	private int getRowOffset()
-	{
-		Tile[] locations = regularViews[0];
-		int rowOffset = locations[0].getRow();
-
-		for (Tile loc : locations)
-		{
-			int row = loc.getRow();
-			if (row < rowOffset)
-			{
-				rowOffset = row;
-			}
-		}
-		return rowOffset;
-	}
+	//		for (Tile loc : locations)
+	//		{
+	//			int row = loc.getRow();
+	//			if (row < rowOffset)
+	//			{
+	//				rowOffset = row;
+	//			}
+	//		}
+	//		return rowOffset;
+	//	}
 
 	private int getBlockWidth()
 	{
@@ -257,17 +218,17 @@ public abstract class Block
 	private int getNextView()
 	{
 		int nextView = 0;
-		if (currentViewMode == ViewMode.REGULAR)
+		if (viewMode == ViewMode.REGULAR)
 		{
-			nextView = currentView + 1;
+			nextView = rotationIndex + 1;
 			if (nextView > VIEW_MAX)
 			{
 				nextView = VIEW_MIN;
 			}
 		}
-		else if (currentViewMode == ViewMode.FLIPPED)
+		else if (viewMode == ViewMode.FLIPPED)
 		{
-			nextView = currentView - 1;
+			nextView = rotationIndex - 1;
 			if (nextView < VIEW_MIN)
 			{
 				nextView = VIEW_MAX;
@@ -276,46 +237,45 @@ public abstract class Block
 		return nextView;
 	}
 
-	public Tile[] getLocations() // Used when entering the gamefield.
+	public List<Tile> getTiles() // Used when entering the gamefield.
 	{
 		final int NO_ROW_OFFSET = 0;
 		final int NO_COL_OFFSET = 0;
-		return getLocations(NO_ROW_OFFSET, NO_COL_OFFSET, currentView, currentViewMode);
+		return getTiles(NO_ROW_OFFSET, NO_COL_OFFSET, rotationIndex, viewMode);
 	}
 
-	public Tile[] getLocations(int rowOffset, int colOffset) // Used with moving.
+	public List<Tile> getTiles(int offsetRowRequested, int offsetColumnRequested) // Used with 'Move'.
 	{
-		return getLocations(rowOffset, colOffset, currentView, currentViewMode);
+		return getTiles(offsetRowRequested, offsetColumnRequested, rotationIndex, viewMode);
 	}
 
-	private Tile[] getLocations(int wantedView) // Used with 'rotate'.
-	{
-		final int NO_ROW_OFFSET = 0;
-		final int NO_COL_OFFSET = 0;
-		return getLocations(NO_ROW_OFFSET, NO_COL_OFFSET, wantedView, currentViewMode);
-	}
-
-	private Tile[] getLocations(ViewMode viewMode) // Used with 'flip'.
+	private List<Tile> getTiles(int rotationIndexRequested) // Used with 'Rotate'.
 	{
 		final int NO_ROW_OFFSET = 0;
 		final int NO_COL_OFFSET = 0;
-		return getLocations(NO_ROW_OFFSET, NO_COL_OFFSET, currentView, viewMode);
+		return getTiles(NO_ROW_OFFSET, NO_COL_OFFSET, rotationIndexRequested, viewMode);
 	}
 
-	private Tile[] getLocations(int rowOffset, int colOffset, int view, ViewMode viewMode)
+	private List<Tile> getTiles(ViewMode viewModeRequested) // Used with 'Flip'.
 	{
-		Tile[] locationStart = (viewMode == ViewMode.REGULAR) ? regularViews[view] : flippedViews[view];
-		int length = locationStart.length;
+		final int NO_ROW_OFFSET = 0;
+		final int NO_COL_OFFSET = 0;
+		return getTiles(NO_ROW_OFFSET, NO_COL_OFFSET, rotationIndex, viewModeRequested);
+	}
 
-		Tile[] locationActual = new Tile[length];
-		for (int i = 0 ; i < length ; i++)
+	private List<Tile> getTiles(int offsetRowRequested, int offsetColumnRequested, int rotationIndexRequested, ViewMode viewModeRequested)
+	{
+		List<Tile> tiles = (viewModeRequested == ViewMode.REGULAR) ? Arrays.asList(regularViews[rotationIndexRequested]) : Arrays.asList(flippedViews[rotationIndexRequested]);
+		List<Tile> tilesWithOffset = new ArrayList<>(tiles.size());
+
+		for (Tile tile : tiles)
 		{
-			Tile loc = locationStart[i];
-			int row = loc.getRow() + offsetRow + rowOffset;
-			int col = loc.getCol() + offsetColumn + colOffset;
-			locationActual[i] = new Tile(row, col, blockNumber);
+			int row = tile.getRow() + offsetRow + offsetRowRequested;
+			int col = tile.getCol() + offsetColumn + offsetColumnRequested;
+			tilesWithOffset.add(new Tile(row, col, blockNumber));
 		}
-		return locationActual;
+
+		return tilesWithOffset;
 	}
 
 	public int getOffsetRow()

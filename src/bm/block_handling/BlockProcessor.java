@@ -38,12 +38,13 @@ public class BlockProcessor
 		block.setOffsetRow(calculateOffsetRow());
 
 		currentTiles.clear();
+		newTiles = block.getTiles();
 	}
 
 	private int calculateOffsetRow() // Compensate the block's initial row-offset.
 	{
-		Tile[] tiles = block.regularViews[0];
-		int offsetRow = tiles[0].getRow();
+		List<Tile> tiles = block.getTiles(); // TODO : check ; is dit hetzelfde als 'Tile[] tiles = block.regularViews[0]' ?
+		int offsetRow = tiles.get(0).getRow();
 
 		for (Tile tile : tiles)
 		{
