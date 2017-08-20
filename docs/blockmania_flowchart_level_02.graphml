@@ -374,7 +374,7 @@ Clear NewTiles.</y:NodeLabel>
           <y:Geometry height="106.91530944625407" width="231.30306122448974" x="1654.5696868402538" y="936.4780245665328"/>
           <y:Fill color="#CCFFFF" color2="#CCFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="node_width" bottomInset="50" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="132.1875" horizontalTextPosition="center" iconTextGap="4" leftInset="50" modelName="internal" modelPosition="c" rightInset="50" textColor="#000000" topInset="50" verticalTextPosition="bottom" visible="true" width="231.30306122448974" x="0.0" y="-12.636095276872993">Is er ruimte op het [field] voor de NewTiles ?</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" bottomInset="50" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="132.1875" horizontalTextPosition="center" iconTextGap="4" leftInset="50" modelName="internal" modelPosition="c" rightInset="50" textColor="#000000" topInset="50" verticalTextPosition="bottom" visible="true" width="231.30306122448974" x="0.0" y="-12.636095276873107">Is er ruimte op het [field] voor de NewTiles ?</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
@@ -395,7 +395,7 @@ Clear NewTiles.</y:NodeLabel>
           <y:Geometry height="106.91530944625407" width="231.30306122448974" x="2102.035285140978" y="936.4780245665328"/>
           <y:Fill color="#CCFFFF" color2="#CCFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="node_width" bottomInset="50" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="132.1875" horizontalTextPosition="center" iconTextGap="4" leftInset="50" modelName="internal" modelPosition="c" rightInset="50" textColor="#000000" topInset="50" verticalTextPosition="bottom" visible="true" width="231.30306122448974" x="0.0" y="-12.636095276872993">Is er ruimte op het [field] voor de NewTiles ?</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" bottomInset="50" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="132.1875" horizontalTextPosition="center" iconTextGap="4" leftInset="50" modelName="internal" modelPosition="c" rightInset="50" textColor="#000000" topInset="50" verticalTextPosition="bottom" visible="true" width="231.30306122448974" x="0.0" y="-12.636095276873107">Is er ruimte op het [field] voor de NewTiles ?</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
@@ -436,7 +436,7 @@ Clear NewTiles.</y:NodeLabel>
           <y:Geometry height="106.91530944625407" width="231.30306122448974" x="1199.8821868402538" y="936.4780245665328"/>
           <y:Fill color="#CCFFFF" color2="#CCFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="node_width" bottomInset="50" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="132.1875" horizontalTextPosition="center" iconTextGap="4" leftInset="50" modelName="internal" modelPosition="c" rightInset="50" textColor="#000000" topInset="50" verticalTextPosition="bottom" visible="true" width="231.30306122448974" x="0.0" y="-12.636095276872993">Is er ruimte op het [field] voor de NewTiles ?</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" bottomInset="50" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="132.1875" horizontalTextPosition="center" iconTextGap="4" leftInset="50" modelName="internal" modelPosition="c" rightInset="50" textColor="#000000" topInset="50" verticalTextPosition="bottom" visible="true" width="231.30306122448974" x="0.0" y="-12.636095276873107">Is er ruimte op het [field] voor de NewTiles ?</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
@@ -467,7 +467,7 @@ Clear NewTiles.</y:NodeLabel>
           <y:Geometry height="106.91530944625407" width="231.30306122448974" x="2568.5513936457837" y="936.4780245665328"/>
           <y:Fill color="#CCFFFF" color2="#CCFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="node_width" bottomInset="50" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="132.1875" horizontalTextPosition="center" iconTextGap="4" leftInset="50" modelName="internal" modelPosition="c" rightInset="50" textColor="#000000" topInset="50" verticalTextPosition="bottom" visible="true" width="231.30306122448974" x="0.0" y="-12.636095276872993">Is er ruimte op het [field] voor de NewTiles ?</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" bottomInset="50" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="132.1875" horizontalTextPosition="center" iconTextGap="4" leftInset="50" modelName="internal" modelPosition="c" rightInset="50" textColor="#000000" topInset="50" verticalTextPosition="bottom" visible="true" width="231.30306122448974" x="0.0" y="-12.636095276873107">Is er ruimte op het [field] voor de NewTiles ?</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
@@ -553,7 +553,7 @@ regels ontstaan ?<y:LabelModel>
           <y:Geometry height="37.66829361627984" width="94.8030612244898" x="936.9597231996252" y="490.90123892870236"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="node_size" bottomInset="10" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="37.66829361627984" horizontalTextPosition="center" iconTextGap="4" leftInset="10" modelName="internal" modelPosition="c" rightInset="10" textColor="#000000" topInset="10" verticalTextPosition="bottom" visible="true" width="94.8030612244898" x="0.0" y="8.526512829121202E-14">Geen actie.</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_size" bottomInset="10" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="37.66829361627984" horizontalTextPosition="center" iconTextGap="4" leftInset="10" modelName="internal" modelPosition="c" rightInset="10" textColor="#000000" topInset="10" verticalTextPosition="bottom" visible="true" width="94.8030612244898" x="0.0" y="-2.8421709430404007E-14">Geen actie.</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
@@ -600,8 +600,8 @@ een [move down] ?<y:LabelModel>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="-15.375334462073909">
-            <y:Point x="828.0" y="213.79740342759118"/>
-            <y:Point x="828.0" y="124.91018909358169"/>
+            <y:Point x="853.9862068965517" y="213.79740342759118"/>
+            <y:Point x="853.9862068965517" y="124.91018909358169"/>
             <y:Point x="530.6238095238095" y="124.91018909358169"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
@@ -1069,7 +1069,6 @@ een [move down] ?<y:LabelModel>
       </data>
     </edge>
     <edge id="e44" source="n36" target="n10">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="-4.486985287555854">
@@ -1085,7 +1084,6 @@ een [move down] ?<y:LabelModel>
       </data>
     </edge>
     <edge id="e45" source="n30" target="n10">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -1101,7 +1099,6 @@ een [move down] ?<y:LabelModel>
       </data>
     </edge>
     <edge id="e46" source="n32" target="n10">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -1117,7 +1114,6 @@ een [move down] ?<y:LabelModel>
       </data>
     </edge>
     <edge id="e47" source="n39" target="n41">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1130,7 +1126,6 @@ een [move down] ?<y:LabelModel>
       </data>
     </edge>
     <edge id="e48" source="n39" target="n10">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -1146,7 +1141,6 @@ een [move down] ?<y:LabelModel>
       </data>
     </edge>
     <edge id="e49" source="n42" target="n44">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1159,7 +1153,6 @@ een [move down] ?<y:LabelModel>
       </data>
     </edge>
     <edge id="e50" source="n45" target="n46">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1172,7 +1165,6 @@ een [move down] ?<y:LabelModel>
       </data>
     </edge>
     <edge id="e51" source="n4" target="n47">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1185,7 +1177,6 @@ een [move down] ?<y:LabelModel>
       </data>
     </edge>
     <edge id="e52" source="n47" target="n45">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1198,7 +1189,6 @@ een [move down] ?<y:LabelModel>
       </data>
     </edge>
     <edge id="e53" source="n45" target="n29">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -1215,7 +1205,6 @@ een [move down] ?<y:LabelModel>
       </data>
     </edge>
     <edge id="e54" source="n47" target="n16">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="1.1053038334468965">

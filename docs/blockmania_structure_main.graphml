@@ -67,10 +67,10 @@
     <node id="n5">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.process">
-          <y:Geometry height="41.72010254953712" width="82.20204081632647" x="770.095918367347" y="71.7798974504629"/>
+          <y:Geometry height="41.72010254953712" width="118.20204081632647" x="732.095918367347" y="71.7798974504629"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="node_size" bottomInset="10" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="41.72010254953712" horizontalTextPosition="center" iconTextGap="4" leftInset="10" modelName="internal" modelPosition="c" rightInset="10" textColor="#000000" topInset="10" verticalTextPosition="bottom" visible="true" width="82.20204081632647" x="0.0" y="0.0">Preview</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_size" bottomInset="10" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="41.72010254953712" horizontalTextPosition="center" iconTextGap="4" leftInset="10" modelName="internal" modelPosition="c" rightInset="10" textColor="#000000" topInset="10" verticalTextPosition="bottom" visible="true" width="118.20204081632647" x="0.0" y="0.0">PreviewController</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
@@ -90,7 +90,7 @@
           <y:Geometry height="53.72010254953712" width="104.20204081632647" x="1187.8938775510208" y="474.0"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="node_size" bottomInset="10" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="53.72010254953712" horizontalTextPosition="center" iconTextGap="4" leftInset="10" modelName="internal" modelPosition="c" rightInset="10" textColor="#000000" topInset="10" verticalTextPosition="bottom" visible="true" width="104.20204081632647" x="0.0" y="-1.4210854715202004E-14">CanvasField</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_size" bottomInset="10" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="53.72010254953712" horizontalTextPosition="center" iconTextGap="4" leftInset="10" modelName="internal" modelPosition="c" rightInset="10" textColor="#000000" topInset="10" verticalTextPosition="bottom" visible="true" width="104.20204081632647" x="0.0" y="4.263256414560601E-14">CanvasField</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
@@ -110,7 +110,7 @@
           <y:Geometry height="53.72010254953712" width="104.20204081632647" x="1187.893877551021" y="557.7201025495373"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="node_size" bottomInset="10" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="53.72010254953712" horizontalTextPosition="center" iconTextGap="4" leftInset="10" modelName="internal" modelPosition="c" rightInset="10" textColor="#000000" topInset="10" verticalTextPosition="bottom" visible="true" width="104.20204081632647" x="0.0" y="1.4210854715202004E-14">CanvasScore</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_size" bottomInset="10" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="53.72010254953712" horizontalTextPosition="center" iconTextGap="4" leftInset="10" modelName="internal" modelPosition="c" rightInset="10" textColor="#000000" topInset="10" verticalTextPosition="bottom" visible="true" width="104.20204081632647" x="0.0" y="4.263256414560601E-14">CanvasScore</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
@@ -120,7 +120,7 @@
           <y:Geometry height="106.72010254953715" width="128.20204081632647" x="986.0857142857152" y="447.5"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="node_size" bottomInset="10" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="106.72010254953715" horizontalTextPosition="center" iconTextGap="4" leftInset="10" modelName="internal" modelPosition="c" rightInset="10" textColor="#000000" topInset="10" verticalTextPosition="bottom" visible="true" width="128.20204081632647" x="0.0" y="-1.4210854715202004E-14">CanvasMain</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_size" bottomInset="10" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="106.72010254953715" horizontalTextPosition="center" iconTextGap="4" leftInset="10" modelName="internal" modelPosition="c" rightInset="10" textColor="#000000" topInset="10" verticalTextPosition="bottom" visible="true" width="128.20204081632647" x="0.0" y="1.4210854715202004E-14">CanvasMain</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
@@ -191,7 +191,7 @@
     <node id="n15">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.terminator">
-          <y:Geometry height="40.0" width="94.60102040816332" x="763.8964285714286" y="1.7798974504628973"/>
+          <y:Geometry height="40.0" width="94.60102040816332" x="743.8964285714286" y="1.7798974504628973"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="76.0234375" x="9.288791454081661" y="10.6494140625">PreviewBlock<y:LabelModel>
@@ -365,7 +365,7 @@
     <edge id="e9" source="n5" target="n4">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="-25.0" ty="-20.0"/>
+          <y:Path sx="0.0" sy="0.0" tx="-45.0" ty="-41.05502563738429"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
