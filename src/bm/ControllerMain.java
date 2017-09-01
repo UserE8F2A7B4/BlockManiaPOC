@@ -1,10 +1,13 @@
 package bm;
 
+import bm.BlockManiaPOC.UserInput;
 import bm.block_handling.ControllerBlockHandling;
 import bm.line_removal.ControllerLineRemoval;
 
 public class ControllerMain
 {
+	private BlockManiaPOC gui;
+
 	private ControllerBlockHandling controllerBlockHandling;
 	private ControllerLineRemoval controllerLineRemoval;
 
@@ -16,17 +19,19 @@ public class ControllerMain
 	}
 
 	private static ControllerMain instance;
-	public static ControllerMain getInstance()
+	public static ControllerMain getInstance(BlockManiaPOC bm)
 	{
 		if (instance == null)
 		{
-			instance = new ControllerMain();
+			instance = new ControllerMain(bm);
 		}
 		return instance;
 	}
 
-	private ControllerMain()
+	private ControllerMain(BlockManiaPOC bm)
 	{
+		gui = bm;
+
 		controllerBlockHandling = ControllerBlockHandling.getInstance();
 		controllerLineRemoval = ControllerLineRemoval.getInstance();
 
@@ -40,13 +45,11 @@ public class ControllerMain
 
 	public void handleGameTick()
 	{
-		// TODO : check for user-input (?).
-
-		// UserInput request = gui.getUserRequest();
+		UserInput input = gui.getUserRequest();
 
 		switch (gameState)
 		{
-			case BLOCK_HANDLING  : controllerBlockHandling.handleGameTick() ; break;
+			case BLOCK_HANDLING  : controllerBlockHandling.handleGameTick(input) ; break;
 			case LINE_REMOVAL    : controllerLineRemoval.handleGameTick() ; break;
 			default              : assert false : "Invalid request"; break;
 		}

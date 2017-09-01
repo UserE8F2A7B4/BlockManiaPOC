@@ -8,6 +8,7 @@ import bm.block_handling.blocks.Tile;
 
 public class BlockProcessor
 {
+	private ControllerField controllerField;
 	private Block block;
 
 	private List<Tile> newTiles = new ArrayList<>();
@@ -25,6 +26,7 @@ public class BlockProcessor
 
 	private BlockProcessor()
 	{
+		controllerField = ControllerField.getInstance();
 	}
 
 	public boolean hasBlock()
@@ -32,13 +34,41 @@ public class BlockProcessor
 		return (block != null);
 	}
 
-	public void getBlockFromPreview()
+	public void removeBlock()
+	{
+		block = null;
+	}
+
+	// Level 2.
+
+	public boolean tryToPlaceNewBlockOnField()
+	{
+		loadBlockFromPreview();
+
+		if (controllerField.tryToPlaceNewTilesOnField(currentTiles, newTiles))
+		{
+			newTilesHaveBecomeCurrentTiles();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	private void loadBlockFromPreview()
 	{
 		block = ControllerPreview.getInstance().getBlock();
 		block.setOffsetRow(calculateOffsetRow());
 
 		currentTiles.clear();
 		newTiles = block.getTiles();
+	}
+
+	private void newTilesHaveBecomeCurrentTiles()
+	{
+		currentTiles = new ArrayList<>(newTiles);
+		newTiles.clear();
 	}
 
 	private int calculateOffsetRow() // Compensate the block's initial row-offset.
@@ -59,9 +89,27 @@ public class BlockProcessor
 		return offsetRow;
 	}
 
-	public void removeBlock()
+	public boolean tryToMoveBlockLeft()
 	{
-		block = null;
+		int offsetRowRequested = block.getOffsetRow();
+		int offsetColumnRequested = block.getOffsetColumn() - 1;
+
+		newTiles = block.getTiles(offsetRowRequested, offsetColumnRequested);
+		if (!controllerField.areTilesWithinBoundaries(newTiles))
+		{
+			return false;
+		}
+
+		if (controllerField.tryToPlaceNewTilesOnField(currentTiles, newTiles))
+		{
+			newTilesHaveBecomeCurrentTiles();
+			block.setOffsetColumn(offsetColumnRequested);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 }
