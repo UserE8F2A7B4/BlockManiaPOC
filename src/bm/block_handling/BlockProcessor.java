@@ -95,10 +95,6 @@ public class BlockProcessor
 		int offsetColumnRequested = block.getOffsetColumn() - 1;
 
 		newTiles = block.getTiles(offsetRowRequested, offsetColumnRequested);
-		if (!controllerField.areTilesWithinBoundaries(newTiles))
-		{
-			return false;
-		}
 
 		if (controllerField.tryToPlaceNewTilesOnField(currentTiles, newTiles))
 		{
