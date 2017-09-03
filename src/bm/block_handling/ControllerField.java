@@ -1,5 +1,6 @@
 package bm.block_handling;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bm.block_handling.blocks.Tile;
@@ -127,5 +128,44 @@ public class ControllerField
 	//		}
 	//		return areWithin;
 	//	}
+
+	public boolean hasCompletedRows()
+	{
+		List<Integer> completedRows = getCompletedRows();
+		return !completedRows.isEmpty();
+	}
+
+	public List<Integer> getCompletedRows()
+	{
+		List<Integer> completedRows = new ArrayList<>(15); // '15' stands for '3x long block'.
+		for (int row = GlobalData.ROWS - 1 ; row >= ROW_MIN ; row--) // Search from bottom to top.
+		{
+			if (!isLocationEmpty(row, COL_MIN) && !isLocationEmpty(row, GlobalData.COLS - 1) && isRowCompleted(row))
+			{
+				completedRows.add(row);
+			}
+		}
+		return completedRows;
+	}
+
+	private boolean isRowCompleted(int row)
+	{
+		boolean completeRow = true;
+		for (int col = COL_MIN ; col < GlobalData.COLS ; col++)
+		{
+			if (isLocationEmpty(row, col))
+			{
+				completeRow = false;
+				break;
+			}
+		}
+		return completeRow;
+	}
+
+	private boolean isLocationEmpty(int row, int col)
+	{
+		return (field[row][col] == null);
+	}
+
 
 }

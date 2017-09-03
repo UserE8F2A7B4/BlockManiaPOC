@@ -34,7 +34,9 @@ public class BlockManiaPOC extends JFrame
 	{
 		super(GlobalData.APPLICATION_NAME);
 
-		controllerMain = ControllerMain.getInstance(this);
+		controllerMain = ControllerMain.getInstance();
+		controllerMain.setReferenceToGUI(this);
+
 		this.addKeyListener(new keyPressedEventHandler());
 
 		Container cont = getContentPane();

@@ -1,6 +1,8 @@
 package bm.block_handling;
 
 import bm.BlockManiaPOC.UserInput;
+import bm.ControllerMain;
+import bm.ControllerMain.GameState;
 
 public class ControllerBlockHandling
 {
@@ -89,6 +91,11 @@ public class ControllerBlockHandling
 				blockProcessor.tryToMoveBlockDown();
 				break;
 		}
+	}
+
+	public void changeGameState(GameState newGameState)
+	{
+		ControllerMain.getInstance().changeGameState(newGameState);
 	}
 
 }

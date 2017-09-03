@@ -19,23 +19,26 @@ public class ControllerMain
 	}
 
 	private static ControllerMain instance;
-	public static ControllerMain getInstance(BlockManiaPOC bm)
+	public static ControllerMain getInstance()
 	{
 		if (instance == null)
 		{
-			instance = new ControllerMain(bm);
+			instance = new ControllerMain();
 		}
 		return instance;
 	}
 
-	private ControllerMain(BlockManiaPOC bm)
+	private ControllerMain()
 	{
-		gui = bm;
-
 		controllerBlockHandling = ControllerBlockHandling.getInstance();
 		controllerLineRemoval = ControllerLineRemoval.getInstance();
 
 		gameState = GameState.BLOCK_HANDLING;
+	}
+
+	public void setReferenceToGUI(BlockManiaPOC bm)
+	{
+		gui = bm;
 	}
 
 	public void changeGameState(GameState newGameState)

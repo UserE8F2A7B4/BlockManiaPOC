@@ -3,6 +3,7 @@ package bm.block_handling;
 import java.util.ArrayList;
 import java.util.List;
 
+import bm.ControllerMain.GameState;
 import bm.block_handling.blocks.Block;
 import bm.block_handling.blocks.Block.RotationMode;
 import bm.block_handling.blocks.Tile;
@@ -125,7 +126,15 @@ public class BlockProcessor
 		newTiles = block.getTilesWithOffset(offsetRowRequested, block.getOffsetColumn());
 		if (tryToPlaceNewTilesOnField())
 		{
+			block.setOffsetRow(offsetRowRequested);
+		}
+		else // The block can not be moved down any further, (it has reached the bottom or is blocked).
+		{
 			removeBlock();
+			if (controllerField.hasCompletedRows())
+			{
+				ControllerBlockHandling.getInstance().changeGameState(GameState.LINE_REMOVAL);
+			}
 		}
 	}
 
