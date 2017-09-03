@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bm.block_handling.blocks.Block;
+import bm.block_handling.blocks.Block.RotationMode;
 import bm.block_handling.blocks.Tile;
 
 public class BlockProcessor
@@ -89,17 +90,70 @@ public class BlockProcessor
 		return offsetRow;
 	}
 
-	public boolean tryToMoveBlockLeft()
+	public void tryToMoveBlockLeft()
 	{
-		int offsetRowRequested = block.getOffsetRow();
-		int offsetColumnRequested = block.getOffsetColumn() - 1;
+		tryToMoveBlockHorizontally(block.getOffsetColumn() - 1);
+	}
 
-		newTiles = block.getTiles(offsetRowRequested, offsetColumnRequested);
+	public void tryToMoveBlockRight()
+	{
+		tryToMoveBlockHorizontally(block.getOffsetColumn() + 1);
+	}
 
+	private void tryToMoveBlockHorizontally(int offsetColumnRequested)
+	{
+		newTiles = block.getTilesWithOffset(block.getOffsetRow(), offsetColumnRequested);
+		if (tryToPlaceNewTilesOnField())
+		{
+			block.setOffsetColumn(offsetColumnRequested);
+		}
+	}
+
+	public void tryToMoveBlockUp()
+	{
+		int offsetRowRequested = block.getOffsetRow() - 1;
+		newTiles = block.getTilesWithOffset(offsetRowRequested, block.getOffsetColumn());
+		if (tryToPlaceNewTilesOnField())
+		{
+			block.setOffsetRow(offsetRowRequested);
+		}
+	}
+
+	public void tryToMoveBlockDown()
+	{
+		int offsetRowRequested = block.getOffsetRow() + 1;
+		newTiles = block.getTilesWithOffset(offsetRowRequested, block.getOffsetColumn());
+		if (tryToPlaceNewTilesOnField())
+		{
+			removeBlock();
+		}
+	}
+
+	public void tryToRotateBlock()
+	{
+		int rotationIndexRequested = block.getNextRotationIndex();
+		newTiles = block.getTilesWithRotationIndex(rotationIndexRequested);
+		if (tryToPlaceNewTilesOnField())
+		{
+			block.setRotationIndex(rotationIndexRequested);
+		}
+	}
+
+	public void tryToFlipBlock()
+	{
+		RotationMode rotationModeRequested = block.getNextRotationMode();
+		newTiles = block.getTilesWithRotationMode(rotationModeRequested);
+		if (tryToPlaceNewTilesOnField())
+		{
+			block.setRotationMode(rotationModeRequested);
+		}
+	}
+
+	private boolean tryToPlaceNewTilesOnField()
+	{
 		if (controllerField.tryToPlaceNewTilesOnField(currentTiles, newTiles))
 		{
 			newTilesHaveBecomeCurrentTiles();
-			block.setOffsetColumn(offsetColumnRequested);
 			return true;
 		}
 		else

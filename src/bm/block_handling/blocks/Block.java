@@ -8,17 +8,17 @@ public abstract class Block
 {
 	protected int blockNumber;
 
-	private static int VIEW_MIN = 0;
-	private static int VIEW_MAX = 3;
+	private static int ROTATION_INDEX_MIN = 0;
+	private static int ROTATION_INDEX_MAX = 3;
 
 	Tile[][] regularViews;
 	Tile[][] flippedViews;
 
-	private enum ViewMode
+	public enum RotationMode
 	{
 		REGULAR, FLIPPED
 	}
-	private ViewMode viewMode; // 'Regular' or 'Flipped'.
+	private RotationMode rotationMode; // 'Regular' or 'Flipped'.
 	private int rotationIndex; // 'Not rotated', '1-step-rotated', etc.
 
 	private int offsetRow;
@@ -26,52 +26,12 @@ public abstract class Block
 
 	public Block()
 	{
-		viewMode = ViewMode.REGULAR;
+		rotationMode = RotationMode.REGULAR;
 		rotationIndex = 0;
 
 		offsetRow = 0;
 		offsetColumn = 0;
 	}
-
-	//	public boolean canEnterGame()
-	//	{
-	//		reset();
-	//
-	//		rowOffsetCurrent = 0 - getRowOffset(); // Compensate the block's initial row-offset.
-	//		colOffsetCurrent = (GlobalData.COLS - getBlockWidth()) / 2; // Center the block.
-	//
-	//		locationsWanted = getLocations();
-	//		return engine.areLocationsEmpty(locationsWanted, locationsCurrent);
-	//	}
-
-	//	public Command enterGame()
-	//	{
-	//		engine.setLocations(locationsWanted);
-	//		locationsCurrent = locationsWanted;
-	//
-	//		// setTrackNumber(locationsCurrent);
-	//
-	//		Command command = new Command();
-	//		command.commands.add(GameCommand.ADD_BLOCK);
-	//		command.tiles.add(locationsCurrent);
-	//		return command;
-	//	}
-
-	//	private int getRowOffset()
-	//	{
-	//		Tile[] locations = regularViews[0];
-	//		int rowOffset = locations[0].getRow();
-	//
-	//		for (Tile loc : locations)
-	//		{
-	//			int row = loc.getRow();
-	//			if (row < rowOffset)
-	//			{
-	//				rowOffset = row;
-	//			}
-	//		}
-	//		return rowOffset;
-	//	}
 
 	private int getBlockWidth()
 	{
@@ -94,62 +54,6 @@ public abstract class Block
 		return (maxCol + 1 - minCol); // +1 because it's zero-based.
 	}
 
-	//	public boolean canMoveLeft()
-	//	{
-	//		locationsWanted = getLocations(0, -1);
-	//		return engine.isWithinBoundaries(locationsWanted) && engine.areLocationsEmpty(locationsWanted, locationsCurrent);
-	//	}
-
-	//	public Command moveLeft()
-	//	{
-	//		engine.clearLocations(locationsCurrent);
-	//		engine.setLocations(locationsWanted);
-	//
-	//		Command command = createReplaceCommand(locationsCurrent, locationsWanted);
-	//
-	//		locationsCurrent = locationsWanted;
-	//		colOffsetCurrent--;
-	//
-	//		return command;
-	//	}
-
-	//	public boolean canMoveRight()
-	//	{
-	//		locationsWanted = getLocations(0, 1);
-	//		return engine.isWithinBoundaries(locationsWanted) && engine.areLocationsEmpty(locationsWanted, locationsCurrent);
-	//	}
-
-	//	public Command moveRight()
-	//	{
-	//		engine.clearLocations(locationsCurrent);
-	//		engine.setLocations(locationsWanted);
-	//
-	//		Command command = createReplaceCommand(locationsCurrent, locationsWanted);
-	//
-	//		locationsCurrent = locationsWanted;
-	//		colOffsetCurrent++;
-	//
-	//		return command;
-	//	}
-
-	//	public boolean canMoveUp()
-	//	{
-	//		locationsWanted = getLocations(-1, 0);
-	//		return engine.isWithinBoundaries(locationsWanted) && engine.areLocationsEmpty(locationsWanted, locationsCurrent);
-	//	}
-
-	//	public Command moveUp()
-	//	{
-	//		engine.clearLocations(locationsCurrent);
-	//		engine.setLocations(locationsWanted);
-	//
-	//		Command command = createReplaceCommand(locationsCurrent, locationsWanted);
-	//
-	//		locationsCurrent = locationsWanted;
-	//		rowOffsetCurrent--;
-	//
-	//		return command;
-	//	}
 
 	//	public boolean canMoveDown()
 	//	{
@@ -215,57 +119,73 @@ public abstract class Block
 	//		return command;
 	//	}
 
-	private int getNextView()
+	public RotationMode getNextRotationMode()
 	{
-		int nextView = 0;
-		if (viewMode == ViewMode.REGULAR)
-		{
-			nextView = rotationIndex + 1;
-			if (nextView > VIEW_MAX)
-			{
-				nextView = VIEW_MIN;
-			}
-		}
-		else if (viewMode == ViewMode.FLIPPED)
-		{
-			nextView = rotationIndex - 1;
-			if (nextView < VIEW_MIN)
-			{
-				nextView = VIEW_MAX;
-			}
-		}
-		return nextView;
+		return (rotationMode == RotationMode.REGULAR) ? RotationMode.FLIPPED : RotationMode.REGULAR;
 	}
+
+	public void setRotationMode(RotationMode mode)
+	{
+		rotationMode = mode;
+	}
+
+	public int getNextRotationIndex()
+	{
+		int nextRotationIndex = 0;
+		if (rotationMode == RotationMode.REGULAR)
+		{
+			nextRotationIndex = rotationIndex + 1;
+			if (nextRotationIndex > ROTATION_INDEX_MAX)
+			{
+				nextRotationIndex = ROTATION_INDEX_MIN;
+			}
+		}
+		else if (rotationMode == RotationMode.FLIPPED)
+		{
+			nextRotationIndex = rotationIndex - 1;
+			if (nextRotationIndex < ROTATION_INDEX_MIN)
+			{
+				nextRotationIndex = ROTATION_INDEX_MAX;
+			}
+		}
+		return nextRotationIndex;
+	}
+
+	public void setRotationIndex(int index)
+	{
+		rotationIndex = index;
+	}
+
 
 	public List<Tile> getTiles() // Used when entering the gamefield.
 	{
 		final int NO_ROW_OFFSET = 0;
 		final int NO_COL_OFFSET = 0;
-		return getTiles(NO_ROW_OFFSET, NO_COL_OFFSET, rotationIndex, viewMode);
+		return getTiles(NO_ROW_OFFSET, NO_COL_OFFSET, rotationIndex, rotationMode);
 	}
 
-	public List<Tile> getTiles(int offsetRowRequested, int offsetColumnRequested) // Used with 'Move'.
+	public List<Tile> getTilesWithOffset(int offsetRowRequested, int offsetColumnRequested) // Used with 'Move'.
 	{
-		return getTiles(offsetRowRequested, offsetColumnRequested, rotationIndex, viewMode);
+		return getTiles(offsetRowRequested, offsetColumnRequested, rotationIndex, rotationMode);
 	}
 
-	private List<Tile> getTiles(int rotationIndexRequested) // Used with 'Rotate'.
-	{
-		final int NO_ROW_OFFSET = 0;
-		final int NO_COL_OFFSET = 0;
-		return getTiles(NO_ROW_OFFSET, NO_COL_OFFSET, rotationIndexRequested, viewMode);
-	}
-
-	private List<Tile> getTiles(ViewMode viewModeRequested) // Used with 'Flip'.
+	public List<Tile> getTilesWithRotationIndex(int rotationIndexRequested) // Used with 'Rotate'.
 	{
 		final int NO_ROW_OFFSET = 0;
 		final int NO_COL_OFFSET = 0;
-		return getTiles(NO_ROW_OFFSET, NO_COL_OFFSET, rotationIndex, viewModeRequested);
+		return getTiles(NO_ROW_OFFSET, NO_COL_OFFSET, rotationIndexRequested, rotationMode);
 	}
 
-	private List<Tile> getTiles(int offsetRowRequested, int offsetColumnRequested, int rotationIndexRequested, ViewMode viewModeRequested)
+	public List<Tile> getTilesWithRotationMode(RotationMode rotationModeRequested) // Used with 'Flip'.
 	{
-		List<Tile> tiles = (viewModeRequested == ViewMode.REGULAR) ? Arrays.asList(regularViews[rotationIndexRequested]) : Arrays.asList(flippedViews[rotationIndexRequested]);
+		final int NO_ROW_OFFSET = 0;
+		final int NO_COL_OFFSET = 0;
+		return getTiles(NO_ROW_OFFSET, NO_COL_OFFSET, rotationIndex, rotationModeRequested);
+	}
+
+	private List<Tile> getTiles(int offsetRowRequested, int offsetColumnRequested, int rotationIndexRequested, RotationMode viewModeRequested)
+	{
+		List<Tile> tiles = (viewModeRequested == RotationMode.REGULAR) ? Arrays.asList(regularViews[rotationIndexRequested]) : Arrays.asList(flippedViews[rotationIndexRequested]);
 		List<Tile> tilesWithOffset = new ArrayList<>(tiles.size());
 
 		for (Tile tile : tiles)

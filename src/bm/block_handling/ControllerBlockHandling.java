@@ -71,22 +71,22 @@ public class ControllerBlockHandling
 		switch (input)
 		{
 			case ROTATE:
-				// blockProcessor.tryToRotateBlock();
+				blockProcessor.tryToRotateBlock();
 				break;
 			case FLIP:
-				// blockProcessor.tryToFlipBlock();
+				blockProcessor.tryToFlipBlock();
 				break;
 			case MOVE_LEFT:
 				blockProcessor.tryToMoveBlockLeft();
 				break;
 			case MOVE_RIGHT:
-				// blockProcessor.tryToMoveBlockRight();
+				blockProcessor.tryToMoveBlockRight();
 				break;
 			case MOVE_UP:
-				// blockProcessor.tryToMoveBlockUp();
+				blockProcessor.tryToMoveBlockUp();
 				break;
 			case MOVE_DOWN:
-				// blockProcessor.tryToMoveBlockDown();
+				blockProcessor.tryToMoveBlockDown();
 				break;
 		}
 	}
