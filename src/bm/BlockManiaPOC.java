@@ -2,6 +2,7 @@ package bm;
 
 import java.awt.Container;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -15,12 +16,15 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
 import bm.util.GlobalData;
+import bm.view.CanvasField;
 
 public class BlockManiaPOC extends JFrame
 {
 	private final static int FRAME_WIDTH  = 550;
-	private final static int FRAME_HEIGHT = 300;
+	private final static int FRAME_HEIGHT = 600;
+
 	JButton btn01, btn02, btn03;
+	JTextArea txtCanvas;
 
 	private ControllerMain controllerMain;
 	private UserInput request = UserInput.NONE;
@@ -44,9 +48,13 @@ public class BlockManiaPOC extends JFrame
 
 		int width, height, X, Y;
 		X = 5 ; Y = 5;
-		width = 500 ; height = 200;
-		JTextArea txt01 = new JTextArea();
-		JScrollPane sp2 = new JScrollPane(txt01, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		width = 500 ; height = 500;
+
+		txtCanvas = new JTextArea();
+		txtCanvas.setFont(new Font("Consolas", Font.PLAIN, 16));
+		CanvasField.getInstance().setCanvas(txtCanvas);
+
+		JScrollPane sp2 = new JScrollPane(txtCanvas, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		sp2.setBounds(X,Y , width,height);
 		cont.add(sp2);
 
@@ -62,7 +70,7 @@ public class BlockManiaPOC extends JFrame
 
 		X += width + 30;
 		btn02 = new JButton(action01);
-		btn02.setText("button 02");
+		btn02.setText("Move Down");
 		width  = (int) btn02.getPreferredSize().getWidth();
 		height = (int) btn02.getPreferredSize().getHeight();
 		btn02.setBounds(X, Y, width, height);
@@ -70,7 +78,7 @@ public class BlockManiaPOC extends JFrame
 
 		X += width + 30;
 		btn03 = new JButton(action01);
-		btn03.setText("button 03");
+		btn03.setText("Move Up");
 		width  = (int) btn03.getPreferredSize().getWidth();
 		height = (int) btn03.getPreferredSize().getHeight();
 		btn03.setBounds(X, Y, width, height);
@@ -115,12 +123,16 @@ public class BlockManiaPOC extends JFrame
 
 	void handleButton02()
 	{
-		System.err.println("Button 02 clicked.");
+		//		txtCanvas.setText("Button 02 clicked.");
+		//		System.err.println("Button 02 clicked.");
+		setUserRequest(UserInput.MOVE_DOWN);
+		controllerMain.handleGameTick();
 	}
 
 	void handleButton03()
 	{
-		System.err.println("Button 03 clicked.");
+		setUserRequest(UserInput.MOVE_UP);
+		controllerMain.handleGameTick();
 	}
 
 	class keyPressedEventHandler extends KeyAdapter

@@ -5,6 +5,7 @@ import java.util.List;
 
 import bm.block_handling.blocks.Tile;
 import bm.util.GlobalData;
+import bm.view.CanvasField;
 
 public class ControllerField
 {
@@ -92,6 +93,8 @@ public class ControllerField
 		clearTiles(currentTiles);
 		setTiles(newTiles);
 		// TODO Update canvas.
+
+		CanvasField.getInstance().render(field);
 	}
 
 	private void clearTiles(List<Tile> tiles)

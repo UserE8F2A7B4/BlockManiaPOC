@@ -114,9 +114,17 @@ public class BlockProcessor
 	{
 		int offsetRowRequested = block.getOffsetRow() - 1;
 		newTiles = block.getTilesWithOffset(offsetRowRequested, block.getOffsetColumn());
+
+		System.out.println(String.format("offsetRowRequested : %s ", offsetRowRequested));
+		System.out.println(newTiles);
+
 		if (tryToPlaceNewTilesOnField())
 		{
 			block.setOffsetRow(offsetRowRequested);
+		}
+		else
+		{
+			System.out.println("Cannot move Up.");
 		}
 	}
 
@@ -124,12 +132,19 @@ public class BlockProcessor
 	{
 		int offsetRowRequested = block.getOffsetRow() + 1;
 		newTiles = block.getTilesWithOffset(offsetRowRequested, block.getOffsetColumn());
+
+		System.out.println(String.format("offsetRowRequested : %s ", offsetRowRequested));
+		System.out.println(newTiles);
+
+
 		if (tryToPlaceNewTilesOnField())
 		{
 			block.setOffsetRow(offsetRowRequested);
 		}
 		else // The block can not be moved down any further, (it has reached the bottom or is blocked).
 		{
+			System.out.println("Cannot move Down.");
+
 			removeBlock();
 			if (controllerField.hasCompletedRows())
 			{

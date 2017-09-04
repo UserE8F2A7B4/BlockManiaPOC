@@ -27,7 +27,7 @@ public class ControllerBlockHandling
 
 	public void handleGameTick(UserInput input)
 	{
-		System.err.println("ControllerBlockHandling.handleGameTick");
+		// System.err.println("ControllerBlockHandling.handleGameTick");
 		mainGameFlow(input);
 	}
 
