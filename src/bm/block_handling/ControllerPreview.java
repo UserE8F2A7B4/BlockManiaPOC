@@ -27,6 +27,7 @@ public class ControllerPreview
 
 	private ControllerPreview()
 	{
+		loadNextBlock();
 	}
 
 	public Block getBlock()

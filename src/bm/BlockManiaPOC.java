@@ -18,7 +18,6 @@ import javax.swing.text.StyledDocument;
 
 import bm.block_handling.BlockProcessor;
 import bm.block_handling.ControllerField;
-import bm.block_handling.ControllerPreview;
 import bm.util.GlobalData;
 import bm.view.CanvasField;
 
@@ -31,6 +30,8 @@ public class BlockManiaPOC extends JFrame
 	JTextPane  txtCanvasPreview, txtCanvasField;
 
 	private ControllerMain controllerMain;
+	private CanvasField canvasField;
+
 	private UserInput request = UserInput.NONE;
 
 	public static enum UserInput
@@ -41,10 +42,6 @@ public class BlockManiaPOC extends JFrame
 	public BlockManiaPOC()
 	{
 		super(GlobalData.APPLICATION_NAME);
-
-		controllerMain = ControllerMain.getInstance();
-		controllerMain.setReferenceToGUI(this);
-
 		this.addKeyListener(new keyPressedEventHandler());
 
 		Container cont = getContentPane();
@@ -54,9 +51,11 @@ public class BlockManiaPOC extends JFrame
 		X = 5 ; Y = 5;
 		width = 100 ; height = 200;
 
+		canvasField = CanvasField.getInstance();
+
 		txtCanvasPreview = new JTextPane ();
 		txtCanvasPreview.setFont(new Font("Consolas", Font.PLAIN, 16));
-		CanvasField.getInstance().setCanvasPreview(txtCanvasPreview);
+		canvasField.setCanvasPreview(txtCanvasPreview);
 		txtCanvasPreview.setBounds(X,Y , width,height);
 		cont.add(txtCanvasPreview);
 
@@ -65,7 +64,7 @@ public class BlockManiaPOC extends JFrame
 
 		txtCanvasField = new JTextPane ();
 		txtCanvasField.setFont(new Font("Consolas", Font.PLAIN, 16));
-		CanvasField.getInstance().setCanvasField(txtCanvasField);
+		canvasField.setCanvasField(txtCanvasField);
 		txtCanvasField.setBounds(X,Y , width,height);
 		cont.add(txtCanvasField);
 
@@ -101,6 +100,9 @@ public class BlockManiaPOC extends JFrame
 		btn03.setBounds(X, Y, width, height);
 		cont.add(btn03);
 
+		controllerMain = ControllerMain.getInstance();
+		controllerMain.setReferenceToGUI(this);
+
 		X = 400;
 		Y = 200;
 		setBounds(X, Y, FRAME_WIDTH, FRAME_HEIGHT);
@@ -134,19 +136,14 @@ public class BlockManiaPOC extends JFrame
 
 	void handleButton01()
 	{
-		//		System.err.println("Button 01 clicked.");
-
 		ControllerField. getInstance().clearAllTiles();
 		BlockProcessor.getInstance().removeBlock();
-		ControllerPreview.getInstance().clearBlock();
 
 		controllerMain.handleGameTick();
 	}
 
 	void handleButton02()
 	{
-		//		txtCanvas.setText("Button 02 clicked.");
-		//		System.err.println("Button 02 clicked.");
 		setUserRequest(UserInput.MOVE_DOWN);
 		controllerMain.handleGameTick();
 	}
