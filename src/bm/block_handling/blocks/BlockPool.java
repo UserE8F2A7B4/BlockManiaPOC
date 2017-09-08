@@ -10,19 +10,15 @@ public abstract class BlockPool
 {
 	private static Random wheel = new Random();
 
-	//  private static int index;
+	private static int index;
 
 	private final static int MAX_INDEX_STANDARD_BLOCKS = 6;  // The number of standard blocks (zero-based).
 	private final static int MAX_INDEX_ALL_BLOCKS      = 19; // The number of all blocks (zero-based).
 
-	//  public static Block getNextBlock()
-	//  {
-	//    index++;
-	//    if (index > MAX_INDEX_STANDARD_BLOCKS) { index = 0; }
-	//
-	//    Block nextBlock = getBlock(index);
-	//    return nextBlock;
-	//  }
+	public static Block getFixedBlock()
+	{
+		return getBlock(1);
+	}
 
 	public static Block getRandomBlock()
 	{
@@ -35,9 +31,13 @@ public abstract class BlockPool
 		return randomBlock;
 	}
 
-	public static Block getFixedBlock()
+	public static Block getNextBlock()
 	{
-		return getBlock(6);
+		index++;
+		if (index > MAX_INDEX_STANDARD_BLOCKS) { index = 0; }
+
+		Block nextBlock = getBlock(index);
+		return nextBlock;
 	}
 
 	private static Block getBlock(int i)

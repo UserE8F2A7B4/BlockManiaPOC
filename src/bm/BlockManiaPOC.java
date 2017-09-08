@@ -15,6 +15,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
+import bm.block_handling.BlockProcessor;
+import bm.block_handling.ControllerField;
+import bm.block_handling.ControllerPreview;
 import bm.util.GlobalData;
 import bm.view.CanvasField;
 
@@ -118,6 +121,11 @@ public class BlockManiaPOC extends JFrame
 	void handleButton01()
 	{
 		//		System.err.println("Button 01 clicked.");
+
+		ControllerField. getInstance().clearAllTiles();
+		BlockProcessor.getInstance().removeBlock();
+		ControllerPreview.getInstance().clearBlock();
+
 		controllerMain.handleGameTick();
 	}
 

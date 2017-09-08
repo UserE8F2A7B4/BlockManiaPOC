@@ -21,8 +21,8 @@ public abstract class Block
 	private RotationMode rotationMode; // 'Regular' or 'Flipped'.
 	private int rotationIndex; // 'Not rotated', '1-step-rotated', etc.
 
-	private int offsetRow;
-	private int offsetColumn;
+	private int offsetRowBase, offsetRow;
+	private int offsetColumnBase, offsetColumn;
 
 	public Block()
 	{
@@ -188,56 +188,47 @@ public abstract class Block
 		List<Tile> tiles = (viewModeRequested == RotationMode.REGULAR) ? Arrays.asList(regularViews[rotationIndexRequested]) : Arrays.asList(flippedViews[rotationIndexRequested]);
 		List<Tile> tilesWithOffset = new ArrayList<>(tiles.size());
 
+
+		System.out.println(String.format("row offset : %s/%s ", offsetRow, offsetRowRequested));
+
 		for (Tile tile : tiles)
 		{
-			int row = tile.getRow() + offsetRow + offsetRowRequested;
-			int col = tile.getCol() + offsetColumn + offsetColumnRequested;
+			int row = tile.getRow() + offsetRowBase + offsetRow + offsetRowRequested;
+			int col = tile.getCol() + offsetColumnBase + offsetColumn + offsetColumnRequested;
 			tilesWithOffset.add(new Tile(row, col, blockNumber));
 		}
 
 		return tilesWithOffset;
 	}
 
-	public int getOffsetRow()
+	public void setOffsetRowBase(int offset)
 	{
-		return offsetRow;
+		this.offsetRowBase = offset;
 	}
 
-	public void setOffsetRow(int offsetRow)
+	public void incrementOffsetRow()
 	{
-		this.offsetRow = offsetRow;
+		offsetRow++;
 	}
 
-	public int getOffsetColumn()
+	public void decrementOffsetRow()
 	{
-		return offsetColumn;
+		offsetRow--;
 	}
 
-	public void setOffsetColumn(int offsetColumn)
+	public void setOffsetColumnBase(int offset)
 	{
-		this.offsetColumn = offsetColumn;
+		this.offsetColumnBase = offset;
 	}
 
-	//	private Command createReplaceCommand(Tile[] current, Tile[] wanted)
-	//	{
-	//		Command command = new Command();
-	//		command.commands.add(GameCommand.REMOVE_BLOCK);
-	//		command.tiles.add(current);
-	//		command.commands.add(GameCommand.ADD_BLOCK);
-	//		command.tiles.add(wanted);
-	//		return command;
-	//	}
+	public void incrementOffsetColumn()
+	{
+		offsetColumn++;
+	}
 
-	// Let the ControllerUserPlay handle the drawing.
-	// public void drawItem()
-	// {
-	// canvas.setColor(Color.ORANGE);
-	// canvas.fillRect(0, 0, View.CANVAS_WIDTH, View.CANVAS_HEIGHT);
-	//
-	// canvas.setColor(Color.red);
-	// canvas.fillRect(X, Y, 20, 20);
-	//
-	// controller.displayImage(image);
-	// }
+	public void decrementOffsetColumn()
+	{
+		offsetColumn--;
+	}
 
 }

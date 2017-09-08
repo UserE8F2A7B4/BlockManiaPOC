@@ -56,8 +56,6 @@ public class ControllerMain
 			case LINE_REMOVAL    : controllerLineRemoval.handleGameTick() ; break;
 			default              : assert false : "Invalid request"; break;
 		}
-
 	}
-
 
 }

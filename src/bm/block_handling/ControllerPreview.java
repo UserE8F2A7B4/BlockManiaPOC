@@ -31,9 +31,21 @@ public class ControllerPreview
 		return (block != null);
 	}
 
-	public void loadBlock()
+	public void clearBlock()
+	{
+		block = null;
+	}
+
+	public void loadRandomBlock()
 	{
 		block = BlockPool.getRandomBlock();
 	}
+
+	public void loadNextBlock()
+	{
+		// block = BlockPool.getNextBlock();
+		block = BlockPool.getFixedBlock();
+	}
+
 
 }

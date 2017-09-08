@@ -37,7 +37,8 @@ public class ControllerBlockHandling
 	{
 		if (!controllerPreview.hasBlock())
 		{
-			controllerPreview.loadBlock();
+			// controllerPreview.loadNextBlock();
+			controllerPreview.loadRandomBlock();
 		}
 
 		if (blockProcessor.hasBlock())
@@ -57,6 +58,10 @@ public class ControllerBlockHandling
 			{
 				System.out.println("GAME OVER !");
 				// Niet genoeg ruimte op het speelveld om het nieuwe block te plaatsen ; GAME OVER !
+			}
+			else
+			{
+				controllerPreview.clearBlock();
 			}
 		}
 	}

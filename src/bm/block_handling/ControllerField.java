@@ -1,6 +1,7 @@
 package bm.block_handling;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import bm.block_handling.blocks.Tile;
@@ -95,6 +96,14 @@ public class ControllerField
 		// TODO Update canvas.
 
 		CanvasField.getInstance().render(field);
+	}
+
+	public void clearAllTiles()
+	{
+		for (int row = 0 ; row < field.length ; row++)
+		{
+			Arrays.fill(field[row], null);
+		}
 	}
 
 	private void clearTiles(List<Tile> tiles)

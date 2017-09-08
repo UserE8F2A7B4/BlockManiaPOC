@@ -7,6 +7,7 @@ import bm.ControllerMain.GameState;
 import bm.block_handling.blocks.Block;
 import bm.block_handling.blocks.Block.RotationMode;
 import bm.block_handling.blocks.Tile;
+import bm.util.GlobalData;
 
 public class BlockProcessor
 {
@@ -61,9 +62,15 @@ public class BlockProcessor
 	private void loadBlockFromPreview()
 	{
 		block = ControllerPreview.getInstance().getBlock();
-		block.setOffsetRow(calculateOffsetRow());
+
+
+		int offsetRowBase = calculateOffsetRow();
+
+		block.setOffsetRowBase(offsetRowBase );
+		// block.setOffsetColumn(calculateOffsetCol());
 
 		currentTiles.clear();
+		// newTiles = block.getTilesWithOffset(offsetRowRequested, 0);
 		newTiles = block.getTiles();
 	}
 
@@ -75,7 +82,7 @@ public class BlockProcessor
 
 	private int calculateOffsetRow() // Compensate the block's initial row-offset.
 	{
-		List<Tile> tiles = block.getTiles(); // TODO : check ; is dit hetzelfde als 'Tile[] tiles = block.regularViews[0]' ?
+		List<Tile> tiles = block.getTiles();
 		int offsetRow = tiles.get(0).getRow();
 
 		for (Tile tile : tiles)
@@ -91,36 +98,59 @@ public class BlockProcessor
 		return offsetRow;
 	}
 
+	private int calculateOffsetCol()
+	{
+		int offsetCol = (GlobalData.COLS - getBlockWidth()) / 2; // To center the block.
+		return offsetCol;
+	}
+
+	private int getBlockWidth()
+	{
+		List<Tile> tiles = block.getTiles();
+
+		int minCol = tiles.get(0).getCol();
+		int maxCol = minCol;
+
+		for (Tile loc : tiles)
+		{
+			int col = loc.getCol();
+			if (col < maxCol)
+			{
+				minCol = col;
+			}
+			if (col > maxCol)
+			{
+				maxCol = col;
+			}
+		}
+		return (maxCol - minCol + 2);
+	}
+
 	public void tryToMoveBlockLeft()
 	{
-		tryToMoveBlockHorizontally(block.getOffsetColumn() - 1);
+		newTiles = block.getTilesWithOffset(0, -1);
+		if (tryToPlaceNewTilesOnField())
+		{
+			block.decrementOffsetColumn();
+		}
 	}
 
 	public void tryToMoveBlockRight()
 	{
-		tryToMoveBlockHorizontally(block.getOffsetColumn() + 1);
-	}
-
-	private void tryToMoveBlockHorizontally(int offsetColumnRequested)
-	{
-		newTiles = block.getTilesWithOffset(block.getOffsetRow(), offsetColumnRequested);
+		newTiles = block.getTilesWithOffset(0, 1);
 		if (tryToPlaceNewTilesOnField())
 		{
-			block.setOffsetColumn(offsetColumnRequested);
+			block.incrementOffsetColumn();
 		}
 	}
 
 	public void tryToMoveBlockUp()
 	{
-		int offsetRowRequested = block.getOffsetRow() - 1;
-		newTiles = block.getTilesWithOffset(offsetRowRequested, block.getOffsetColumn());
-
-		System.out.println(String.format("offsetRowRequested : %s ", offsetRowRequested));
-		System.out.println(newTiles);
+		newTiles = block.getTilesWithOffset(-1, 0);
 
 		if (tryToPlaceNewTilesOnField())
 		{
-			block.setOffsetRow(offsetRowRequested);
+			block.decrementOffsetRow();
 		}
 		else
 		{
@@ -130,16 +160,11 @@ public class BlockProcessor
 
 	public void tryToMoveBlockDown()
 	{
-		int offsetRowRequested = block.getOffsetRow() + 1;
-		newTiles = block.getTilesWithOffset(offsetRowRequested, block.getOffsetColumn());
-
-		System.out.println(String.format("offsetRowRequested : %s ", offsetRowRequested));
-		System.out.println(newTiles);
-
+		newTiles = block.getTilesWithOffset(1, 0);
 
 		if (tryToPlaceNewTilesOnField())
 		{
-			block.setOffsetRow(offsetRowRequested);
+			block.incrementOffsetRow();
 		}
 		else // The block can not be moved down any further, (it has reached the bottom or is blocked).
 		{
