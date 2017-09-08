@@ -1,12 +1,12 @@
 package bm.view;
 
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 
 import bm.block_handling.blocks.Tile;
 
 public class CanvasField
 {
-	private JTextArea txtCanvas;
+	private JTextPane txtCanvasPreview, txtCanvasField;
 
 	private static CanvasField instance;
 	public static CanvasField getInstance()
@@ -22,12 +22,12 @@ public class CanvasField
 	{
 	}
 
-	public void setCanvas(JTextArea te)
+	public void setCanvasPreview(JTextPane txtCanvas)
 	{
-		txtCanvas = te;
+		txtCanvasPreview = txtCanvas;
 	}
 
-	public void render(Tile[][] field)
+	public void renderPreview(Tile[][] field)
 	{
 		StringBuilder sb = new StringBuilder();
 
@@ -45,15 +45,41 @@ public class CanvasField
 				{
 					sb.append("■");
 				}
-				// txtCanvas.append ("nr : " + field[row][col] + "\n" );
 			}
 			sb.append("\n");
 		}
 
-		txtCanvas.setText(sb.toString());
-
+		txtCanvasPreview.setText(sb.toString());
 	}
 
+	public void setCanvasField(JTextPane txtCanvas)
+	{
+		txtCanvasField = txtCanvas;
+	}
 
+	public void renderField(Tile[][] field)
+	{
+		StringBuilder sb = new StringBuilder();
+
+		for (int row = 0 ; row < field.length ; row++)
+		{
+			for (int col = 0 ; col < field[row].length ; col++)
+			{
+				Tile tile = field[row][col];
+
+				if (tile == null)
+				{
+					sb.append("∙");
+				}
+				else
+				{
+					sb.append("■");
+				}
+			}
+			sb.append("\n");
+		}
+
+		txtCanvasField.setText(sb.toString());
+	}
 
 }

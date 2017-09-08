@@ -11,9 +11,10 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
+import javax.swing.JTextPane;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import bm.block_handling.BlockProcessor;
 import bm.block_handling.ControllerField;
@@ -23,11 +24,11 @@ import bm.view.CanvasField;
 
 public class BlockManiaPOC extends JFrame
 {
-	private final static int FRAME_WIDTH  = 550;
+	private final static int FRAME_WIDTH  = 400;
 	private final static int FRAME_HEIGHT = 600;
 
 	JButton btn01, btn02, btn03;
-	JTextArea txtCanvas;
+	JTextPane  txtCanvasPreview, txtCanvasField;
 
 	private ControllerMain controllerMain;
 	private UserInput request = UserInput.NONE;
@@ -51,18 +52,31 @@ public class BlockManiaPOC extends JFrame
 
 		int width, height, X, Y;
 		X = 5 ; Y = 5;
-		width = 500 ; height = 500;
+		width = 100 ; height = 200;
 
-		txtCanvas = new JTextArea();
-		txtCanvas.setFont(new Font("Consolas", Font.PLAIN, 16));
-		CanvasField.getInstance().setCanvas(txtCanvas);
+		txtCanvasPreview = new JTextPane ();
+		txtCanvasPreview.setFont(new Font("Consolas", Font.PLAIN, 16));
+		CanvasField.getInstance().setCanvasPreview(txtCanvasPreview);
+		txtCanvasPreview.setBounds(X,Y , width,height);
+		cont.add(txtCanvasPreview);
 
-		JScrollPane sp2 = new JScrollPane(txtCanvas, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		sp2.setBounds(X,Y , width,height);
-		cont.add(sp2);
+		X += 20 + txtCanvasPreview.getWidth();
+		width = 100 ; height = 400;
+
+		txtCanvasField = new JTextPane ();
+		txtCanvasField.setFont(new Font("Consolas", Font.PLAIN, 16));
+		CanvasField.getInstance().setCanvasField(txtCanvasField);
+		txtCanvasField.setBounds(X,Y , width,height);
+		cont.add(txtCanvasField);
+
+		StyledDocument doc = txtCanvasField.getStyledDocument();
+		SimpleAttributeSet center = new SimpleAttributeSet();
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, doc.getLength(), center, false);
 
 		Action action01 = new CustomAction();
 
+		X = 5;
 		Y += height + 10;
 		btn01 = new JButton(action01);
 		btn01.setText("Simulate game-tick");
@@ -71,7 +85,7 @@ public class BlockManiaPOC extends JFrame
 		btn01.setBounds(X, Y, width, height);
 		cont.add(btn01);
 
-		X += width + 30;
+		X += width + 15;
 		btn02 = new JButton(action01);
 		btn02.setText("Move Down");
 		width  = (int) btn02.getPreferredSize().getWidth();
@@ -79,7 +93,7 @@ public class BlockManiaPOC extends JFrame
 		btn02.setBounds(X, Y, width, height);
 		cont.add(btn02);
 
-		X += width + 30;
+		X += width + 15;
 		btn03 = new JButton(action01);
 		btn03.setText("Move Up");
 		width  = (int) btn03.getPreferredSize().getWidth();

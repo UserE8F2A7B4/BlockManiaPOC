@@ -95,7 +95,7 @@ public class ControllerField
 		setTiles(newTiles);
 		// TODO Update canvas.
 
-		CanvasField.getInstance().render(field);
+		CanvasField.getInstance().renderField(field);
 	}
 
 	public void clearAllTiles()

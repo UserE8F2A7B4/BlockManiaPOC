@@ -63,14 +63,10 @@ public class BlockProcessor
 	{
 		block = ControllerPreview.getInstance().getBlock();
 
-
 		int offsetRowBase = calculateOffsetRow();
-
 		block.setOffsetRowBase(offsetRowBase );
-		// block.setOffsetColumn(calculateOffsetCol());
 
 		currentTiles.clear();
-		// newTiles = block.getTilesWithOffset(offsetRowRequested, 0);
 		newTiles = block.getTiles();
 	}
 

@@ -37,8 +37,8 @@ public class ControllerBlockHandling
 	{
 		if (!controllerPreview.hasBlock())
 		{
-			// controllerPreview.loadNextBlock();
-			controllerPreview.loadRandomBlock();
+			controllerPreview.loadNextBlock();
+			// controllerPreview.loadRandomBlock();
 		}
 
 		if (blockProcessor.hasBlock())
