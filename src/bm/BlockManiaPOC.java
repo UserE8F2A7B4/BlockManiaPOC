@@ -18,6 +18,7 @@ import javax.swing.text.StyledDocument;
 
 import bm.block_handling.BlockProcessor;
 import bm.block_handling.ControllerField;
+import bm.block_handling.ControllerPreview;
 import bm.util.GlobalData;
 import bm.view.CanvasField;
 
@@ -26,7 +27,7 @@ public class BlockManiaPOC extends JFrame
 	private final static int FRAME_WIDTH  = 400;
 	private final static int FRAME_HEIGHT = 600;
 
-	JButton btn01, btn02, btn03;
+	JButton btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08;
 	JTextPane  txtCanvasPreview, txtCanvasField;
 
 	private ControllerMain controllerMain;
@@ -77,14 +78,25 @@ public class BlockManiaPOC extends JFrame
 
 		X = 5;
 		Y += height + 10;
+
 		btn01 = new JButton(action01);
-		btn01.setText("Simulate game-tick");
+		btn01.setText("Reset");
 		width  = (int) btn01.getPreferredSize().getWidth();
 		height = (int) btn01.getPreferredSize().getHeight();
 		btn01.setBounds(X, Y, width, height);
 		cont.add(btn01);
 
 		X += width + 15;
+		btn06 = new JButton(action01);
+		btn06.setText("Next block");
+		width  = (int) btn06.getPreferredSize().getWidth();
+		height = (int) btn06.getPreferredSize().getHeight();
+		btn06.setBounds(X, Y, width, height);
+		cont.add(btn06);
+
+		X = 5;
+		Y += height + 10;
+
 		btn02 = new JButton(action01);
 		btn02.setText("Move Down");
 		width  = (int) btn02.getPreferredSize().getWidth();
@@ -99,6 +111,42 @@ public class BlockManiaPOC extends JFrame
 		height = (int) btn03.getPreferredSize().getHeight();
 		btn03.setBounds(X, Y, width, height);
 		cont.add(btn03);
+
+		X = 5;
+		Y += height + 10;
+
+		btn07 = new JButton(action01);
+		btn07.setText("Move Left");
+		width  = (int) btn07.getPreferredSize().getWidth();
+		height = (int) btn07.getPreferredSize().getHeight();
+		btn07.setBounds(X, Y, width, height);
+		cont.add(btn07);
+
+		X += width + 15;
+		btn08 = new JButton(action01);
+		btn08.setText("Move Right");
+		width  = (int) btn08.getPreferredSize().getWidth();
+		height = (int) btn08.getPreferredSize().getHeight();
+		btn08.setBounds(X, Y, width, height);
+		cont.add(btn08);
+
+		X = 5;
+		Y += height + 10;
+
+		btn04 = new JButton(action01);
+		btn04.setText("Rotate");
+		width  = (int) btn04.getPreferredSize().getWidth();
+		height = (int) btn04.getPreferredSize().getHeight();
+		btn04.setBounds(X, Y, width, height);
+		cont.add(btn04);
+
+		X += width + 15;
+		btn05 = new JButton(action01);
+		btn05.setText("Flip");
+		width  = (int) btn05.getPreferredSize().getWidth();
+		height = (int) btn05.getPreferredSize().getHeight();
+		btn05.setBounds(X, Y, width, height);
+		cont.add(btn05);
 
 		controllerMain = ControllerMain.getInstance();
 		controllerMain.setReferenceToGUI(this);
@@ -131,6 +179,11 @@ public class BlockManiaPOC extends JFrame
 			if      (obj == btn01) { handleButton01(); }
 			else if (obj == btn02) { handleButton02(); }
 			else if (obj == btn03) { handleButton03(); }
+			else if (obj == btn04) { handleButton04(); }
+			else if (obj == btn05) { handleButton05(); }
+			else if (obj == btn06) { handleButton06(); }
+			else if (obj == btn07) { handleButton07(); }
+			else if (obj == btn08) { handleButton08(); }
 		}
 	}
 
@@ -151,6 +204,35 @@ public class BlockManiaPOC extends JFrame
 	void handleButton03()
 	{
 		setUserRequest(UserInput.MOVE_UP);
+		controllerMain.handleGameTick();
+	}
+
+	void handleButton04()
+	{
+		setUserRequest(UserInput.ROTATE);
+		controllerMain.handleGameTick();
+	}
+
+	void handleButton05()
+	{
+		setUserRequest(UserInput.FLIP);
+		controllerMain.handleGameTick();
+	}
+
+	void handleButton06()
+	{
+		ControllerPreview.getInstance().loadNextBlock();
+	}
+
+	void handleButton07()
+	{
+		setUserRequest(UserInput.MOVE_LEFT);
+		controllerMain.handleGameTick();
+	}
+
+	void handleButton08()
+	{
+		setUserRequest(UserInput.MOVE_RIGHT);
 		controllerMain.handleGameTick();
 	}
 

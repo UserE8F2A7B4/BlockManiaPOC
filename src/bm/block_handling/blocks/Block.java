@@ -188,9 +188,6 @@ public abstract class Block
 		List<Tile> tiles = (viewModeRequested == RotationMode.REGULAR) ? Arrays.asList(regularViews[rotationIndexRequested]) : Arrays.asList(flippedViews[rotationIndexRequested]);
 		List<Tile> tilesWithOffset = new ArrayList<>(tiles.size());
 
-
-		System.out.println(String.format("row offset : %s/%s ", offsetRow, offsetRowRequested));
-
 		for (Tile tile : tiles)
 		{
 			int row = tile.getRow() + offsetRowBase + offsetRow + offsetRowRequested;

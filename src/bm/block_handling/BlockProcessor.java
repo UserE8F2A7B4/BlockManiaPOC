@@ -55,6 +55,7 @@ public class BlockProcessor
 		}
 		else
 		{
+			System.out.println("Cannot Place New Block.");
 			return false;
 		}
 	}
@@ -129,6 +130,10 @@ public class BlockProcessor
 		{
 			block.decrementOffsetColumn();
 		}
+		else
+		{
+			System.out.println("Cannot move Left.");
+		}
 	}
 
 	public void tryToMoveBlockRight()
@@ -137,6 +142,10 @@ public class BlockProcessor
 		if (tryToPlaceNewTilesOnField())
 		{
 			block.incrementOffsetColumn();
+		}
+		else
+		{
+			System.out.println("Cannot move Right.");
 		}
 	}
 
@@ -182,6 +191,10 @@ public class BlockProcessor
 		{
 			block.setRotationIndex(rotationIndexRequested);
 		}
+		else
+		{
+			System.out.println("Cannot Rotate.");
+		}
 	}
 
 	public void tryToFlipBlock()
@@ -191,6 +204,10 @@ public class BlockProcessor
 		if (tryToPlaceNewTilesOnField())
 		{
 			block.setRotationMode(rotationModeRequested);
+		}
+		else
+		{
+			System.out.println("Cannot Flip.");
 		}
 	}
 
@@ -203,6 +220,7 @@ public class BlockProcessor
 		}
 		else
 		{
+			System.out.println("Cannot Place New Tiles.");
 			return false;
 		}
 	}
