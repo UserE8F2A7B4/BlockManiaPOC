@@ -6,7 +6,7 @@ import java.util.List;
 
 import bm.block_handling.blocks.Tile;
 import bm.util.GlobalData;
-import bm.view.CanvasField;
+import bm.view.CanvasFieldText;
 
 public class ControllerField
 {
@@ -95,7 +95,7 @@ public class ControllerField
 		setTiles(newTiles);
 		// TODO Update canvas.
 
-		CanvasField.getInstance().renderField(field);
+		CanvasFieldText.getInstance().renderField(field);
 	}
 
 	public void clearAllTiles()

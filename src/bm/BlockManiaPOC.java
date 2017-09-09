@@ -1,5 +1,6 @@
 package bm;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -11,7 +12,9 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -20,18 +23,19 @@ import bm.block_handling.BlockProcessor;
 import bm.block_handling.ControllerField;
 import bm.block_handling.ControllerPreview;
 import bm.util.GlobalData;
-import bm.view.CanvasField;
+import bm.view.CanvasFieldText;
+import bm.view.CanvasPreviewText;
 
 public class BlockManiaPOC extends JFrame
 {
-	private final static int FRAME_WIDTH  = 400;
+	private final static int FRAME_WIDTH  = 500;
 	private final static int FRAME_HEIGHT = 600;
 
 	JButton btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08;
 	JTextPane  txtCanvasPreview, txtCanvasField;
 
 	private ControllerMain controllerMain;
-	private CanvasField canvasField;
+	// private CanvasField canvasField;
 
 	private UserInput request = UserInput.NONE;
 
@@ -52,11 +56,11 @@ public class BlockManiaPOC extends JFrame
 		X = 5 ; Y = 5;
 		width = 100 ; height = 200;
 
-		canvasField = CanvasField.getInstance();
+		// canvasField = CanvasField.getInstance();
 
 		txtCanvasPreview = new JTextPane ();
 		txtCanvasPreview.setFont(new Font("Consolas", Font.PLAIN, 16));
-		canvasField.setCanvasPreview(txtCanvasPreview);
+		CanvasPreviewText.getInstance().setCanvasPreview(txtCanvasPreview);
 		txtCanvasPreview.setBounds(X,Y , width,height);
 		cont.add(txtCanvasPreview);
 
@@ -65,7 +69,7 @@ public class BlockManiaPOC extends JFrame
 
 		txtCanvasField = new JTextPane ();
 		txtCanvasField.setFont(new Font("Consolas", Font.PLAIN, 16));
-		canvasField.setCanvasField(txtCanvasField);
+		CanvasFieldText.getInstance().setCanvasField(txtCanvasField);
 		txtCanvasField.setBounds(X,Y , width,height);
 		cont.add(txtCanvasField);
 
@@ -74,10 +78,28 @@ public class BlockManiaPOC extends JFrame
 		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
 		doc.setParagraphAttributes(0, doc.getLength(), center, false);
 
-		Action action01 = new CustomAction();
+		X += 20 + txtCanvasField.getWidth();
+		width = 50 ; height = 50;
+
+		JLabel lblCanvasPreview = new JLabel();
+		lblCanvasPreview.setBounds(X,Y , width,height);
+		lblCanvasPreview.setOpaque(true) ; lblCanvasPreview.setBackground(Color.orange);
+		lblCanvasPreview.setHorizontalAlignment(SwingConstants.CENTER);
+		cont.add(lblCanvasPreview);
+
+		X += 20 + lblCanvasPreview.getWidth();
+		width = 100 ; height = 400;
+
+		JLabel lblCanvasField = new JLabel();
+		lblCanvasField.setBounds(X,Y , width,height);
+		lblCanvasField.setOpaque(true) ; lblCanvasField.setBackground(Color.orange);
+		lblCanvasField.setHorizontalAlignment(SwingConstants.CENTER);
+		cont.add(lblCanvasField);
 
 		X = 5;
 		Y += height + 10;
+
+		Action action01 = new CustomAction();
 
 		btn01 = new JButton(action01);
 		btn01.setText("Reset");

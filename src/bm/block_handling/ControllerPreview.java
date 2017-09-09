@@ -5,7 +5,7 @@ import java.util.List;
 import bm.block_handling.blocks.Block;
 import bm.block_handling.blocks.BlockPool;
 import bm.block_handling.blocks.Tile;
-import bm.view.CanvasField;
+import bm.view.CanvasPreviewText;
 
 public class ControllerPreview
 {
@@ -33,7 +33,7 @@ public class ControllerPreview
 	public Block getBlock()
 	{
 		field = new Tile[ROWS][COLS];
-		CanvasField.getInstance().renderPreview(field);
+		CanvasPreviewText.getInstance().renderPreview(field);
 
 		return block;
 	}
@@ -66,7 +66,7 @@ public class ControllerPreview
 		field = new Tile[ROWS][COLS];
 		setTiles(block.getTiles());
 
-		CanvasField.getInstance().renderPreview(field);
+		CanvasPreviewText.getInstance().renderPreview(field);
 	}
 
 	private void setTiles(List<Tile> tiles)
