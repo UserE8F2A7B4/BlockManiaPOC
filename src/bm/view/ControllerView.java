@@ -1,5 +1,7 @@
 package bm.view;
 
+import bm.block_handling.blocks.Tile;
+
 public class ControllerView
 {
 	private static ControllerView instance;
@@ -14,5 +16,15 @@ public class ControllerView
 
 	private ControllerView()
 	{
+	}
+
+	public void renderPreview()
+	{
+
+	}
+
+	public void renderField(Tile[][] field)
+	{
+		CanvasFieldLabel.getInstance().render(field);
 	}
 }

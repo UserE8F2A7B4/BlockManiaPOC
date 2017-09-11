@@ -37,6 +37,9 @@ public class BlockManiaPOC extends JFrame
 	private ControllerMain controllerMain;
 	// private CanvasField canvasField;
 
+	public static JLabel lblCanvasPreview;
+	public static JLabel lblCanvasField;
+
 	private UserInput request = UserInput.NONE;
 
 	public static enum UserInput
@@ -81,7 +84,7 @@ public class BlockManiaPOC extends JFrame
 		X += 20 + txtCanvasField.getWidth();
 		width = 50 ; height = 50;
 
-		JLabel lblCanvasPreview = new JLabel();
+		lblCanvasPreview = new JLabel();
 		lblCanvasPreview.setBounds(X,Y , width,height);
 		lblCanvasPreview.setOpaque(true) ; lblCanvasPreview.setBackground(Color.orange);
 		lblCanvasPreview.setHorizontalAlignment(SwingConstants.CENTER);
@@ -90,7 +93,7 @@ public class BlockManiaPOC extends JFrame
 		X += 20 + lblCanvasPreview.getWidth();
 		width = 100 ; height = 400;
 
-		JLabel lblCanvasField = new JLabel();
+		lblCanvasField = new JLabel();
 		lblCanvasField.setBounds(X,Y , width,height);
 		lblCanvasField.setOpaque(true) ; lblCanvasField.setBackground(Color.orange);
 		lblCanvasField.setHorizontalAlignment(SwingConstants.CENTER);
