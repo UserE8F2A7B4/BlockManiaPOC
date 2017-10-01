@@ -55,4 +55,19 @@ public class CanvasFieldLabel
 		imageIcon.setImage(image);
 		BlockManiaPOC.lblCanvasField.setIcon(imageIcon);
 	}
+
+	public void clearField()
+	{
+		canvas.setColor(Color.GREEN);
+		canvas.fillRect(0,0, CANVAS_WIDTH_GAMEFIELD, CANVAS_HEIGHT_GAMEFIELD);
+	}
+
+	public void drawTile(Tile tile)
+	{
+		if (tile != null)
+		{
+			Util.addTile(canvas, tile);
+		}
+	}
+
 }

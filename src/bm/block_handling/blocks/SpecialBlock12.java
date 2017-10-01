@@ -6,7 +6,7 @@ public class SpecialBlock12 extends Block
 
 	public SpecialBlock12()
 	{
-		super.blockNumber = id;
+		super.blockId = id;
 	}
 
 	{

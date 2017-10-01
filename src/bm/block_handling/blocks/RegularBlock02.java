@@ -6,15 +6,8 @@ public class RegularBlock02 extends Block
 
 	public RegularBlock02()
 	{
-		super.blockNumber = id;
+		super.blockId = id;
 	}
-
-	//	{
-	//		regularViews = new Tile[][]
-	//				{
-	//			{ new Tile(1,1,id)  }
-	//				};
-	//	}
 
 	{
 		regularViews = new Tile[][]

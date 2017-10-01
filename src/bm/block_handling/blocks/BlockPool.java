@@ -72,16 +72,19 @@ public abstract class BlockPool
 		return b;
 	}
 
-	public static Color getBlockColor(int i)
+	public static Color getTileColor(int blockId)
 	{
-		Color c = null;
-		switch (i)
+		switch (blockId)
 		{
-			case 0  : c = Color.GRAY  ; break;
-			case 1  : c = Color.RED   ; break;
-			default : c = Color.ORANGE ; break;
+			case 0  : return Color.PINK;
+			case 1  : return Color.RED;
+			case 2  : return Color.GREEN;
+			case 3  : return Color.BLUE;
+			case 4  : return Color.CYAN;
+			case 5  : return Color.YELLOW;
+			case 6  : return Color.MAGENTA;
+			default : return Color.ORANGE;
 		}
-		return c;
 	}
 
 }

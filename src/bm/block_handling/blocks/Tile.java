@@ -5,13 +5,13 @@ package bm.block_handling.blocks;
 public class Tile
 {
 	private int row, col;
-	private int id; // Wordt gebruikt om de kleur te bepalen.
+	private int blockId;
 
 	public Tile(int row, int col, int id)
 	{
 		this.row = row;
 		this.col = col;
-		this.id = id;
+		this.blockId = id;
 	}
 
 	public void setRow(int r)
@@ -29,9 +29,14 @@ public class Tile
 		return col;
 	}
 
-	public int getId()
+	public int getBlockId()
 	{
-		return id;
+		return blockId;
+	}
+
+	public boolean hasSameCoordsAs(Tile otherTile)
+	{
+		return (otherTile.row == this.row && otherTile.col == this.col);
 	}
 
 	@Override
@@ -41,7 +46,7 @@ public class Tile
 		if (obj != null && (obj instanceof Tile))
 		{
 			Tile tile = (Tile) obj;
-			areEqual = (tile.row == this.row && tile.col == this.col);
+			areEqual = (tile.blockId == this.blockId);
 		}
 		return areEqual;
 	}
@@ -49,7 +54,7 @@ public class Tile
 	@Override
 	public int hashCode()
 	{
-		return (this.id + this.row + this.col);
+		return (this.blockId + this.row + this.col);
 	}
 
 	@Override

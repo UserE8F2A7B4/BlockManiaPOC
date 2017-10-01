@@ -1,11 +1,15 @@
 package bm.util;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.RenderingHints;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
+
+import bm.block_handling.blocks.BlockPool;
+import bm.block_handling.blocks.Tile;
 
 public class Util
 {
@@ -31,4 +35,17 @@ public class Util
 		canvas.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		return canvas;
 	}
+
+	public static void addTile(Graphics2D canvas, Tile tile)
+	{
+		int X = tile.getCol() * GlobalData.BLOCK_SIZE;
+		int Y = tile.getRow() * GlobalData.BLOCK_SIZE;
+
+		Color color = BlockPool.getTileColor(tile.getBlockId());
+		canvas.setColor(color);
+
+		canvas.fillRect(X + 2, Y + 2, GlobalData.BLOCK_SIZE - 3, GlobalData.BLOCK_SIZE - 3);
+		// drawBlockBorder(canvas, color, X, Y);
+	}
+
 }

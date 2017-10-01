@@ -81,7 +81,7 @@ public class ControllerField
 		boolean isOccupied = false;
 		for (Tile currentTile : currentTiles)
 		{
-			if (newTile == currentTile)
+			if (currentTile.hasSameCoordsAs(newTile))
 			{
 				isOccupied = true;
 				break;

@@ -97,6 +97,7 @@ public class BlockManiaPOC extends JFrame
 		lblCanvasField.setBounds(X,Y , width,height);
 		lblCanvasField.setOpaque(true) ; lblCanvasField.setBackground(Color.orange);
 		lblCanvasField.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCanvasField.setVerticalAlignment(SwingConstants.CENTER);
 		cont.add(lblCanvasField);
 
 		X = 5;

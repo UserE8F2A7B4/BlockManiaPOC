@@ -6,7 +6,7 @@ public class RegularBlock01 extends Block
 
 	public RegularBlock01()
 	{
-		super.blockNumber = id;
+		super.blockId = id;
 	}
 
 	{

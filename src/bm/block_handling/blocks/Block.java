@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class Block
 {
-	protected int blockNumber;
+	protected int blockId;
 
 	private static int ROTATION_INDEX_MIN = 0;
 	private static int ROTATION_INDEX_MAX = 3;
@@ -192,7 +192,7 @@ public abstract class Block
 		{
 			int row = tile.getRow() + offsetRowBase + offsetRow + offsetRowRequested;
 			int col = tile.getCol() + offsetColumnBase + offsetColumn + offsetColumnRequested;
-			tilesWithOffset.add(new Tile(row, col, blockNumber));
+			tilesWithOffset.add(new Tile(row, col, blockId));
 		}
 
 		return tilesWithOffset;
