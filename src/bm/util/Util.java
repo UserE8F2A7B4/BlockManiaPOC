@@ -45,7 +45,22 @@ public class Util
 		canvas.setColor(color);
 
 		canvas.fillRect(X + 2, Y + 2, GlobalData.BLOCK_SIZE - 3, GlobalData.BLOCK_SIZE - 3);
-		// drawBlockBorder(canvas, color, X, Y);
+		drawBlockBorder(canvas, color, X, Y);
+	}
+
+	private static void drawBlockBorder(Graphics2D canvas, Color color, int X, int Y)
+	{
+		int[] Xcoords, Ycoords;
+
+		canvas.setColor(color.brighter()); // bottom-left, top-left, top-right.
+		Xcoords = new int[] { X + 1, X + 1, X + GlobalData.BLOCK_SIZE - 2 };
+		Ycoords = new int[] { Y + GlobalData.BLOCK_SIZE - 1, Y + 1, Y + 1 };
+		canvas.drawPolyline(Xcoords, Ycoords, 3);
+
+		canvas.setColor(color.darker()); // bottom-left, bottom-right, top-right.
+		Xcoords = new int[] { X + 1, X + GlobalData.BLOCK_SIZE - 1, X + GlobalData.BLOCK_SIZE - 1 };
+		Ycoords = new int[] { Y + GlobalData.BLOCK_SIZE - 1, Y + GlobalData.BLOCK_SIZE - 1, Y + 2 };
+		canvas.drawPolyline(Xcoords, Ycoords, 3);
 	}
 
 }

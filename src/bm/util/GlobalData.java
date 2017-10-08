@@ -17,9 +17,13 @@ public abstract class GlobalData
 
 	public final static Color BACKGROUND_COLOR = Color.BLACK;
 
-	public final static int BLOCK_SIZE = 35;
-	public final static int ROWS = 17;
+	public final static int BLOCK_SIZE = 20;
+
 	public final static int COLS = 10;
+	public final static int ROWS = 17;
+
+	public final static int GAME_FIELD_WIDTH  = COLS * BLOCK_SIZE;
+	public final static int GAME_FIELD_HEIGHT = ROWS * BLOCK_SIZE;
 
 	//	public static void setGameMode(GameMode mode)
 	//	{

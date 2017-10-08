@@ -35,7 +35,7 @@ public class ControllerView
 				canvasField.drawTile(field[row][col]);
 			}
 		}
-		canvasField.render(field);
+		canvasField.render();
 	}
 
 }

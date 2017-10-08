@@ -28,8 +28,8 @@ import bm.view.CanvasPreviewText;
 
 public class BlockManiaPOC extends JFrame
 {
-	private final static int FRAME_WIDTH  = 500;
-	private final static int FRAME_HEIGHT = 600;
+	private final static int FRAME_WIDTH  = 600;
+	private final static int FRAME_HEIGHT = 700;
 
 	JButton btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08;
 	JTextPane  txtCanvasPreview, txtCanvasField;
@@ -91,7 +91,8 @@ public class BlockManiaPOC extends JFrame
 		cont.add(lblCanvasPreview);
 
 		X += 20 + lblCanvasPreview.getWidth();
-		width = 100 ; height = 400;
+		width  = GlobalData.GAME_FIELD_WIDTH + 4;
+		height = GlobalData.GAME_FIELD_HEIGHT + 4;
 
 		lblCanvasField = new JLabel();
 		lblCanvasField.setBounds(X,Y , width,height);
@@ -101,7 +102,7 @@ public class BlockManiaPOC extends JFrame
 		cont.add(lblCanvasField);
 
 		X = 5;
-		Y += height + 10;
+		Y += height + 80;
 
 		Action action01 = new CustomAction();
 
