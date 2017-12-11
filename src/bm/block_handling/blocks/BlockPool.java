@@ -83,6 +83,10 @@ public abstract class BlockPool
 			case 4  : return Color.CYAN;
 			case 5  : return Color.YELLOW;
 			case 6  : return Color.MAGENTA;
+
+			case GlobalData.TILE_COLOR_RED   : return Color.RED;   // Tbv removal-
+			case GlobalData.TILE_COLOR_WHITE : return Color.WHITE; // animation.
+
 			default : return Color.ORANGE;
 		}
 	}

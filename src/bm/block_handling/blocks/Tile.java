@@ -1,5 +1,7 @@
 package bm.block_handling.blocks;
 
+import bm.util.GlobalData;
+
 // Een 'Tile' representeert een vakje op het game- of preview field.
 
 public class Tile
@@ -56,6 +58,14 @@ public class Tile
 	{
 		return (this.blockId + this.row + this.col);
 	}
+
+
+	public static Tile getDummyTileRed(int row, int col)
+	{
+		Tile tile = new Tile(row, col, GlobalData.TILE_COLOR_RED);
+		return tile;
+	}
+
 
 	@Override
 	public String toString()

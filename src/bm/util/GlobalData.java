@@ -25,6 +25,10 @@ public abstract class GlobalData
 	public final static int GAME_FIELD_WIDTH  = COLS * BLOCK_SIZE;
 	public final static int GAME_FIELD_HEIGHT = ROWS * BLOCK_SIZE;
 
+	public final static int TILE_COLOR_RED = 100;
+	public final static int TILE_COLOR_WHITE = 101;
+
+
 	//	public static void setGameMode(GameMode mode)
 	//	{
 	//		gameMode = mode;

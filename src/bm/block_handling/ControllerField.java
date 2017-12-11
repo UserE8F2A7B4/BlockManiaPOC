@@ -121,8 +121,13 @@ public class ControllerField
 	{
 		for (Tile tile : tiles)
 		{
-			field[tile.getRow()][tile.getCol()] = tile;
+			setTile(tile);
 		}
+	}
+
+	public void setTile(Tile tile)
+	{
+		field[tile.getRow()][tile.getCol()] = tile;
 	}
 
 	// Deze is nodig om te checken of het block gedraaid of gespiegeld kan gaan worden
