@@ -28,7 +28,7 @@ import bm.view.CanvasPreviewText;
 
 public class BlockManiaPOC extends JFrame
 {
-	// Branch 01 / edited in Eclipse.
+	// Branch 01 / edited in IntelliJ.
 
 	private final static int FRAME_WIDTH  = 600;
 	private final static int FRAME_HEIGHT = 700;
