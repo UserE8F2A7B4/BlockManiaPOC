@@ -6,6 +6,8 @@ import bm.line_removal.ControllerLineRemoval;
 
 public class ControllerMain
 {
+	// Master / Eclipse.
+
 	private BlockManiaPOC gui;
 
 	private ControllerBlockHandling controllerBlockHandling;

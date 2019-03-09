@@ -28,6 +28,8 @@ import bm.view.CanvasPreviewText;
 
 public class BlockManiaPOC extends JFrame
 {
+	// Master / Eclipse.
+
 	private final static int FRAME_WIDTH  = 600;
 	private final static int FRAME_HEIGHT = 700;
 
