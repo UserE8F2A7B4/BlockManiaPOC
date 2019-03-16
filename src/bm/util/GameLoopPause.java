@@ -2,14 +2,14 @@ package bm.util;
 
 //***********************************************************************
 //
-//Vertraging en toch een vaste frame-rate :
-//Deze class fungeert als een soort 'sleep' in een (snel repeterende) 
-//game-thread zonder deze thread zelf af te remmen.
+// Vertraging en toch een vaste frame-rate :
+// Deze class fungeert als een soort 'sleep' in een (snel repeterende)
+// game-thread zonder deze thread zelf af te remmen.
 //
-//GameLoopPause pause01 = new GameLoopPause(10); // Skip 10 game-ticks.
+// GameLoopPause pause01 = new GameLoopPause(10); // Skip 10 game-ticks.
 //
-//if (pause01.hasExpired())
-// doSomething();
+// if (pause01.hasExpired())
+// 	doSomething();
 //
 //***********************************************************************
 
@@ -22,6 +22,20 @@ public class GameLoopPause
 	{
 		ticksToPause = numberOfTicksToPause;
 		counter = ticksToPause;
+	}
+
+	public boolean isPausing()
+	{
+		counter--;
+		if (counter == 0)
+		{
+			reset();
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 
 	public boolean hasExpired()

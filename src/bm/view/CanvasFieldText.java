@@ -2,12 +2,11 @@ package bm.view;
 
 import javax.swing.JTextPane;
 
+import bm.BlockManiaPOC;
 import bm.block_handling.blocks.Tile;
 
 public class CanvasFieldText
 {
-	private JTextPane txtCanvasField;
-
 	private static CanvasFieldText instance;
 	public static CanvasFieldText getInstance()
 	{
@@ -20,11 +19,6 @@ public class CanvasFieldText
 
 	private CanvasFieldText()
 	{
-	}
-
-	public void setCanvasField(JTextPane txtCanvas)
-	{
-		txtCanvasField = txtCanvas;
 	}
 
 	public void renderField(Tile[][] field)
@@ -49,7 +43,7 @@ public class CanvasFieldText
 			sb.append("\n");
 		}
 
-		txtCanvasField.setText(sb.toString());
+		BlockManiaPOC.getTxtCanvasField().setText(sb.toString());
 	}
 
 }

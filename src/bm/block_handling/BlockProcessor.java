@@ -171,7 +171,7 @@ public class BlockProcessor
 		{
 			block.incrementOffsetRow();
 		}
-		else // The block can not be moved down any further, (it has reached the bottom or is blocked).
+		else // The block can not be moved down any further, (because it has reached the bottom or is blocked).
 		{
 			System.out.println("Cannot move Down.");
 

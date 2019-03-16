@@ -6,6 +6,7 @@ import bm.ControllerMain.GameState;
 import bm.block_handling.ControllerBlockHandling;
 import bm.block_handling.ControllerField;
 import bm.block_handling.blocks.Tile;
+import bm.util.GameLoopPause;
 import bm.util.GlobalData;
 
 public class ControllerLineRemoval
@@ -13,7 +14,7 @@ public class ControllerLineRemoval
 	private ControllerField controllerField;
 
 	private RemovalMode mode;
-	private static enum RemovalMode
+	private enum RemovalMode
 	{
 		IDLE, INIT, ANIMATION_STEP_ONE, ANIMATION_STEP_TWO, DONE
 	}
@@ -21,6 +22,8 @@ public class ControllerLineRemoval
 	private List<Integer> rowsToRemove;
 	private int row, col;
 	private int rowNumber;
+
+	private GameLoopPause pauseAnimation = new GameLoopPause(10); // Skip 10 game-ticks.
 
 	private static ControllerLineRemoval instance;
 	public static ControllerLineRemoval getInstance()
@@ -42,10 +45,13 @@ public class ControllerLineRemoval
 	{
 		System.err.println("ControllerLineRemoval.handleGameTick");
 
-		if (mode == RemovalMode.IDLE)
+		if (pauseAnimation.isPausing())
 		{
-			init();
-			mode = RemovalMode.ANIMATION_STEP_ONE;
+			return;
+		}
+		else if (mode == RemovalMode.IDLE)
+		{
+			startAnimation();
 		}
 		else if (mode == RemovalMode.ANIMATION_STEP_ONE)
 		{
@@ -62,11 +68,12 @@ public class ControllerLineRemoval
 		}
 	}
 
-	private void init()
+	private void startAnimation()
 	{
 		rowsToRemove = controllerField.getCompletedRows();
 		rowNumber = rowsToRemove.get(rowNumber);
 		col = 0;
+		mode = RemovalMode.ANIMATION_STEP_ONE;
 	}
 
 	private void doAnimationStepOne()

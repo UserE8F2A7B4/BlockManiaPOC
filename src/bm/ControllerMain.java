@@ -6,8 +6,6 @@ import bm.line_removal.ControllerLineRemoval;
 
 public class ControllerMain
 {
-  	// Branch 01 / also edited in IntelliJ.
-
 	private BlockManiaPOC gui;
 
 	private ControllerBlockHandling controllerBlockHandling;
@@ -15,7 +13,7 @@ public class ControllerMain
 
 	private GameState gameState;
 
-	public static enum GameState
+	public enum GameState
 	{
 		BLOCK_HANDLING, LINE_REMOVAL
 	}

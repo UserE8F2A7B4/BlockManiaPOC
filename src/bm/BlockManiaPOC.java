@@ -28,23 +28,19 @@ import bm.view.CanvasPreviewText;
 
 public class BlockManiaPOC extends JFrame
 {
-	// Branch 01 / edited in IntelliJ.
-
 	private final static int FRAME_WIDTH  = 600;
 	private final static int FRAME_HEIGHT = 700;
 
-	JButton btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08;
-	JTextPane  txtCanvasPreview, txtCanvasField;
-
 	private ControllerMain controllerMain;
-	// private CanvasField canvasField;
 
-	public static JLabel lblCanvasPreview;
-	public static JLabel lblCanvasField;
+	private JButton btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08;
+
+	private static JTextPane  txtCanvasPreview, txtCanvasField;
+	private static JLabel lblCanvasPreview, lblCanvasField;
 
 	private UserInput request = UserInput.NONE;
 
-	public static enum UserInput
+	public enum UserInput
 	{
 		NONE, START_GAME, NEXT_BLOCK, ROTATE, FLIP, MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN
 	}
@@ -61,11 +57,8 @@ public class BlockManiaPOC extends JFrame
 		X = 5 ; Y = 5;
 		width = 100 ; height = 200;
 
-		// canvasField = CanvasField.getInstance();
-
 		txtCanvasPreview = new JTextPane ();
 		txtCanvasPreview.setFont(new Font("Consolas", Font.PLAIN, 16));
-		CanvasPreviewText.getInstance().setCanvasPreview(txtCanvasPreview);
 		txtCanvasPreview.setBounds(X,Y , width,height);
 		cont.add(txtCanvasPreview);
 
@@ -74,7 +67,6 @@ public class BlockManiaPOC extends JFrame
 
 		txtCanvasField = new JTextPane ();
 		txtCanvasField.setFont(new Font("Consolas", Font.PLAIN, 16));
-		CanvasFieldText.getInstance().setCanvasField(txtCanvasField);
 		txtCanvasField.setBounds(X,Y , width,height);
 		cont.add(txtCanvasField);
 
@@ -190,13 +182,28 @@ public class BlockManiaPOC extends JFrame
 
 	public static void main(String[] args)
 	{
-		Runnable runnable = new Runnable()
-		{
-			@Override
-			@SuppressWarnings("unused")
-			public void run() { new BlockManiaPOC(); }
-		};
+		Runnable runnable = BlockManiaPOC::new;
 		EventQueue.invokeLater(runnable);
+	}
+
+	public static JLabel getLblCanvasPreview()
+	{
+		return lblCanvasPreview;
+	}
+
+	public static JLabel getLblCanvasField()
+	{
+		return lblCanvasField;
+	}
+
+	public static JTextPane getTxtCanvasPreview()
+	{
+		return txtCanvasPreview;
+	}
+
+	public static JTextPane getTxtCanvasField()
+	{
+		return txtCanvasField;
 	}
 
 	public class CustomAction extends AbstractAction

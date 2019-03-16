@@ -8,8 +8,8 @@ public abstract class Block
 {
 	protected int blockId;
 
-	private static int ROTATION_INDEX_MIN = 0;
-	private static int ROTATION_INDEX_MAX = 3;
+	private static final int ROTATION_INDEX_MIN = 0;
+	private static final int ROTATION_INDEX_MAX = 3;
 
 	Tile[][] regularViews;
 	Tile[][] flippedViews;

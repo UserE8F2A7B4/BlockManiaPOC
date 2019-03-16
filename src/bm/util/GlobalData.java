@@ -8,7 +8,7 @@ public abstract class GlobalData
 
 	private static GameMode gameMode = GameMode.CLASSIC;
 
-	public static enum GameMode
+	public enum GameMode
 	{
 		CLASSIC, EXTENDED
 	}

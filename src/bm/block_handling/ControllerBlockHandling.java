@@ -43,7 +43,7 @@ public class ControllerBlockHandling
 
 		if (blockProcessor.hasBlock())
 		{
-			if (isHetTijdVoorEenMoveDown())
+			if (isHetTijdVoorEenMoveDown()) // Wordt bepaald door de game-timer.
 			{
 
 			}

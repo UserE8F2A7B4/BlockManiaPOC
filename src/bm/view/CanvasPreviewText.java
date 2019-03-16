@@ -2,12 +2,11 @@ package bm.view;
 
 import javax.swing.JTextPane;
 
+import bm.BlockManiaPOC;
 import bm.block_handling.blocks.Tile;
 
 public class CanvasPreviewText
 {
-	private JTextPane txtCanvasPreview;
-
 	private static CanvasPreviewText instance;
 	public static CanvasPreviewText getInstance()
 	{
@@ -20,11 +19,6 @@ public class CanvasPreviewText
 
 	private CanvasPreviewText()
 	{
-	}
-
-	public void setCanvasPreview(JTextPane txtCanvas)
-	{
-		txtCanvasPreview = txtCanvas;
 	}
 
 	public void renderPreview(Tile[][] field)
@@ -49,6 +43,6 @@ public class CanvasPreviewText
 			sb.append("\n");
 		}
 
-		txtCanvasPreview.setText(sb.toString());
+		BlockManiaPOC.getTxtCanvasPreview().setText(sb.toString());
 	}
 }

@@ -62,8 +62,7 @@ public class CanvasFieldLabel
 
 	public void render()
 	{
-		BlockManiaPOC.lblCanvasField.setIcon(new ImageIcon(image));
+		BlockManiaPOC.getLblCanvasField().setIcon(new ImageIcon(image));
 	}
-
 
 }
