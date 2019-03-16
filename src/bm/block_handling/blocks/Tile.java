@@ -59,13 +59,16 @@ public class Tile
 		return (this.blockId + this.row + this.col);
 	}
 
-
 	public static Tile getDummyTileRed(int row, int col)
 	{
 		Tile tile = new Tile(row, col, GlobalData.TILE_COLOR_RED);
 		return tile;
 	}
-
+	public static Tile getDummyTileWhite(int row, int col)
+	{
+		Tile tile = new Tile(row, col, GlobalData.TILE_COLOR_WHITE);
+		return tile;
+	}
 
 	@Override
 	public String toString()

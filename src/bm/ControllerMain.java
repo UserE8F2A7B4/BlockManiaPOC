@@ -33,6 +33,8 @@ public class ControllerMain
 		controllerBlockHandling = ControllerBlockHandling.getInstance();
 		controllerLineRemoval = ControllerLineRemoval.getInstance();
 
+		// GameLoopTimer timer = GameLoopTimer.getInstance();
+
 		gameState = GameState.BLOCK_HANDLING;
 	}
 
