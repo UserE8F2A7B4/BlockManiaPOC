@@ -95,7 +95,7 @@ public class ControllerLineRemoval
 	private void doAnimationStepOne()
 	{
 		Tile tile = Tile.getDummyTileRed(rowCurrent, colCurrent);
-		ControllerField.getInstance().setTile(tile);
+		ControllerField.getInstance().setTile(tile,true);
 
 		colCurrent++;
 		if (colCurrent >= GlobalData.COLS)
@@ -112,7 +112,7 @@ public class ControllerLineRemoval
 	private void doAnimationStepTwo()
 	{
 		Tile tile = Tile.getDummyTileWhite(rowCurrent, colCurrent);
-		ControllerField.getInstance().setTile(tile);
+		ControllerField.getInstance().setTile(tile, true);
 
 		colCurrent++;
 		if (colCurrent >= GlobalData.COLS)

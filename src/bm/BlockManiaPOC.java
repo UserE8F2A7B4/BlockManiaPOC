@@ -33,7 +33,7 @@ public class BlockManiaPOC extends JFrame
 
 	private ControllerMain controllerMain;
 
-	private JButton btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08;
+	private JButton btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08, btn09;
 
 	private static JTextPane  txtCanvasPreview, txtCanvasField;
 	private static JLabel lblCanvasPreview, lblCanvasField;
@@ -169,6 +169,16 @@ public class BlockManiaPOC extends JFrame
 		btn05.setBounds(X, Y, width, height);
 		cont.add(btn05);
 
+		X = 5;
+		Y += height + 10;
+
+		btn09 = new JButton(action01);
+		btn09.setText("Clear rows");
+		width  = (int) btn09.getPreferredSize().getWidth();
+		height = (int) btn09.getPreferredSize().getHeight();
+		btn09.setBounds(X, Y, width, height);
+		cont.add(btn09);
+
 		controllerMain = ControllerMain.getInstance();
 		controllerMain.setReferenceToGUI(this);
 
@@ -220,6 +230,7 @@ public class BlockManiaPOC extends JFrame
 			else if (obj == btn06) { handleButton06(); }
 			else if (obj == btn07) { handleButton07(); }
 			else if (obj == btn08) { handleButton08(); }
+			else if (obj == btn09) { handleButton09(); }
 		}
 	}
 
@@ -270,6 +281,10 @@ public class BlockManiaPOC extends JFrame
 	{
 		setUserRequest(UserInput.MOVE_RIGHT);
 		controllerMain.handleGameTick();
+	}
+	void handleButton09()
+	{
+		//controllerMain.handleGameTick();
 	}
 
 	class keyPressedEventHandler extends KeyAdapter

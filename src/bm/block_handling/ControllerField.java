@@ -121,13 +121,21 @@ public class ControllerField
 	{
 		for (Tile tile : tiles)
 		{
-			setTile(tile);
+			setTile(tile, false);
 		}
+
+		// updateCanvas();
 	}
 
-	public void setTile(Tile tile)
+	public void setTile(Tile tile, boolean updateCanvas)
 	{
 		field[tile.getRow()][tile.getCol()] = tile;
+
+		if (updateCanvas)
+		{
+			// updateCanvas();
+		}
+
 	}
 
 	// Deze is nodig om te checken of het block gedraaid of gespiegeld kan gaan worden
