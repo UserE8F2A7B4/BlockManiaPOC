@@ -31,14 +31,13 @@ public class BlockManiaPOC extends JFrame
 	private final static int FRAME_WIDTH  = 600;
 	private final static int FRAME_HEIGHT = 700;
 
+	private FlowMain flowMain;
 	private ControllerMain controllerMain;
 
 	private JButton btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08, btn09;
 
 	private static JTextPane  txtCanvasPreview, txtCanvasField;
 	private static JLabel lblCanvasPreview, lblCanvasField;
-
-	private UserInput request = UserInput.NONE;
 
 	public enum UserInput
 	{
@@ -180,7 +179,7 @@ public class BlockManiaPOC extends JFrame
 		cont.add(btn09);
 
 		controllerMain = ControllerMain.getInstance();
-		controllerMain.setReferenceToGUI(this);
+		// controllerMain.setReferenceToGUI(this);
 
 		X = 400;
 		Y = 200;
@@ -234,6 +233,9 @@ public class BlockManiaPOC extends JFrame
 		}
 	}
 
+	// 1tril1lium
+	// Ill1uminating
+
 	void handleButton01()
 	{
 		ControllerField. getInstance().clearAllTiles();
@@ -244,25 +246,25 @@ public class BlockManiaPOC extends JFrame
 
 	void handleButton02()
 	{
-		setUserRequest(UserInput.MOVE_DOWN);
+		controllerMain.setUserRequest(UserInput.MOVE_DOWN);
 		controllerMain.handleGameTick();
 	}
 
 	void handleButton03()
 	{
-		setUserRequest(UserInput.MOVE_UP);
+		controllerMain.setUserRequest(UserInput.MOVE_UP);
 		controllerMain.handleGameTick();
 	}
 
 	void handleButton04()
 	{
-		setUserRequest(UserInput.ROTATE);
+		controllerMain.setUserRequest(UserInput.ROTATE);
 		controllerMain.handleGameTick();
 	}
 
 	void handleButton05()
 	{
-		setUserRequest(UserInput.FLIP);
+		controllerMain.setUserRequest(UserInput.FLIP);
 		controllerMain.handleGameTick();
 	}
 
@@ -273,13 +275,13 @@ public class BlockManiaPOC extends JFrame
 
 	void handleButton07()
 	{
-		setUserRequest(UserInput.MOVE_LEFT);
+		controllerMain.setUserRequest(UserInput.MOVE_LEFT);
 		controllerMain.handleGameTick();
 	}
 
 	void handleButton08()
 	{
-		setUserRequest(UserInput.MOVE_RIGHT);
+		controllerMain.setUserRequest(UserInput.MOVE_RIGHT);
 		controllerMain.handleGameTick();
 	}
 	void handleButton09()
@@ -310,30 +312,30 @@ public class BlockManiaPOC extends JFrame
 				//					break;
 
 				case KeyEvent.VK_S :
-					setUserRequest(UserInput.START_GAME);
+					controllerMain.setUserRequest(UserInput.START_GAME);
 					break;
 				case KeyEvent.VK_N :
-					setUserRequest(UserInput.NEXT_BLOCK);
+					controllerMain.setUserRequest(UserInput.NEXT_BLOCK);
 					break;
 
 				case KeyEvent.VK_R :
-					setUserRequest(UserInput.ROTATE);
+					controllerMain.setUserRequest(UserInput.ROTATE);
 					break;
 				case KeyEvent.VK_F :
-					setUserRequest(UserInput.FLIP);
+					controllerMain.setUserRequest(UserInput.FLIP);
 					break;
 
 				case KeyEvent.VK_UP :
-					setUserRequest(UserInput.MOVE_UP);
+					controllerMain.setUserRequest(UserInput.MOVE_UP);
 					break;
 				case KeyEvent.VK_DOWN :
-					setUserRequest(UserInput.MOVE_DOWN);
+					controllerMain.setUserRequest(UserInput.MOVE_DOWN);
 					break;
 				case KeyEvent.VK_LEFT :
-					setUserRequest(UserInput.MOVE_LEFT);
+					controllerMain.setUserRequest(UserInput.MOVE_LEFT);
 					break;
 				case KeyEvent.VK_RIGHT :
-					setUserRequest(UserInput.MOVE_RIGHT);
+					controllerMain.setUserRequest(UserInput.MOVE_RIGHT);
 					break;
 				default:
 			}
@@ -344,18 +346,12 @@ public class BlockManiaPOC extends JFrame
 		{
 			int kc = e.getKeyCode();
 			if (kc == currentKey)
-				setUserRequest(UserInput.NONE);
+			{
+				controllerMain.setUserRequest(UserInput.NONE);
+			}
 		}
 	}
 
-	public synchronized void setUserRequest(UserInput req)
-	{
-		request = req;
-	}
 
-	public synchronized UserInput getUserRequest()
-	{
-		return request;
-	}
 
 }

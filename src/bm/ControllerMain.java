@@ -6,11 +6,12 @@ import bm.line_removal.ControllerLineRemoval;
 
 public class ControllerMain
 {
-	private BlockManiaPOC gui;
+	// private BlockManiaPOC gui;
 
 	private ControllerBlockHandling controllerBlockHandling;
 	private ControllerLineRemoval controllerLineRemoval;
 
+	private UserInput request = UserInput.NONE;
 	private GameState gameState;
 
 	public enum GameState
@@ -38,26 +39,127 @@ public class ControllerMain
 		gameState = GameState.BLOCK_HANDLING;
 	}
 
-	public void setReferenceToGUI(BlockManiaPOC bm)
-	{
-		gui = bm;
-	}
+//	public void setReferenceToGUI(BlockManiaPOC bm)
+//	{
+//		gui = bm;
+//	}
 
 	public void changeGameState(GameState newGameState)
 	{
 		gameState = newGameState;
 	}
 
-	public void handleGameTick()
+	public GameState getGameState()
 	{
-		UserInput input = gui.getUserRequest();
+		return gameState;
+	}
 
-		switch (gameState)
-		{
-			case BLOCK_HANDLING  : controllerBlockHandling.handleGameTick(input) ; break;
-			case LINE_REMOVAL    : controllerLineRemoval.handleGameTick() ; break;
-			default              : assert false : "Invalid request"; break;
-		}
+	public synchronized void setUserRequest(UserInput req)
+	{
+		request = req;
+	}
+
+	public synchronized UserInput getUserRequest()
+	{
+		return request;
+	}
+
+	public boolean isErEenBlockOpDePreview()
+	{
+		return false;
+	}
+
+	public boolean isErEenBlockOpHetVeld()
+	{
+		return false;
+	}
+
+	public boolean isHetTijdVoorEenMoveDown()
+	{
+		return false;
+	}
+
+	public void blockMoveDown()
+	{
+	}
+
+	public boolean isErRuimteOmHetPreviewBlockTeVerplaatsenNaarHetVeld()
+	{
+		return false;
+	}
+
+	public void updatePoints()
+	{
+	}
+
+	public void verwijderHetBlockUitHetVeld()
+	{
+	}
+
+	public boolean zijnErVolledigGevuldeRegelsOntstaan()
+	{
+		return false;
+	}
+
+	public void blockMoveLeft()
+	{
+	}
+
+	public void blockMoveRight()
+	{
+	}
+
+	public void verplaatsHetPreviewBlockNaarHetVeld()
+	{
+	}
+
+	public void plaatsEenNieuwWillekeurigBlockOpDePreview()
+	{
+	}
+
+	public boolean isErRuimteVoorDezeActie(UserInput moveDown)
+	{
+		return false;
+	}
+
+	public void blockFlip()
+	{
+	}
+
+	public void blockRotate()
+	{
+	}
+
+	public void handleGameOver()
+	{
+	}
+
+	//---
+
+	public boolean isAnimatie_01_NogBezig()
+	{
+		return false;
+	}
+
+	public void animatie_01_handleGameTick()
+	{
+	}
+
+	public boolean isAnimatie_02_NogBezig()
+	{
+		return false;
+	}
+
+	public void animatie_02_handleGameTick()
+	{
+	}
+
+	public void verwijderDeVolledigeRegels()
+	{
+	}
+
+	public void verplaatsDeOverigeRegelsNaarBeneden()
+	{
 	}
 
 }

@@ -42,7 +42,7 @@ public class BlockProcessor
 		block = null;
 	}
 
-	// Level 2.
+	//  Level 2.
 
 	public boolean tryToPlaceNewBlockOnField()
 	{
