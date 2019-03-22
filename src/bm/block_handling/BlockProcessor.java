@@ -123,29 +123,33 @@ public class BlockProcessor
 		return (maxCol - minCol + 2);
 	}
 
-	public void tryToMoveBlockLeft()
+	public boolean tryToMoveBlockLeft()
 	{
 		newTiles = block.getTilesWithOffset(0, -1);
 		if (tryToPlaceNewTilesOnField())
 		{
 			block.decrementOffsetColumn();
+			return true;
 		}
 		else
 		{
 			System.out.println("Cannot move Left.");
+			return false;
 		}
 	}
 
-	public void tryToMoveBlockRight()
+	public boolean tryToMoveBlockRight()
 	{
 		newTiles = block.getTilesWithOffset(0, 1);
 		if (tryToPlaceNewTilesOnField())
 		{
 			block.incrementOffsetColumn();
+			return true;
 		}
 		else
 		{
 			System.out.println("Cannot move Right.");
+			return false;
 		}
 	}
 
@@ -163,51 +167,61 @@ public class BlockProcessor
 		}
 	}
 
-	public void tryToMoveBlockDown()
+	public boolean tryToMoveBlockDown()
 	{
 		newTiles = block.getTilesWithOffset(1, 0);
 
 		if (tryToPlaceNewTilesOnField())
 		{
 			block.incrementOffsetRow();
+			return true;
 		}
-		else // The block can not be moved down any further, (because it has reached the bottom or is blocked).
+		else
 		{
-			System.out.println("Cannot move Down.");
-
-			removeBlock();
-			if (controllerField.hasCompletedRows())
-			{
-				ControllerBlockHandling.getInstance().changeGameState(GameState.LINE_REMOVAL);
-			}
+			return false;
 		}
+
+//		else // The block can not be moved down any further, (because it has reached the bottom or is blocked).
+//		{
+//			System.out.println("Cannot move Down.");
+//
+//			removeBlock();
+//			if (controllerField.hasCompletedRows())
+//			{
+//				ControllerBlockHandling.getInstance().changeGameState(GameState.LINE_REMOVAL);
+//			}
+//		}
 	}
 
-	public void tryToRotateBlock()
+	public boolean tryToRotateBlock()
 	{
 		int rotationIndexRequested = block.getNextRotationIndex();
 		newTiles = block.getTilesWithRotationIndex(rotationIndexRequested);
 		if (tryToPlaceNewTilesOnField())
 		{
 			block.setRotationIndex(rotationIndexRequested);
+			return true;
 		}
 		else
 		{
 			System.out.println("Cannot Rotate.");
+			return false;
 		}
 	}
 
-	public void tryToFlipBlock()
+	public boolean tryToFlipBlock()
 	{
 		RotationMode rotationModeRequested = block.getNextRotationMode();
 		newTiles = block.getTilesWithRotationMode(rotationModeRequested);
 		if (tryToPlaceNewTilesOnField())
 		{
 			block.setRotationMode(rotationModeRequested);
+			return true;
 		}
 		else
 		{
 			System.out.println("Cannot Flip.");
+			return false;
 		}
 	}
 

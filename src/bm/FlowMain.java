@@ -34,21 +34,20 @@ public class FlowMain
 
 	private void flowBlockHandling()
 	{
-		if (cm.isErEenBlockOpDePreview())
+		if (cm.staat_er_een_block_op_de_preview())
 		{
-			if (cm.isErEenBlockOpHetVeld())
+			if (cm.staat_er_een_block_op_het_veld())
 			{
-				if (cm.isHetTijdVoorEenMoveDown())
+				if (cm.is_het_tijd_voor_een_move_down())
 				{
-					if (cm.isErRuimteVoorDezeActie(UserInput.MOVE_DOWN))
+					if (cm.probeer_actie_uit_te_voeren_op_het_block(UserInput.MOVE_DOWN))
 					{
-						cm.blockMoveDown();
 						cm.updateScore();
 					}
       	else
 					{
-						cm.verwijderHetBlockUitHetVeld();
-						if (cm.zijnErVolledigGevuldeRegelsOntstaan())
+						cm.verwijder_het_block_uit_het_veld();
+						if (cm.zijn_er_volledig_gevulde_regels_ontstaan())
 						{
 							cm.changeGameState(GameState.LINE_REMOVAL);
 						}
@@ -61,47 +60,22 @@ public class FlowMain
 					{
 						if (input == UserInput.MOVE_DOWN)
 						{
-							if (cm.isErRuimteVoorDezeActie(UserInput.MOVE_DOWN))
+							if (cm.probeer_actie_uit_te_voeren_op_het_block(UserInput.MOVE_DOWN))
 							{
-								cm.blockMoveDown();
 								cm.updateScore();
 							}
-          	else
+          		else
 							{
-								cm.verwijderHetBlockUitHetVeld();
-								if (cm.zijnErVolledigGevuldeRegelsOntstaan())
+								cm.verwijder_het_block_uit_het_veld();
+								if (cm.zijn_er_volledig_gevulde_regels_ontstaan())
 								{
 									cm.changeGameState(GameState.LINE_REMOVAL);
 								}
 							}
 						}
-						else if (input == UserInput.MOVE_LEFT)
+						else // Move left or right or flip or rotate.
 						{
-							if (cm.isErRuimteVoorDezeActie(UserInput.MOVE_LEFT))
-							{
-								cm.blockMoveLeft();
-							}
-						}
-						else if (input == UserInput.MOVE_RIGHT)
-						{
-							if (cm.isErRuimteVoorDezeActie(UserInput.MOVE_RIGHT))
-							{
-								cm.blockMoveRight();
-							}
-						}
-						else if (input == UserInput.FLIP)
-						{
-							if (cm.isErRuimteVoorDezeActie(UserInput.FLIP))
-							{
-								cm.blockFlip();
-							}
-						}
-						else if (input == UserInput.ROTATE)
-						{
-							if (cm.isErRuimteVoorDezeActie(UserInput.ROTATE))
-							{
-								cm.blockRotate();
-							}
+							cm.probeer_actie_uit_te_voeren_op_het_block(input);
 						}
 					}
 					else // Er is [geen] user-input.
@@ -112,36 +86,37 @@ public class FlowMain
 			}
     	else // Er is [geen] block aanwezig op het veld.
 			{
-				if (cm.isErRuimteOmHetPreviewBlockTeVerplaatsenNaarHetVeld())
+				if (cm.probeer_het_previewblock_te_verplaatsen_naar_het_veld())
 				{
-					cm.verplaatsHetPreviewBlockNaarHetVeld();
+					// Het previewblock is nu verplaatst naar het veld.
 				}
-				else // Er is [geen] ruimte op het veld om een nieuw block te plaatsen ; game over !
+				else
 				{
+					// Er is [niet] genoeg ruimte op het veld om het previewblock te plaatsen ; GAME OVER !..
 					cm.handleGameOver();
 				}
 			}
 		}
 		else // Er is [geen] block aanwezig op de Preview.
 		{
-			cm.plaatsEenNieuwWillekeurigBlockOpDePreview();
+			cm.plaats_een_nieuw_willekeurig_block_op_de_preview();
 		}
 	}
 
 	private void flowLineRemoval()
 	{
-		if (cm.isAnimatie_01_NogBezig())
+		if (cm.is_animatie_01_nog_bezig())
 		{
-			cm.animatie_01_handleGameTick();
+			cm.update_animatie_01();
 		}
-		else if (cm.isAnimatie_02_NogBezig())
+		else if (cm.is_animatie_02_nog_bezig())
 		{
-			cm.animatie_02_handleGameTick();
+			cm.update_animatie_02();
 		}
 		else
 		{
-			cm.verwijderDeVolledigeRegels();
-			cm.verplaatsDeOverigeRegelsNaarBeneden();
+			cm.verwijder_de_volledige_regels();
+			cm.verplaats_de_overgebleven_regels_naar_beneden();
 			cm.updateScore();
 			cm.changeGameState(GameState.BLOCK_HANDLING);
 		}

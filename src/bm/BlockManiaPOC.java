@@ -178,6 +178,8 @@ public class BlockManiaPOC extends JFrame
 		btn09.setBounds(X, Y, width, height);
 		cont.add(btn09);
 
+		flow = FlowMain.getInstance();
+
 		controllerMain = ControllerMain.getInstance();
 		// controllerMain.setReferenceToGUI(this);
 
