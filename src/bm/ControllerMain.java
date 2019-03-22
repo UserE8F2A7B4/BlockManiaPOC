@@ -88,7 +88,7 @@ public class ControllerMain
 		return false;
 	}
 
-	public void updatePoints()
+	public void updateScore()
 	{
 	}
 

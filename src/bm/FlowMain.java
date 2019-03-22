@@ -43,7 +43,7 @@ public class FlowMain
 					if (cm.isErRuimteVoorDezeActie(UserInput.MOVE_DOWN))
 					{
 						cm.blockMoveDown();
-						cm.updatePoints();
+						cm.updateScore();
 					}
       	else
 					{
@@ -64,7 +64,7 @@ public class FlowMain
 							if (cm.isErRuimteVoorDezeActie(UserInput.MOVE_DOWN))
 							{
 								cm.blockMoveDown();
-								cm.updatePoints();
+								cm.updateScore();
 							}
           	else
 							{
@@ -81,20 +81,12 @@ public class FlowMain
 							{
 								cm.blockMoveLeft();
 							}
-							else
-							{
-								// Optional : play sound.
-							}
 						}
 						else if (input == UserInput.MOVE_RIGHT)
 						{
 							if (cm.isErRuimteVoorDezeActie(UserInput.MOVE_RIGHT))
 							{
 								cm.blockMoveRight();
-							}
-							else
-							{
-								// Optional : play sound.
 							}
 						}
 						else if (input == UserInput.FLIP)
@@ -103,20 +95,12 @@ public class FlowMain
 							{
 								cm.blockFlip();
 							}
-							else
-							{
-								// Optional : play sound.
-							}
 						}
 						else if (input == UserInput.ROTATE)
 						{
 							if (cm.isErRuimteVoorDezeActie(UserInput.ROTATE))
 							{
 								cm.blockRotate();
-							}
-							else
-							{
-								// Optional : play sound.
 							}
 						}
 					}
@@ -158,6 +142,7 @@ public class FlowMain
 		{
 			cm.verwijderDeVolledigeRegels();
 			cm.verplaatsDeOverigeRegelsNaarBeneden();
+			cm.updateScore();
 			cm.changeGameState(GameState.BLOCK_HANDLING);
 		}
 	}

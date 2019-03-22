@@ -31,7 +31,7 @@ public class BlockManiaPOC extends JFrame
 	private final static int FRAME_WIDTH  = 600;
 	private final static int FRAME_HEIGHT = 700;
 
-	private FlowMain flowMain;
+	private FlowMain flow;
 	private ControllerMain controllerMain;
 
 	private JButton btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08, btn09;
@@ -240,32 +240,31 @@ public class BlockManiaPOC extends JFrame
 	{
 		ControllerField. getInstance().clearAllTiles();
 		BlockProcessor.getInstance().removeBlock();
-
-		controllerMain.handleGameTick();
+		flow.handleGameTick();
 	}
 
 	void handleButton02()
 	{
 		controllerMain.setUserRequest(UserInput.MOVE_DOWN);
-		controllerMain.handleGameTick();
+		flow.handleGameTick();
 	}
 
 	void handleButton03()
 	{
 		controllerMain.setUserRequest(UserInput.MOVE_UP);
-		controllerMain.handleGameTick();
+		flow.handleGameTick();
 	}
 
 	void handleButton04()
 	{
 		controllerMain.setUserRequest(UserInput.ROTATE);
-		controllerMain.handleGameTick();
+		flow.handleGameTick();
 	}
 
 	void handleButton05()
 	{
 		controllerMain.setUserRequest(UserInput.FLIP);
-		controllerMain.handleGameTick();
+		flow.handleGameTick();
 	}
 
 	void handleButton06()
@@ -276,13 +275,13 @@ public class BlockManiaPOC extends JFrame
 	void handleButton07()
 	{
 		controllerMain.setUserRequest(UserInput.MOVE_LEFT);
-		controllerMain.handleGameTick();
+		flow.handleGameTick();
 	}
 
 	void handleButton08()
 	{
 		controllerMain.setUserRequest(UserInput.MOVE_RIGHT);
-		controllerMain.handleGameTick();
+		flow.handleGameTick();
 	}
 	void handleButton09()
 	{
@@ -351,7 +350,5 @@ public class BlockManiaPOC extends JFrame
 			}
 		}
 	}
-
-
 
 }
