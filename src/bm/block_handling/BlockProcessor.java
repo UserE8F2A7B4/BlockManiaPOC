@@ -60,6 +60,12 @@ public class BlockProcessor
 		}
 	}
 
+	private void newTilesHaveBecomeCurrentTiles()
+	{
+		currentTiles = new ArrayList<>(newTiles);
+		newTiles.clear();
+	}
+
 	private void loadBlockFromPreview()
 	{
 		block = ControllerPreview.getInstance().getBlock();
@@ -69,12 +75,6 @@ public class BlockProcessor
 
 		currentTiles.clear();
 		newTiles = block.getTiles();
-	}
-
-	private void newTilesHaveBecomeCurrentTiles()
-	{
-		currentTiles = new ArrayList<>(newTiles);
-		newTiles.clear();
 	}
 
 	private int calculateOffsetRow() // Compensate the block's initial row-offset.
@@ -180,17 +180,6 @@ public class BlockProcessor
 		{
 			return false;
 		}
-
-//		else // The block can not be moved down any further, (because it has reached the bottom or is blocked).
-//		{
-//			System.out.println("Cannot move Down.");
-//
-//			removeBlock();
-//			if (controllerField.hasCompletedRows())
-//			{
-//				ControllerBlockHandling.getInstance().changeGameState(GameState.LINE_REMOVAL);
-//			}
-//		}
 	}
 
 	public boolean tryToRotateBlock()

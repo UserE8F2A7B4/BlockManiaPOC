@@ -56,8 +56,8 @@ public class ControllerPreview
 
 	public void loadNextBlock()
 	{
-		block = BlockPool.getNextBlock();
-		// block = BlockPool.getFixedBlock();
+		// block = BlockPool.getNextBlock();
+		block = BlockPool.getFixedBlock();
 		render();
 	}
 

@@ -17,7 +17,7 @@ public abstract class BlockPool
 
 	public static Block getFixedBlock()
 	{
-		return getBlock(1);
+		return getBlock(6);
 	}
 
 	public static Block getRandomBlock()

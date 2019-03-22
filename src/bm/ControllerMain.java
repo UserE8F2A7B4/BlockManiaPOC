@@ -85,7 +85,8 @@ public class ControllerMain
 
 	public void plaats_een_nieuw_willekeurig_block_op_de_preview()
 	{
-		controllerPreview.loadRandomBlock();
+		// controllerPreview.loadNextBlock(); // .loadRandomBlock();
+		controllerPreview.loadNextBlock(); // .loadRandomBlock();
 	}
 
 	public boolean probeer_het_previewblock_te_verplaatsen_naar_het_veld()
