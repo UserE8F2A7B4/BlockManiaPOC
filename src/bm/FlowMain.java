@@ -2,11 +2,16 @@ package bm;
 
 import bm.BlockManiaPOC.UserInput;
 import bm.ControllerMain.GameState;
+import bm.block_handling.ControllerBlockHandling;
+import bm.line_removal.ControllerLineRemoval;
 
 public class FlowMain
 {
-	private ControllerMain cm;
 	private static FlowMain instance;
+
+	private ControllerMain cm;
+	private ControllerBlockHandling cb;
+	private ControllerLineRemoval cl;
 
 	public static FlowMain getInstance()
 	{
@@ -20,6 +25,8 @@ public class FlowMain
 	private FlowMain()
 	{
 		cm = ControllerMain.getInstance();
+		cb = ControllerBlockHandling.getInstance();
+		cl = ControllerLineRemoval.getInstance();
 	}
 
 	public void handleGameTick()
@@ -34,89 +41,88 @@ public class FlowMain
 
 	private void flowBlockHandling()
 	{
-		if (cm.staat_er_een_block_op_de_preview())
+		if (!cb.staat_er_een_block_op_de_preview())
 		{
-			if (cm.staat_er_een_block_op_het_veld())
+			cb.plaats_een_nieuw_willekeurig_block_op_de_preview();
+		}
+
+		if (cb.staat_er_een_block_op_het_veld())
+		{
+			if (cb.is_het_tijd_voor_een_move_down())
 			{
-				if (cm.is_het_tijd_voor_een_move_down())
+				if (cb.probeer_actie_uit_te_voeren_op_het_block(UserInput.MOVE_DOWN))
 				{
-					if (cm.probeer_actie_uit_te_voeren_op_het_block(UserInput.MOVE_DOWN))
-					{
-						cm.updateScore();
-					}
-      	else
-					{
-						cm.verwijder_het_block_uit_het_veld();
-						if (cm.zijn_er_volledig_gevulde_regels_ontstaan())
-						{
-							cm.changeGameState(GameState.LINE_REMOVAL);
-						}
-					}
+					cm.updateScore();
 				}
-				else
+			else
 				{
-					final UserInput input = cm.getUserRequest();
-					if (input != UserInput.NONE)
+					cb.verwijder_het_block_uit_het_veld();
+					if (cb.zijn_er_volledig_gevulde_regels_ontstaan())
 					{
-						if (input == UserInput.MOVE_DOWN)
-						{
-							if (cm.probeer_actie_uit_te_voeren_op_het_block(UserInput.MOVE_DOWN))
-							{
-								cm.updateScore();
-							}
-          		else
-							{
-								cm.verwijder_het_block_uit_het_veld();
-								if (cm.zijn_er_volledig_gevulde_regels_ontstaan())
-								{
-									cm.changeGameState(GameState.LINE_REMOVAL);
-								}
-							}
-						}
-						else // Move left or right or flip or rotate.
-						{
-							cm.probeer_actie_uit_te_voeren_op_het_block(input);
-						}
-					}
-					else // Er is [geen] user-input.
-					{
-						// Geen actie.
+						cm.changeGameState(GameState.LINE_REMOVAL);
 					}
 				}
 			}
-    	else // Er is [geen] block aanwezig op het veld.
+			else
 			{
-				if (cm.probeer_het_previewblock_te_verplaatsen_naar_het_veld())
+				final UserInput input = cm.getUserRequest();
+				if (input != UserInput.NONE)
 				{
-					// Het previewblock is nu verplaatst naar het veld.
+					if (input == UserInput.MOVE_DOWN)
+					{
+						if (cb.probeer_actie_uit_te_voeren_op_het_block(UserInput.MOVE_DOWN))
+						{
+							cm.updateScore();
+						}
+						else
+						{
+							cb.verwijder_het_block_uit_het_veld();
+							if (cb.zijn_er_volledig_gevulde_regels_ontstaan())
+							{
+								cm.changeGameState(GameState.LINE_REMOVAL);
+							}
+						}
+					}
+					else // Move left or right or flip or rotate.
+					{
+						cb.probeer_actie_uit_te_voeren_op_het_block(input);
+					}
 				}
-				else
+				else // Er is [geen] user-input.
 				{
-					// Er is [niet] genoeg ruimte op het veld om het previewblock te plaatsen ; GAME OVER !..
-					cm.handleGameOver();
+					// Geen actie.
 				}
 			}
 		}
-		else // Er is [geen] block aanwezig op de Preview.
+		else // Er is [geen] block aanwezig op het veld.
 		{
-			cm.plaats_een_nieuw_willekeurig_block_op_de_preview();
+			if (cb.probeer_het_previewblock_te_verplaatsen_naar_het_veld())
+			{
+				// Het previewblock is nu verplaatst naar het veld.
+			}
+			else
+			{
+				// Er is [niet] genoeg ruimte op het veld om het previewblock te plaatsen ; GAME OVER !..
+				cb.handleGameOver();
+			}
 		}
 	}
 
 	private void flowLineRemoval()
 	{
-		if (cm.is_animatie_01_nog_bezig())
+		if (cl.is_animatie_01_nog_bezig())
 		{
-			cm.update_animatie_01();
+			cl.update_animatie_01();
 		}
-		else if (cm.is_animatie_02_nog_bezig())
+		else if (cl.is_animatie_02_nog_bezig())
 		{
-			cm.update_animatie_02();
+			cl.update_animatie_02();
 		}
 		else
 		{
-			cm.verwijder_de_volledige_regels();
-			cm.verplaats_de_overgebleven_regels_naar_beneden();
+			cl.verwijder_de_volledige_regels();
+			cl.verplaats_de_overgebleven_regels_naar_beneden();
+
 			cm.updateScore();
 			cm.changeGameState(GameState.BLOCK_HANDLING);
 		}

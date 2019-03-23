@@ -1,17 +1,18 @@
 package bm.block_handling;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import bm.ControllerMain.GameState;
 import bm.block_handling.blocks.Block;
 import bm.block_handling.blocks.Block.RotationMode;
 import bm.block_handling.blocks.Tile;
 import bm.util.GlobalData;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BlockProcessor
 {
 	private ControllerField controllerField;
+	private ControllerPreview controllerPreview;
+
 	private Block block;
 
 	private List<Tile> newTiles = new ArrayList<>();
@@ -30,6 +31,7 @@ public class BlockProcessor
 	private BlockProcessor()
 	{
 		controllerField = ControllerField.getInstance();
+		controllerPreview = ControllerPreview.getInstance();
 	}
 
 	public boolean hasBlock()
@@ -68,7 +70,8 @@ public class BlockProcessor
 
 	private void loadBlockFromPreview()
 	{
-		block = ControllerPreview.getInstance().getBlock();
+		block = controllerPreview.getBlock();
+		controllerPreview.clearBlock();
 
 		int offsetRowBase = calculateOffsetRow();
 		block.setOffsetRowBase(offsetRowBase );

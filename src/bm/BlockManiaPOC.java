@@ -23,8 +23,6 @@ import bm.block_handling.BlockProcessor;
 import bm.block_handling.ControllerField;
 import bm.block_handling.ControllerPreview;
 import bm.util.GlobalData;
-import bm.view.CanvasFieldText;
-import bm.view.CanvasPreviewText;
 
 public class BlockManiaPOC extends JFrame
 {
@@ -235,9 +233,6 @@ public class BlockManiaPOC extends JFrame
 		}
 	}
 
-	// 1tril1lium
-	// Ill1uminating
-
 	void handleButton01()
 	{
 		ControllerField. getInstance().clearAllTiles();
@@ -285,6 +280,7 @@ public class BlockManiaPOC extends JFrame
 		controllerMain.setUserRequest(UserInput.MOVE_RIGHT);
 		flow.handleGameTick();
 	}
+
 	void handleButton09()
 	{
 		//controllerMain.handleGameTick();

@@ -94,7 +94,6 @@ public abstract class Block
 		rotationIndex = index;
 	}
 
-
 	public List<Tile> getTiles() // Used when entering the gamefield.
 	{
 		return getTiles(ROW_OFFSET_NONE, COL_OFFSET_NONE, rotationIndex, rotationMode);
@@ -119,6 +118,8 @@ public abstract class Block
 	{
 		List<Tile> tiles = (viewModeRequested == RotationMode.REGULAR) ? Arrays.asList(regularViews[rotationIndexRequested]) : Arrays.asList(flippedViews[rotationIndexRequested]);
 		List<Tile> tilesWithOffset = new ArrayList<>(tiles.size());
+
+		// System.out.println(String.format("offsetRowBase / offsetRow : %s / %s ", offsetRowBase, offsetRow));
 
 		for (Tile tile : tiles)
 		{

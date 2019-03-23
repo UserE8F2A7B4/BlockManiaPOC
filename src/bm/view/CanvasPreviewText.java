@@ -1,7 +1,5 @@
 package bm.view;
 
-import javax.swing.JTextPane;
-
 import bm.BlockManiaPOC;
 import bm.block_handling.blocks.Tile;
 

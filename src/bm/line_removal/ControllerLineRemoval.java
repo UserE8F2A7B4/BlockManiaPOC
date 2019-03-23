@@ -2,6 +2,7 @@ package bm.line_removal;
 
 import java.util.List;
 
+import bm.ControllerMain;
 import bm.ControllerMain.GameState;
 import bm.block_handling.ControllerBlockHandling;
 import bm.block_handling.ControllerField;
@@ -43,6 +44,36 @@ public class ControllerLineRemoval
 		mode = RemovalMode.IDLE;
 	}
 
+	//---
+
+	public boolean is_animatie_01_nog_bezig()
+	{
+		return false;
+	}
+
+	public void update_animatie_01()
+	{
+	}
+
+	public boolean is_animatie_02_nog_bezig()
+	{
+		return false;
+	}
+
+	public void update_animatie_02()
+	{
+	}
+
+	public void verwijder_de_volledige_regels()
+	{
+	}
+
+	public void verplaats_de_overgebleven_regels_naar_beneden()
+	{
+	}
+
+	//---
+
 	public void handleGameTick()
 	{
 		if (pauseAnimation.isPausing())
@@ -67,7 +98,7 @@ public class ControllerLineRemoval
 		}
 		else if (mode == RemovalMode.DONE)
 		{
-			ControllerBlockHandling.getInstance().changeGameState(GameState.BLOCK_HANDLING);
+			ControllerMain.getInstance().changeGameState(GameState.BLOCK_HANDLING);
 			mode = RemovalMode.IDLE;
 		}
 	}

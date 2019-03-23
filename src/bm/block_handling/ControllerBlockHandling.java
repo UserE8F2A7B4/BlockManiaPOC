@@ -1,11 +1,14 @@
 package bm.block_handling;
 
-import bm.BlockManiaPOC.UserInput;
+import bm.BlockManiaPOC;
 import bm.ControllerMain;
 import bm.ControllerMain.GameState;
 
+import javax.swing.*;
+
 public class ControllerBlockHandling
 {
+	private ControllerField controllerField;
 	private ControllerPreview controllerPreview;
 	private BlockProcessor blockProcessor;
 
@@ -21,85 +24,83 @@ public class ControllerBlockHandling
 
 	private ControllerBlockHandling()
 	{
+		controllerField = ControllerField.getInstance();
 		controllerPreview = ControllerPreview.getInstance();
 		blockProcessor = BlockProcessor.getInstance();
 	}
 
-//	public void handleGameTick(UserInput input)
+//	public void changeGameState(GameState newGameState)
 //	{
-//		// System.err.println("ControllerBlockHandling.handleGameTick");
-//		mainGameFlow(input);
+//		ControllerMain.getInstance().changeGameState(newGameState);
 //	}
 
-
-//	private void mainGameFlow(UserInput input)
-//	{
-//		if (!controllerPreview.hasBlock())
-//		{
-//			controllerPreview.loadNextBlock();
-//			// controllerPreview.loadRandomBlock();
-//		}
-//
-//		if (blockProcessor.hasBlock())
-//		{
-//			if (isHetTijdVoorEenMoveDown()) // Wordt bepaald door de game-timer.
-//			{
-//
-//			}
-//			else if (input != UserInput.NONE)
-//			{
-//				handleUserInput(input);
-//			}
-//		}
-//		else
-//		{
-//			if (!blockProcessor.tryToPlaceNewBlockOnField())
-//			{
-//				System.out.println("GAME OVER !");
-//				// Er is niet genoeg ruimte op het speelveld om het nieuwe block te plaatsen ; GAME OVER !
-//			}
-//			else
-//			{
-//				controllerPreview.clearBlock();
-//			}
-//		}
-//	}
-
-//	private boolean isHetTijdVoorEenMoveDown()
-//	{
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-
-	@SuppressWarnings("incomplete-switch")
-//	private void handleUserInput(UserInput input)
-//	{
-//		switch (input)
-//		{
-//			case ROTATE:
-//				blockProcessor.tryToRotateBlock();
-//				break;
-//			case FLIP:
-//				blockProcessor.tryToFlipBlock();
-//				break;
-//			case MOVE_LEFT:
-//				blockProcessor.tryToMoveBlockLeft();
-//				break;
-//			case MOVE_RIGHT:
-//				blockProcessor.tryToMoveBlockRight();
-//				break;
-//			case MOVE_UP:
-//				blockProcessor.tryToMoveBlockUp();
-//				break;
-//			case MOVE_DOWN:
-//				blockProcessor.tryToMoveBlockDown();
-//				break;
-//		}
-//	}
-
-	public void changeGameState(GameState newGameState)
+	public boolean staat_er_een_block_op_de_preview()
 	{
-		ControllerMain.getInstance().changeGameState(newGameState);
+		return controllerPreview.hasBlock();
+	}
+
+	public void plaats_een_nieuw_willekeurig_block_op_de_preview()
+	{
+		// controllerPreview.loadNextBlock(); // .loadRandomBlock();
+		controllerPreview.loadNextBlock();
+	}
+
+	public boolean probeer_het_previewblock_te_verplaatsen_naar_het_veld()
+	{
+		return blockProcessor.tryToPlaceNewBlockOnField();
+	}
+
+	public boolean staat_er_een_block_op_het_veld()
+	{
+		return blockProcessor.hasBlock();
+	}
+
+	public boolean is_het_tijd_voor_een_move_down()
+	{
+		return false;
+	}
+
+	public boolean probeer_actie_uit_te_voeren_op_het_block(BlockManiaPOC.UserInput input)
+	{
+		if (input == BlockManiaPOC.UserInput.MOVE_DOWN)
+		{
+			return blockProcessor.tryToMoveBlockDown();
+		}
+		else if (input == BlockManiaPOC.UserInput.MOVE_LEFT)
+		{
+			return blockProcessor.tryToMoveBlockLeft();
+		}
+		else if (input == BlockManiaPOC.UserInput.MOVE_RIGHT)
+		{
+			return blockProcessor.tryToMoveBlockRight();
+		}
+		else if (input == BlockManiaPOC.UserInput.FLIP)
+		{
+			return blockProcessor.tryToFlipBlock();
+		}
+		else if (input == BlockManiaPOC.UserInput.ROTATE)
+		{
+			return blockProcessor.tryToRotateBlock();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public void verwijder_het_block_uit_het_veld()
+	{
+		blockProcessor.removeBlock();
+	}
+
+	public boolean zijn_er_volledig_gevulde_regels_ontstaan()
+	{
+		return controllerField.hasCompletedRows();
+	}
+
+	public void handleGameOver()
+	{
+		JOptionPane.showMessageDialog(null, "GAME OVER !..", "BlockMania", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }
