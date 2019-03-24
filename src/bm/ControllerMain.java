@@ -1,13 +1,12 @@
 package bm;
 
 import bm.BlockManiaPOC.UserInput;
-import bm.block_handling.BlockProcessor;
-import bm.block_handling.ControllerBlockHandling;
-import bm.block_handling.ControllerField;
-import bm.block_handling.ControllerPreview;
-import bm.line_removal.ControllerLineRemoval;
-
-import javax.swing.*;
+//import bm.block_handling.BlockProcessor;
+//import bm.block_handling.ControllerBlockHandling;
+//import bm.block_handling.ControllerField;
+//import bm.block_handling.ControllerPreview;
+//import bm.line_removal.ControllerLineRemoval;
+//import javax.swing.*;
 
 public class ControllerMain
 {

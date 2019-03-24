@@ -5,16 +5,11 @@ import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextPane;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -30,12 +25,14 @@ public class BlockManiaPOC extends JFrame
 	private final static int FRAME_HEIGHT = 700;
 
 	private FlowMain flow;
-	private ControllerMain controllerMain;
+	private ControllerMain cm;
 
 	private JButton btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08, btn09;
 
 	private static JTextPane  txtCanvasPreview, txtCanvasField;
 	private static JLabel lblCanvasPreview, lblCanvasField;
+
+	private Action actionKeybindings = new CustomAction();
 
 	public enum UserInput
 	{
@@ -45,10 +42,15 @@ public class BlockManiaPOC extends JFrame
 	public BlockManiaPOC()
 	{
 		super(GlobalData.APPLICATION_NAME);
-		this.addKeyListener(new keyPressedEventHandler());
+		// this.addKeyListener(new keyPressedEventHandler());
 
 		Container cont = getContentPane();
 		cont.setLayout(null);
+
+		JPanel panel = (JPanel) this.getContentPane();
+		InputMap inputMap  = panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+		ActionMap actionMap = panel.getActionMap();
+		addKeyBindings(inputMap, actionMap);
 
 		int width, height, X, Y;
 		X = 5 ; Y = 5;
@@ -58,6 +60,8 @@ public class BlockManiaPOC extends JFrame
 		txtCanvasPreview.setFont(new Font("Consolas", Font.PLAIN, 16));
 		txtCanvasPreview.setBounds(X,Y , width,height);
 		cont.add(txtCanvasPreview);
+//		txtCanvasPreview.setFocusable(false);
+//		txtCanvasPreview.setEnabled(false);
 
 		X += 20 + txtCanvasPreview.getWidth();
 		width = 100 ; height = 400;
@@ -66,6 +70,8 @@ public class BlockManiaPOC extends JFrame
 		txtCanvasField.setFont(new Font("Consolas", Font.PLAIN, 16));
 		txtCanvasField.setBounds(X,Y , width,height);
 		cont.add(txtCanvasField);
+//		txtCanvasField.setFocusable(false);
+//		txtCanvasField.setEnabled(false);
 
 		StyledDocument doc = txtCanvasField.getStyledDocument();
 		SimpleAttributeSet center = new SimpleAttributeSet();
@@ -176,9 +182,18 @@ public class BlockManiaPOC extends JFrame
 		btn09.setBounds(X, Y, width, height);
 		cont.add(btn09);
 
-		flow = FlowMain.getInstance();
+//		btn01.setFocusable(false);
+//		btn02.setFocusable(false);
+//		btn03.setFocusable(false);
+//		btn04.setFocusable(false);
+//		btn05.setFocusable(false);
+//		btn06.setFocusable(false);
+//		btn07.setFocusable(false);
+//		btn08.setFocusable(false);
+//		btn09.setFocusable(false);
 
-		controllerMain = ControllerMain.getInstance();
+		flow = FlowMain.getInstance();
+		cm = ControllerMain.getInstance();
 		// controllerMain.setReferenceToGUI(this);
 
 		X = 400;
@@ -187,6 +202,7 @@ public class BlockManiaPOC extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setVisible(true);
+		requestFocus();
 	}
 
 	public static void main(String[] args)
@@ -242,25 +258,25 @@ public class BlockManiaPOC extends JFrame
 
 	void handleButton02()
 	{
-		controllerMain.setUserRequest(UserInput.MOVE_DOWN);
+		cm.setUserRequest(UserInput.MOVE_DOWN);
 		flow.handleGameTick();
 	}
 
 	void handleButton03()
 	{
-		controllerMain.setUserRequest(UserInput.MOVE_UP);
+		cm.setUserRequest(UserInput.MOVE_UP);
 		flow.handleGameTick();
 	}
 
 	void handleButton04()
 	{
-		controllerMain.setUserRequest(UserInput.ROTATE);
+		cm.setUserRequest(UserInput.ROTATE);
 		flow.handleGameTick();
 	}
 
 	void handleButton05()
 	{
-		controllerMain.setUserRequest(UserInput.FLIP);
+		cm.setUserRequest(UserInput.FLIP);
 		flow.handleGameTick();
 	}
 
@@ -271,13 +287,13 @@ public class BlockManiaPOC extends JFrame
 
 	void handleButton07()
 	{
-		controllerMain.setUserRequest(UserInput.MOVE_LEFT);
+		cm.setUserRequest(UserInput.MOVE_LEFT);
 		flow.handleGameTick();
 	}
 
 	void handleButton08()
 	{
-		controllerMain.setUserRequest(UserInput.MOVE_RIGHT);
+		cm.setUserRequest(UserInput.MOVE_RIGHT);
 		flow.handleGameTick();
 	}
 
@@ -309,30 +325,30 @@ public class BlockManiaPOC extends JFrame
 				//					break;
 
 				case KeyEvent.VK_S :
-					controllerMain.setUserRequest(UserInput.START_GAME);
+					cm.setUserRequest(UserInput.START_GAME);
 					break;
 				case KeyEvent.VK_N :
-					controllerMain.setUserRequest(UserInput.NEXT_BLOCK);
+					cm.setUserRequest(UserInput.NEXT_BLOCK);
 					break;
 
 				case KeyEvent.VK_R :
-					controllerMain.setUserRequest(UserInput.ROTATE);
+					cm.setUserRequest(UserInput.ROTATE);
 					break;
 				case KeyEvent.VK_F :
-					controllerMain.setUserRequest(UserInput.FLIP);
+					cm.setUserRequest(UserInput.FLIP);
 					break;
 
 				case KeyEvent.VK_UP :
-					controllerMain.setUserRequest(UserInput.MOVE_UP);
+					cm.setUserRequest(UserInput.MOVE_UP);
 					break;
 				case KeyEvent.VK_DOWN :
-					controllerMain.setUserRequest(UserInput.MOVE_DOWN);
+					cm.setUserRequest(UserInput.MOVE_DOWN);
 					break;
 				case KeyEvent.VK_LEFT :
-					controllerMain.setUserRequest(UserInput.MOVE_LEFT);
+					cm.setUserRequest(UserInput.MOVE_LEFT);
 					break;
 				case KeyEvent.VK_RIGHT :
-					controllerMain.setUserRequest(UserInput.MOVE_RIGHT);
+					cm.setUserRequest(UserInput.MOVE_RIGHT);
 					break;
 				default:
 			}
@@ -344,9 +360,61 @@ public class BlockManiaPOC extends JFrame
 			int kc = e.getKeyCode();
 			if (kc == currentKey)
 			{
-				controllerMain.setUserRequest(UserInput.NONE);
+				cm.setUserRequest(UserInput.NONE);
 			}
 		}
 	}
+
+	//---
+
+	private void addKeyBindings(InputMap inputMap, ActionMap actionMap)
+	{
+		KeyStroke keyUp   = KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0);
+		inputMap.put(keyUp, "keyUp");
+		actionMap.put("keyUp", new FunctionalAction(ae -> { up(); }));
+
+		KeyStroke keyDown = KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0);
+		inputMap.put(keyDown, "keyDown");
+		actionMap.put("keyDown", new FunctionalAction(ae -> { down(); }));
+	}
+
+	void up()
+	{
+		System.out.println("UP");
+	}
+
+	void down()
+	{
+		System.out.println("DOWN");
+	}
+
+
+	public class FunctionalAction extends AbstractAction
+	{
+		ActionListener myAction;
+
+		public FunctionalAction(ActionListener customAction)
+		{
+			this.myAction = customAction;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			myAction.actionPerformed(e);
+		}
+
+		//		public ActionListener getMyAction()
+		//		{
+		//			return myAction;
+		//		}
+		//
+		//		public void setMyAction(ActionListener myAction)
+		//		{
+		//			this.myAction = myAction;
+		//		}
+	}
+
+
 
 }
