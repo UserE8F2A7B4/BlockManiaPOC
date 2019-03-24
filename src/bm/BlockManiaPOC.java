@@ -369,13 +369,52 @@ public class BlockManiaPOC extends JFrame
 
 	private void addKeyBindings(InputMap inputMap, ActionMap actionMap)
 	{
+		KeyStroke keyLeft = KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0);
+		inputMap.put(keyLeft, "keyLeft");
+		actionMap.put("keyLeft", new CustomKeyLeftAction());
+
+		KeyStroke keyRight = KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0);
+		inputMap.put(keyRight, "keyRight");
+		actionMap.put("keyRight", new AbstractAction()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("RIGHT");
+			}
+		});
+
+//		KeyStroke keyDown = KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0);
+//		inputMap.put(keyDown, "keyDown");
+//		actionMap.put("keyDown", new FunctionalAction(ae -> { down(); }));
+
+		addKeyBinding(inputMap, actionMap, KeyEvent.VK_DOWN, "down", (evt) -> down());
+
 		KeyStroke keyUp   = KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0);
 		inputMap.put(keyUp, "keyUp");
 		actionMap.put("keyUp", new FunctionalAction(ae -> { up(); }));
+	}
 
-		KeyStroke keyDown = KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0);
-		inputMap.put(keyDown, "keyDown");
-		actionMap.put("keyDown", new FunctionalAction(ae -> { down(); }));
+	public void addKeyBinding(InputMap im, ActionMap am, int keyCode, String id, ActionListener actionListener)
+	{
+		im.put(KeyStroke.getKeyStroke(keyCode, 0), id);
+		am.put(id, new AbstractAction()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				actionListener.actionPerformed(e);
+			}
+		});
+	}
+
+	public class CustomKeyLeftAction extends AbstractAction
+	{
+		@Override
+		public void actionPerformed(ActionEvent ae)
+		{
+			System.out.println("LEFT");
+		}
 	}
 
 	void up()
