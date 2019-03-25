@@ -6,10 +6,14 @@ import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.RenderingHints;
 import java.awt.Transparency;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 import bm.block_handling.blocks.BlockPool;
 import bm.block_handling.blocks.Tile;
+
+import javax.swing.*;
 
 public class Util
 {
@@ -61,6 +65,31 @@ public class Util
 		Xcoords = new int[] { X + 1, X + GlobalData.BLOCK_SIZE - 1, X + GlobalData.BLOCK_SIZE - 1 };
 		Ycoords = new int[] { Y + GlobalData.BLOCK_SIZE - 1, Y + GlobalData.BLOCK_SIZE - 1, Y + 2 };
 		canvas.drawPolyline(Xcoords, Ycoords, 3);
+	}
+
+	public static void createKeyBindingOnKeyPress(InputMap im, ActionMap am, int keyCode, String id, ActionListener actionListener)
+	{
+		createKeyBinding(im, am, keyCode, id, actionListener, false);
+	}
+
+	public static  void createKeyBindingOnKeyRelease(InputMap im, ActionMap am, int keyCode, String id, ActionListener actionListener)
+	{
+		createKeyBinding(im, am, keyCode, id, actionListener, true);
+	}
+
+
+	private static void createKeyBinding(InputMap im, ActionMap am, int keyCode, String id, ActionListener actionListener, boolean onKeyRelease)
+	{
+		final int NO_MODIFIERS = 0;
+		im.put(KeyStroke.getKeyStroke(keyCode, NO_MODIFIERS, onKeyRelease), id);
+		am.put(id, new AbstractAction()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				actionListener.actionPerformed(e);
+			}
+		});
 	}
 
 }

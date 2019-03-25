@@ -1,23 +1,18 @@
 package bm;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import bm.block_handling.BlockProcessor;
+import bm.block_handling.ControllerField;
+import bm.block_handling.ControllerPreview;
+import bm.util.GlobalData;
+import bm.util.Util;
 
 import javax.swing.*;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
-
-import bm.block_handling.BlockProcessor;
-import bm.block_handling.ControllerField;
-import bm.block_handling.ControllerPreview;
-import bm.util.GlobalData;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 public class BlockManiaPOC extends JFrame
 {
@@ -42,12 +37,11 @@ public class BlockManiaPOC extends JFrame
 	public BlockManiaPOC()
 	{
 		super(GlobalData.APPLICATION_NAME);
-		// this.addKeyListener(new keyPressedEventHandler());
 
 		Container cont = getContentPane();
 		cont.setLayout(null);
 
-		JPanel panel = (JPanel) this.getContentPane();
+		JPanel panel = (JPanel) cont;
 		InputMap inputMap  = panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		ActionMap actionMap = panel.getActionMap();
 		addKeyBindings(inputMap, actionMap);
@@ -60,8 +54,6 @@ public class BlockManiaPOC extends JFrame
 		txtCanvasPreview.setFont(new Font("Consolas", Font.PLAIN, 16));
 		txtCanvasPreview.setBounds(X,Y , width,height);
 		cont.add(txtCanvasPreview);
-//		txtCanvasPreview.setFocusable(false);
-//		txtCanvasPreview.setEnabled(false);
 
 		X += 20 + txtCanvasPreview.getWidth();
 		width = 100 ; height = 400;
@@ -70,8 +62,6 @@ public class BlockManiaPOC extends JFrame
 		txtCanvasField.setFont(new Font("Consolas", Font.PLAIN, 16));
 		txtCanvasField.setBounds(X,Y , width,height);
 		cont.add(txtCanvasField);
-//		txtCanvasField.setFocusable(false);
-//		txtCanvasField.setEnabled(false);
 
 		StyledDocument doc = txtCanvasField.getStyledDocument();
 		SimpleAttributeSet center = new SimpleAttributeSet();
@@ -182,16 +172,6 @@ public class BlockManiaPOC extends JFrame
 		btn09.setBounds(X, Y, width, height);
 		cont.add(btn09);
 
-//		btn01.setFocusable(false);
-//		btn02.setFocusable(false);
-//		btn03.setFocusable(false);
-//		btn04.setFocusable(false);
-//		btn05.setFocusable(false);
-//		btn06.setFocusable(false);
-//		btn07.setFocusable(false);
-//		btn08.setFocusable(false);
-//		btn09.setFocusable(false);
-
 		flow = FlowMain.getInstance();
 		cm = ControllerMain.getInstance();
 		// controllerMain.setReferenceToGUI(this);
@@ -249,211 +229,100 @@ public class BlockManiaPOC extends JFrame
 		}
 	}
 
-	void handleButton01()
+	private void handleButton01()
 	{
 		ControllerField. getInstance().clearAllTiles();
 		BlockProcessor.getInstance().removeBlock();
 		flow.handleGameTick();
 	}
 
-	void handleButton02()
+	private void handleButton02()
 	{
 		cm.setUserRequest(UserInput.MOVE_DOWN);
 		flow.handleGameTick();
 	}
 
-	void handleButton03()
+	private void handleButton03()
 	{
 		cm.setUserRequest(UserInput.MOVE_UP);
 		flow.handleGameTick();
 	}
 
-	void handleButton04()
+	private void handleButton04()
 	{
 		cm.setUserRequest(UserInput.ROTATE);
 		flow.handleGameTick();
 	}
 
-	void handleButton05()
+	private void handleButton05()
 	{
 		cm.setUserRequest(UserInput.FLIP);
 		flow.handleGameTick();
 	}
 
-	void handleButton06()
+	private void handleButton06()
 	{
 		ControllerPreview.getInstance().loadNextBlock();
 	}
 
-	void handleButton07()
+	private void handleButton07()
 	{
 		cm.setUserRequest(UserInput.MOVE_LEFT);
 		flow.handleGameTick();
 	}
 
-	void handleButton08()
+	private void handleButton08()
 	{
 		cm.setUserRequest(UserInput.MOVE_RIGHT);
 		flow.handleGameTick();
 	}
 
-	void handleButton09()
+	private void handleButton09()
 	{
 		//controllerMain.handleGameTick();
 	}
 
-	class keyPressedEventHandler extends KeyAdapter
-	{
-		private int currentKey;
 
-		@Override
-		public void keyPressed(KeyEvent e)
-		{
-			// System.out.println(String.format("keyPressed : %s ", e.getKeyCode()));
+//			currentKey = e.getKeyCode();
+//			switch (currentKey)
+//			{
+//				//				case KeyEvent.VK_1 :
+//				//					switchToWelcomeState();
+//				//					break;
+//				//				case KeyEvent.VK_2 :
+//				//					switchToUserplayState();
+//				//					break;
+//				//				case KeyEvent.VK_3 :
+//				//					switchToComputerplayState();
+//				//					break;
+//
 
-			currentKey = e.getKeyCode();
-			switch (currentKey)
-			{
-				//				case KeyEvent.VK_1 :
-				//					switchToWelcomeState();
-				//					break;
-				//				case KeyEvent.VK_2 :
-				//					switchToUserplayState();
-				//					break;
-				//				case KeyEvent.VK_3 :
-				//					switchToComputerplayState();
-				//					break;
-
-				case KeyEvent.VK_S :
-					cm.setUserRequest(UserInput.START_GAME);
-					break;
-				case KeyEvent.VK_N :
-					cm.setUserRequest(UserInput.NEXT_BLOCK);
-					break;
-
-				case KeyEvent.VK_R :
-					cm.setUserRequest(UserInput.ROTATE);
-					break;
-				case KeyEvent.VK_F :
-					cm.setUserRequest(UserInput.FLIP);
-					break;
-
-				case KeyEvent.VK_UP :
-					cm.setUserRequest(UserInput.MOVE_UP);
-					break;
-				case KeyEvent.VK_DOWN :
-					cm.setUserRequest(UserInput.MOVE_DOWN);
-					break;
-				case KeyEvent.VK_LEFT :
-					cm.setUserRequest(UserInput.MOVE_LEFT);
-					break;
-				case KeyEvent.VK_RIGHT :
-					cm.setUserRequest(UserInput.MOVE_RIGHT);
-					break;
-				default:
-			}
-		}
-
-		@Override
-		public void keyReleased(KeyEvent e)
-		{
-			int kc = e.getKeyCode();
-			if (kc == currentKey)
-			{
-				cm.setUserRequest(UserInput.NONE);
-			}
-		}
-	}
-
-	//---
 
 	private void addKeyBindings(InputMap inputMap, ActionMap actionMap)
 	{
-		KeyStroke keyLeft = KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0);
-		inputMap.put(keyLeft, "keyLeft");
-		actionMap.put("keyLeft", new CustomKeyLeftAction());
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_UP,   "UP_PRESS",       (actionEvent) -> cm.setUserRequest(UserInput.MOVE_UP));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_UP,   "UP_RELEASE",     (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 
-		KeyStroke keyRight = KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0);
-		inputMap.put(keyRight, "keyRight");
-		actionMap.put("keyRight", new AbstractAction()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				System.out.println("RIGHT");
-			}
-		});
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_DOWN, "DOWN_PRESS",     (actionEvent) -> cm.setUserRequest(UserInput.MOVE_DOWN));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_DOWN, "DOWN_RELEASE",   (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 
-//		KeyStroke keyDown = KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0);
-//		inputMap.put(keyDown, "keyDown");
-//		actionMap.put("keyDown", new FunctionalAction(ae -> { down(); }));
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_LEFT, "LEFT_PRESS",     (actionEvent) -> cm.setUserRequest(UserInput.MOVE_LEFT));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_LEFT, "LEFT_RELEASE",   (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 
-		addKeyBinding(inputMap, actionMap, KeyEvent.VK_DOWN, "down", (evt) -> down());
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_RIGHT,"RIGHT_PRESS",    (actionEvent) -> cm.setUserRequest(UserInput.MOVE_RIGHT));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_RIGHT,"RIGHT_RELEASE",  (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 
-		KeyStroke keyUp   = KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0);
-		inputMap.put(keyUp, "keyUp");
-		actionMap.put("keyUp", new FunctionalAction(ae -> { up(); }));
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_R,    "ROTATE_PRESS",   (actionEvent) -> cm.setUserRequest(UserInput.ROTATE));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_R,    "ROTATE_RELEASE", (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_F,    "FIP_PRESS",      (actionEvent) -> cm.setUserRequest(UserInput.FLIP));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_F,    "FIP_RELEASE",    (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_S,    "START_PRESS",    (actionEvent) -> cm.setUserRequest(UserInput.START_GAME));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_S,    "START_RELEASE",  (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_N,    "NEXT_PRESS",     (actionEvent) -> cm.setUserRequest(UserInput.NEXT_BLOCK));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_N,    "NEXT_RELEASE",   (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 	}
-
-	public void addKeyBinding(InputMap im, ActionMap am, int keyCode, String id, ActionListener actionListener)
-	{
-		im.put(KeyStroke.getKeyStroke(keyCode, 0), id);
-		am.put(id, new AbstractAction()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				actionListener.actionPerformed(e);
-			}
-		});
-	}
-
-	public class CustomKeyLeftAction extends AbstractAction
-	{
-		@Override
-		public void actionPerformed(ActionEvent ae)
-		{
-			System.out.println("LEFT");
-		}
-	}
-
-	void up()
-	{
-		System.out.println("UP");
-	}
-
-	void down()
-	{
-		System.out.println("DOWN");
-	}
-
-
-	public class FunctionalAction extends AbstractAction
-	{
-		ActionListener myAction;
-
-		public FunctionalAction(ActionListener customAction)
-		{
-			this.myAction = customAction;
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent e)
-		{
-			myAction.actionPerformed(e);
-		}
-
-		//		public ActionListener getMyAction()
-		//		{
-		//			return myAction;
-		//		}
-		//
-		//		public void setMyAction(ActionListener myAction)
-		//		{
-		//			this.myAction = myAction;
-		//		}
-	}
-
-
 
 }

@@ -1,8 +1,6 @@
 package bm.block_handling;
 
 import bm.BlockManiaPOC;
-import bm.ControllerMain;
-import bm.ControllerMain.GameState;
 
 import javax.swing.*;
 

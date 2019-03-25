@@ -54,6 +54,7 @@ public class ControllerMain
 
 	public synchronized void setUserRequest(UserInput req)
 	{
+		System.out.println(String.format("UserRequest : %s ", req));
 		request = req;
 	}
 

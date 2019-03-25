@@ -4,7 +4,6 @@ import java.util.List;
 
 import bm.ControllerMain;
 import bm.ControllerMain.GameState;
-import bm.block_handling.ControllerBlockHandling;
 import bm.block_handling.ControllerField;
 import bm.block_handling.blocks.Tile;
 import bm.util.GameLoopPause;
