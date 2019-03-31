@@ -282,20 +282,18 @@ public class BlockManiaPOC extends JFrame
 		//controllerMain.handleGameTick();
 	}
 
-
-//			currentKey = e.getKeyCode();
-//			switch (currentKey)
-//			{
-//				//				case KeyEvent.VK_1 :
-//				//					switchToWelcomeState();
-//				//					break;
-//				//				case KeyEvent.VK_2 :
-//				//					switchToUserplayState();
-//				//					break;
-//				//				case KeyEvent.VK_3 :
-//				//					switchToComputerplayState();
-//				//					break;
-//
+	//			currentKey = e.getKeyCode();
+	//			switch (currentKey)
+	//			{
+	//								case KeyEvent.VK_1 :
+	//									switchToWelcomeState();
+	//									break;
+	//								case KeyEvent.VK_2 :
+	//									switchToUserplayState();
+	//									break;
+	//								case KeyEvent.VK_3 :
+	//									switchToComputerplayState();
+	//									break;
 
 
 	private void addKeyBindings(InputMap inputMap, ActionMap actionMap)
@@ -315,8 +313,8 @@ public class BlockManiaPOC extends JFrame
 		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_R,    "ROTATE_PRESS",   (actionEvent) -> cm.setUserRequest(UserInput.ROTATE));
 		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_R,    "ROTATE_RELEASE", (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 
-		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_F,    "FIP_PRESS",      (actionEvent) -> cm.setUserRequest(UserInput.FLIP));
-		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_F,    "FIP_RELEASE",    (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_F,    "FLIP_PRESS",     (actionEvent) -> cm.setUserRequest(UserInput.FLIP));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_F,    "FLIP_RELEASE",   (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 
 		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_S,    "START_PRESS",    (actionEvent) -> cm.setUserRequest(UserInput.START_GAME));
 		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_S,    "START_RELEASE",  (actionEvent) -> cm.setUserRequest(UserInput.NONE));
