@@ -39,6 +39,10 @@ public class ControllerLineRemoval
 
 	private ControllerLineRemoval()
 	{
+	}
+
+	public void init()
+	{
 		controllerField = ControllerField.getInstance();
 		mode = RemovalMode.IDLE;
 	}
@@ -104,19 +108,19 @@ public class ControllerLineRemoval
 
 	private void startAnimation()
 	{
-		init();
+		initAnimation();
 		mode = RemovalMode.ANIMATION_STEP_ONE;
 	}
 
-	private void init()
+	private void initAnimation()
 	{
 		rowsToRemoveList = controllerField.getCompletedRows();
 		rowsToRemoveCount = rowsToRemoveList.size();
 		rowIndex = 0;
-		reset();
+		resetAnimation();
 	}
 
-	private void reset()
+	private void resetAnimation()
 	{
 		rowCurrent = rowsToRemoveList.get(rowIndex);
 		colCurrent = 0;
@@ -133,7 +137,7 @@ public class ControllerLineRemoval
 			rowIndex++;
 			if (rowIndex >= rowsToRemoveCount)
 			{
-				reset();
+				resetAnimation();
 				mode = RemovalMode.ANIMATION_STEP_TWO;
 			}
 		}
@@ -150,7 +154,7 @@ public class ControllerLineRemoval
 			rowIndex++;
 			if (rowIndex >= rowsToRemoveCount)
 			{
-				reset();
+				resetAnimation();
 				mode = RemovalMode.ANIMATION_STEP_THREE;
 			}
 		}

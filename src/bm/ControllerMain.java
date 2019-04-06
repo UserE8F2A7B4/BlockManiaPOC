@@ -4,15 +4,9 @@ import bm.BlockManiaPOC.UserInput;
 import bm.block_handling.ControllerField;
 import bm.block_handling.blocks.Tile;
 import bm.util.GlobalData;
-
 import java.util.ArrayList;
 import java.util.List;
-//import bm.block_handling.BlockProcessor;
-//import bm.block_handling.ControllerBlockHandling;
-//import bm.block_handling.ControllerField;
-//import bm.block_handling.ControllerPreview;
-//import bm.line_removal.ControllerLineRemoval;
-//import javax.swing.*;
+
 
 public class ControllerMain
 {
@@ -43,24 +37,16 @@ public class ControllerMain
 
 	private ControllerMain()
 	{
-		// controllerBlockHandling = ControllerBlockHandling.getInstance();
-		// controllerLineRemoval = ControllerLineRemoval.getInstance();
-		// controllerPreview = ControllerPreview.getInstance();
-		// blockProcessor = BlockProcessor.getInstance();
-		// controllerField = ControllerField.getInstance();
-		// GameLoopTimer timer = GameLoopTimer.getInstance();
+	}
 
+	public void init()
+	{
 		gameState = GameState.BLOCK_HANDLING;
 	}
 
-	//	public void setReferenceToGUI(BlockManiaPOC bm)
-	//	{
-	//		gui = bm;
-	//	}
-
 	public synchronized void setUserRequest(UserInput req)
 	{
-		System.out.println(String.format("UserRequest : %s ", req));
+		// System.out.println(String.format("UserRequest : %s ", req));
 		request = req;
 	}
 

@@ -3,6 +3,7 @@ package bm;
 import bm.block_handling.BlockProcessor;
 import bm.block_handling.ControllerField;
 import bm.block_handling.ControllerPreview;
+import bm.util.GameLoopTimer;
 import bm.util.GlobalData;
 import bm.util.Util;
 
@@ -16,15 +17,16 @@ import java.awt.event.KeyEvent;
 
 public class BlockManiaPOC extends JFrame
 {
-	private final static int FRAME_WIDTH  = 600;
+	private final static int FRAME_WIDTH = 600;
 	private final static int FRAME_HEIGHT = 700;
 
 	private FlowMain flow;
 	private ControllerMain cm;
+	private GameLoopTimer timer;
 
 	private JButton btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08, btn09;
 
-	private static JTextPane  txtCanvasPreview, txtCanvasField;
+	private static JTextPane txtCanvasPreview, txtCanvasField;
 	private static JLabel lblCanvasPreview, lblCanvasField;
 
 	private Action actionKeybindings = new CustomAction();
@@ -42,25 +44,28 @@ public class BlockManiaPOC extends JFrame
 		cont.setLayout(null);
 
 		JPanel panel = (JPanel) cont;
-		InputMap inputMap  = panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+		InputMap inputMap = panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		ActionMap actionMap = panel.getActionMap();
 		addKeyBindings(inputMap, actionMap);
 
 		int width, height, X, Y;
-		X = 5 ; Y = 5;
-		width = 100 ; height = 200;
+		X = 5;
+		Y = 5;
+		width = 100;
+		height = 200;
 
-		txtCanvasPreview = new JTextPane ();
+		txtCanvasPreview = new JTextPane();
 		txtCanvasPreview.setFont(new Font("Consolas", Font.PLAIN, 16));
-		txtCanvasPreview.setBounds(X,Y , width,height);
+		txtCanvasPreview.setBounds(X, Y, width, height);
 		cont.add(txtCanvasPreview);
 
 		X += 20 + txtCanvasPreview.getWidth();
-		width = 100 ; height = 400;
+		width = 100;
+		height = 400;
 
-		txtCanvasField = new JTextPane ();
+		txtCanvasField = new JTextPane();
 		txtCanvasField.setFont(new Font("Consolas", Font.PLAIN, 16));
-		txtCanvasField.setBounds(X,Y , width,height);
+		txtCanvasField.setBounds(X, Y, width, height);
 		cont.add(txtCanvasField);
 
 		StyledDocument doc = txtCanvasField.getStyledDocument();
@@ -69,21 +74,24 @@ public class BlockManiaPOC extends JFrame
 		doc.setParagraphAttributes(0, doc.getLength(), center, false);
 
 		X += 20 + txtCanvasField.getWidth();
-		width = 50 ; height = 50;
+		width = 50;
+		height = 50;
 
 		lblCanvasPreview = new JLabel();
-		lblCanvasPreview.setBounds(X,Y , width,height);
-		lblCanvasPreview.setOpaque(true) ; lblCanvasPreview.setBackground(Color.orange);
+		lblCanvasPreview.setBounds(X, Y, width, height);
+		lblCanvasPreview.setOpaque(true);
+		lblCanvasPreview.setBackground(Color.orange);
 		lblCanvasPreview.setHorizontalAlignment(SwingConstants.CENTER);
 		cont.add(lblCanvasPreview);
 
 		X += 20 + lblCanvasPreview.getWidth();
-		width  = GlobalData.GAME_FIELD_WIDTH + 4;
+		width = GlobalData.GAME_FIELD_WIDTH + 4;
 		height = GlobalData.GAME_FIELD_HEIGHT + 4;
 
 		lblCanvasField = new JLabel();
-		lblCanvasField.setBounds(X,Y , width,height);
-		lblCanvasField.setOpaque(true) ; lblCanvasField.setBackground(Color.orange);
+		lblCanvasField.setBounds(X, Y, width, height);
+		lblCanvasField.setOpaque(true);
+		lblCanvasField.setBackground(Color.orange);
 		lblCanvasField.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCanvasField.setVerticalAlignment(SwingConstants.CENTER);
 		cont.add(lblCanvasField);
@@ -95,7 +103,7 @@ public class BlockManiaPOC extends JFrame
 
 		btn01 = new JButton(action01);
 		btn01.setText("Reset");
-		width  = (int) btn01.getPreferredSize().getWidth();
+		width = (int) btn01.getPreferredSize().getWidth();
 		height = (int) btn01.getPreferredSize().getHeight();
 		btn01.setBounds(X, Y, width, height);
 		cont.add(btn01);
@@ -103,7 +111,7 @@ public class BlockManiaPOC extends JFrame
 		X += width + 15;
 		btn06 = new JButton(action01);
 		btn06.setText("Next block");
-		width  = (int) btn06.getPreferredSize().getWidth();
+		width = (int) btn06.getPreferredSize().getWidth();
 		height = (int) btn06.getPreferredSize().getHeight();
 		btn06.setBounds(X, Y, width, height);
 		cont.add(btn06);
@@ -113,7 +121,7 @@ public class BlockManiaPOC extends JFrame
 
 		btn02 = new JButton(action01);
 		btn02.setText("Move Down");
-		width  = (int) btn02.getPreferredSize().getWidth();
+		width = (int) btn02.getPreferredSize().getWidth();
 		height = (int) btn02.getPreferredSize().getHeight();
 		btn02.setBounds(X, Y, width, height);
 		cont.add(btn02);
@@ -121,7 +129,7 @@ public class BlockManiaPOC extends JFrame
 		X += width + 15;
 		btn03 = new JButton(action01);
 		btn03.setText("Move Up");
-		width  = (int) btn03.getPreferredSize().getWidth();
+		width = (int) btn03.getPreferredSize().getWidth();
 		height = (int) btn03.getPreferredSize().getHeight();
 		btn03.setBounds(X, Y, width, height);
 		cont.add(btn03);
@@ -131,7 +139,7 @@ public class BlockManiaPOC extends JFrame
 
 		btn07 = new JButton(action01);
 		btn07.setText("Move Left");
-		width  = (int) btn07.getPreferredSize().getWidth();
+		width = (int) btn07.getPreferredSize().getWidth();
 		height = (int) btn07.getPreferredSize().getHeight();
 		btn07.setBounds(X, Y, width, height);
 		cont.add(btn07);
@@ -139,7 +147,7 @@ public class BlockManiaPOC extends JFrame
 		X += width + 15;
 		btn08 = new JButton(action01);
 		btn08.setText("Move Right");
-		width  = (int) btn08.getPreferredSize().getWidth();
+		width = (int) btn08.getPreferredSize().getWidth();
 		height = (int) btn08.getPreferredSize().getHeight();
 		btn08.setBounds(X, Y, width, height);
 		cont.add(btn08);
@@ -149,7 +157,7 @@ public class BlockManiaPOC extends JFrame
 
 		btn04 = new JButton(action01);
 		btn04.setText("Rotate");
-		width  = (int) btn04.getPreferredSize().getWidth();
+		width = (int) btn04.getPreferredSize().getWidth();
 		height = (int) btn04.getPreferredSize().getHeight();
 		btn04.setBounds(X, Y, width, height);
 		cont.add(btn04);
@@ -157,7 +165,7 @@ public class BlockManiaPOC extends JFrame
 		X += width + 15;
 		btn05 = new JButton(action01);
 		btn05.setText("Flip");
-		width  = (int) btn05.getPreferredSize().getWidth();
+		width = (int) btn05.getPreferredSize().getWidth();
 		height = (int) btn05.getPreferredSize().getHeight();
 		btn05.setBounds(X, Y, width, height);
 		cont.add(btn05);
@@ -167,13 +175,12 @@ public class BlockManiaPOC extends JFrame
 
 		btn09 = new JButton(action01);
 		btn09.setText("Clear rows");
-		width  = (int) btn09.getPreferredSize().getWidth();
+		width = (int) btn09.getPreferredSize().getWidth();
 		height = (int) btn09.getPreferredSize().getHeight();
 		btn09.setBounds(X, Y, width, height);
 		cont.add(btn09);
 
-		flow = FlowMain.getInstance();
-		cm = ControllerMain.getInstance();
+		init();
 		// controllerMain.setReferenceToGUI(this);
 
 		X = 400;
@@ -183,6 +190,19 @@ public class BlockManiaPOC extends JFrame
 		setResizable(false);
 		setVisible(true);
 		requestFocus();
+	}
+
+	private void init()
+	{
+		cm = ControllerMain.getInstance();
+		cm.init();
+
+		flow = FlowMain.getInstance();
+		flow.init();
+
+		timer = GameLoopTimer.getInstance();
+		timer.init();
+		timer.start();
 	}
 
 	public static void main(String[] args)

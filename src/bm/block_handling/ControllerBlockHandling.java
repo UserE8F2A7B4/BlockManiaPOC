@@ -22,6 +22,10 @@ public class ControllerBlockHandling
 
 	private ControllerBlockHandling()
 	{
+	}
+
+	public void init()
+	{
 		controllerField = ControllerField.getInstance();
 		controllerPreview = ControllerPreview.getInstance();
 		blockProcessor = BlockProcessor.getInstance();

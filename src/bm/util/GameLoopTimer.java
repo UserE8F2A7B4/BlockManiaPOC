@@ -1,40 +1,37 @@
 package bm.util;
 
+import bm.FlowMain;
+
 public class GameLoopTimer implements Runnable
 {
-	public interface GameLoopListener
-	{
-		void gameTickEvent();
-	}
+	private FlowMain flow = FlowMain.getInstance();
 
-	private GameLoopListener gameLoopListener;
-
-	public void addTimerListener(GameLoopListener gll)
-	{
-		gameLoopListener = gll;
-	}
-
-	private final static int GAME_SPEED = 250; // Maximum sleep-time. Default = 50.
+	private final static int SLEEP_TIME = 750; // Maximum sleep-time. Default = 50.
 	private long period;
 
 	private Thread gameThread;
 	private boolean keepGoing = false;
 
 	private static final int NUMBER_OF_DELAYS_PER_YIELD = 16;
-	// private long SLEEP_TIME = 50; // 50
 
 	private static GameLoopTimer instance;
 
 	public static GameLoopTimer getInstance()
 	{
 		if (instance == null)
+		{
 			instance = new GameLoopTimer();
+		}
 		return instance;
 	}
 
 	private GameLoopTimer()
 	{
-		period = GAME_SPEED * 1_000_000L; // Period between TimerLoop-triggers in nano-secs.
+	}
+
+	public void init()
+	{
+		period = SLEEP_TIME * 1_000_000L; // Period between TimerLoop-triggers in nano-secs.
 	}
 
 	public void stop()
@@ -52,25 +49,6 @@ public class GameLoopTimer implements Runnable
 		}
 	}
 
-//	@Override
-//	public void run()
-//	{
-//		keepGoing = true;
-//		while (keepGoing)
-//		{
-//			gameLoopListener.gameTickEvent();
-//
-//			try
-//			{
-//				Thread.sleep(SLEEP_TIME);
-//			}
-//			catch (InterruptedException ex)
-//			{
-//				System.out.println("The game-loop was interrupted.");
-//			}
-//		}
-//	}
-
 	@Override
 	public void run()
 	{
@@ -85,7 +63,7 @@ public class GameLoopTimer implements Runnable
 		keepGoing = true;
 		while (keepGoing)
 		{
-			gameLoopListener.gameTickEvent();
+			flow.handleGameTick();
 
 			//    	if (!skip) // TODO : dit er later weer uithalen.
 			//    	{

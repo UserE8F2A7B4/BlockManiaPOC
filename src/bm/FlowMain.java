@@ -24,9 +24,17 @@ public class FlowMain
 
 	private FlowMain()
 	{
+	}
+
+	public void init()
+	{
 		cm = ControllerMain.getInstance();
+
 		cb = ControllerBlockHandling.getInstance();
+		cb.init();
+
 		cl = ControllerLineRemoval.getInstance();
+		cl.init();
 	}
 
 	public void handleGameTick()
@@ -41,6 +49,8 @@ public class FlowMain
 
 	private void flowBlockHandling()
 	{
+		System.out.println("game tick block handling");
+
 		if (!cb.staat_er_een_block_op_de_preview())
 		{
 			cb.plaats_een_nieuw_willekeurig_block_op_de_preview();
@@ -110,6 +120,8 @@ public class FlowMain
 
 	private void flowLineRemoval()
 	{
+		System.out.println("game tick line removal");
+
 		if (cl.is_animatie_01_nog_bezig())
 		{
 			cl.update_animatie_01();
