@@ -279,7 +279,7 @@ public class BlockManiaPOC extends JFrame
 
 	private void handleButton09()
 	{
-		//controllerMain.handleGameTick();
+		cm.testRowRemoval();
 	}
 
 	//			currentKey = e.getKeyCode();

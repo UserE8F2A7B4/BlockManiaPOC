@@ -1,6 +1,12 @@
 package bm;
 
 import bm.BlockManiaPOC.UserInput;
+import bm.block_handling.ControllerField;
+import bm.block_handling.blocks.Tile;
+import bm.util.GlobalData;
+
+import java.util.ArrayList;
+import java.util.List;
 //import bm.block_handling.BlockProcessor;
 //import bm.block_handling.ControllerBlockHandling;
 //import bm.block_handling.ControllerField;
@@ -76,5 +82,25 @@ public class ControllerMain
 	public void updateScore()
 	{
 	}
+
+	public void testRowRemoval()
+	{
+		// Maak een row aan op het veld.
+
+		// changeGameState(GameState.LINE_REMOVAL);
+
+		List<Tile> tilesEmpty = new ArrayList<>();
+		List<Tile> tilesNew = new ArrayList<>();
+
+		for (int i = 0 ; i < GlobalData.COLS ; i++)
+		{
+			tilesNew.add(new Tile(2, i,15));
+		}
+
+		ControllerField cf = ControllerField.getInstance();
+		cf.tryToPlaceNewTilesOnField(tilesEmpty, tilesNew);
+
+	}
+
 
 }

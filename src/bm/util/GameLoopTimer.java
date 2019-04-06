@@ -14,7 +14,7 @@ public class GameLoopTimer implements Runnable
 		gameLoopListener = gll;
 	}
 
-	private final static int GAME_SPEED = 50; // Maximum sleep-time. Default = 50.
+	private final static int GAME_SPEED = 250; // Maximum sleep-time. Default = 50.
 	private long period;
 
 	private Thread gameThread;
