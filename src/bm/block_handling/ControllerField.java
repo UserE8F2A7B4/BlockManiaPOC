@@ -11,10 +11,7 @@ import bm.view.ControllerView;
 
 public class ControllerField
 {
-	private Tile[][] field = new Tile[GlobalData.ROWS][GlobalData.COLS];
-
-	private final static int ROW_MIN = 0;
-	private final static int COL_MIN = 0;
+	private Tile[][] field = new Tile[GlobalData.ROW_COUNT][GlobalData.COL_COUNT];
 
 	private static ControllerField instance;
 	public static ControllerField getInstance()
@@ -72,7 +69,7 @@ public class ControllerField
 
 	private boolean isWithinBoundaries(int row, int col)
 	{
-		boolean withinBoundaries = (row >= ROW_MIN && row < GlobalData.ROWS && col >= COL_MIN && col < GlobalData.COLS);
+		boolean withinBoundaries = (row >= GlobalData.ROW_MIN && row < GlobalData.ROW_COUNT && col >= GlobalData.COL_MIN && col < GlobalData.COL_COUNT);
 		return withinBoundaries;
 	}
 
@@ -103,7 +100,6 @@ public class ControllerField
 		CanvasFieldText.getInstance().renderField(field);
 		ControllerView.getInstance().renderField(field);
 	}
-
 
 	public void clearAllTiles()
 	{
@@ -149,7 +145,6 @@ public class ControllerField
 		{
 			updateCanvas();
 		}
-
 	}
 
 	// Deze is nodig om te checken of het block gedraaid of gespiegeld kan gaan worden
@@ -180,9 +175,9 @@ public class ControllerField
 	public List<Integer> getCompletedRows()
 	{
 		List<Integer> completedRows = new ArrayList<>(15); // '15' stands for '3x long block'.
-		for (int row = GlobalData.ROWS - 1 ; row >= ROW_MIN ; row--) // Search from bottom to top.
+		for (int row = GlobalData.ROW_MAX ; row >= GlobalData.ROW_MIN ; row--) // Search from bottom to top.
 		{
-			if (!isLocationEmpty(row, COL_MIN) && !isLocationEmpty(row, GlobalData.COLS - 1) && isRowCompleted(row))
+			if (!isLocationEmpty(row, GlobalData.COL_MIN) && !isLocationEmpty(row, GlobalData.COL_MAX) && isRowCompleted(row))
 			{
 				completedRows.add(row);
 			}
@@ -193,7 +188,7 @@ public class ControllerField
 	private boolean isRowCompleted(int row)
 	{
 		boolean completeRow = true;
-		for (int col = COL_MIN ; col < GlobalData.COLS ; col++)
+		for (int col = GlobalData.COL_MIN ; col < GlobalData.COL_COUNT ; col++)
 		{
 			if (isLocationEmpty(row, col))
 			{
@@ -209,5 +204,27 @@ public class ControllerField
 		return (field[row][col] == null);
 	}
 
+	public void verplaatsBovenliggendeTegelsNaarBeneden(int rowTarget)
+	{
+		for (int row = rowTarget - 1 ; row >= GlobalData.ROW_MIN ; row--) // Search from bottom to top.
+		{
+			for (int col = 0 ; col < GlobalData.COL_MAX ; col++)
+			{
+				Tile tile = field[row][col];
+				if (tile != null)
+				{
+					verplaatsTegelNaarBeneden(tile);
+				}
+			}
+			updateCanvas();
+		}
+	}
+
+	private void verplaatsTegelNaarBeneden(Tile tile)
+	{
+		field[tile.getRow()][tile.getCol()] = null;
+		tile.setRow(tile.getRow() + 1);
+		field[tile.getRow()][tile.getCol()] = tile;
+	}
 
 }

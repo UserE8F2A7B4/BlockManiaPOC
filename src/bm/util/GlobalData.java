@@ -19,11 +19,17 @@ public abstract class GlobalData
 
 	public final static int BLOCK_SIZE = 20;
 
-	public final static int COLS = 10;
-	public final static int ROWS = 17;
+	public final static int ROW_COUNT = 17;
+	public final static int COL_COUNT = 10;
 
-	public final static int GAME_FIELD_WIDTH  = COLS * BLOCK_SIZE;
-	public final static int GAME_FIELD_HEIGHT = ROWS * BLOCK_SIZE;
+	public final static int ROW_MIN = 0;
+	public final static int COL_MIN = 0;
+
+	public final static int ROW_MAX = ROW_COUNT - 1;
+	public final static int COL_MAX = COL_COUNT - 1;
+
+	public final static int GAME_FIELD_WIDTH  = COL_COUNT * BLOCK_SIZE;
+	public final static int GAME_FIELD_HEIGHT = ROW_COUNT * BLOCK_SIZE;
 
 	public final static int TILE_COLOR_RED = 100; // TODO waarom zijn dit niet gewoon Colors ?
 	public final static int TILE_COLOR_WHITE = 101;

@@ -1,5 +1,6 @@
 package bm.line_removal;
 
+import java.util.Collections;
 import java.util.List;
 
 import bm.ControllerMain;
@@ -16,7 +17,7 @@ public class ControllerLineRemoval
 	private RemovalMode mode;
 	private enum RemovalMode
 	{
-		IDLE, ANIMATION_STEP_ONE, ANIMATION_STEP_TWO, ANIMATION_STEP_THREE, DONE
+		IDLE, ANIMATION_STEP_ONE, ANIMATION_STEP_TWO, REMOVE_LINES, DONE
 	}
 
 	private List<Integer> rowsToRemoveList;
@@ -99,6 +100,10 @@ public class ControllerLineRemoval
 		{
 			doAnimationStepTwo();
 		}
+		else if (mode == RemovalMode.REMOVE_LINES)
+		{
+			removeLines();
+		}
 		else if (mode == RemovalMode.DONE)
 		{
 			ControllerMain.getInstance().changeGameState(GameState.BLOCK_HANDLING);
@@ -127,7 +132,7 @@ public class ControllerLineRemoval
 		cf.setTile(tile,true);
 
 		colCurrent++;
-		if (colCurrent >= GlobalData.COLS)
+		if (colCurrent >= GlobalData.COL_COUNT)
 		{
 			colCurrent = 0;
 			rowIndex++;
@@ -146,7 +151,7 @@ public class ControllerLineRemoval
 		cf.clearTile(rowCurrent, colCurrent, true);
 
 		colCurrent++;
-		if (colCurrent >= GlobalData.COLS)
+		if (colCurrent >= GlobalData.COL_COUNT)
 		{
 			colCurrent = 0;
 			rowIndex++;
@@ -154,8 +159,21 @@ public class ControllerLineRemoval
 			if (rowIndex >= rowsToRemoveCount)
 			{
 				rowIndex = 0;
-				mode = RemovalMode.ANIMATION_STEP_THREE;
+				Collections.sort(rowsToRemoveList);
+				mode = RemovalMode.REMOVE_LINES;
 			}
+		}
+	}
+
+	private void removeLines()
+	{
+		rowCurrent = rowsToRemoveList.get(rowIndex);
+		cf.verplaatsBovenliggendeTegelsNaarBeneden(rowCurrent);
+
+		rowIndex++;
+		if (rowIndex >= rowsToRemoveCount)
+		{
+			mode = RemovalMode.DONE;
 		}
 	}
 

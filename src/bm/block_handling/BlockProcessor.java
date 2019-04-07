@@ -100,7 +100,7 @@ public class BlockProcessor
 
 	private int calculateOffsetCol()
 	{
-		int offsetCol = (GlobalData.COLS - getBlockWidth()) / 2; // To center the block.
+		int offsetCol = (GlobalData.COL_COUNT - getBlockWidth()) / 2; // To center the block.
 		return offsetCol;
 	}
 
