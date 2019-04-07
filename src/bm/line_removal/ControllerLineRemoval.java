@@ -11,7 +11,7 @@ import bm.util.GlobalData;
 
 public class ControllerLineRemoval
 {
-	private ControllerField controllerField;
+	private ControllerField cf;
 
 	private RemovalMode mode;
 	private enum RemovalMode
@@ -25,7 +25,7 @@ public class ControllerLineRemoval
 	private int rowCurrent, colCurrent;
 	private int rowIndex;
 
-	private GameLoopPause pauseAnimation = new GameLoopPause(10); // Skip 10 game-ticks.
+	private GameLoopPause pauseAnimation = new GameLoopPause(2); // Skip 10 game-ticks.
 
 	private static ControllerLineRemoval instance;
 	public static ControllerLineRemoval getInstance()
@@ -43,7 +43,7 @@ public class ControllerLineRemoval
 
 	public void init()
 	{
-		controllerField = ControllerField.getInstance();
+		cf = ControllerField.getInstance();
 		mode = RemovalMode.IDLE;
 	}
 
@@ -51,7 +51,7 @@ public class ControllerLineRemoval
 
 	public boolean is_animatie_01_nog_bezig()
 	{
-		return false;
+		return true;
 	}
 
 	public void update_animatie_01()
@@ -60,7 +60,7 @@ public class ControllerLineRemoval
 
 	public boolean is_animatie_02_nog_bezig()
 	{
-		return false;
+		return true;
 	}
 
 	public void update_animatie_02()
@@ -114,30 +114,27 @@ public class ControllerLineRemoval
 
 	private void initAnimation()
 	{
-		rowsToRemoveList = controllerField.getCompletedRows();
+		rowsToRemoveList = cf.getCompletedRows();
 		rowsToRemoveCount = rowsToRemoveList.size();
-		rowIndex = 0;
-		resetAnimation();
-	}
 
-	private void resetAnimation()
-	{
 		rowCurrent = rowsToRemoveList.get(rowIndex);
-		colCurrent = 0;
 	}
 
 	private void doAnimationStepOne()
 	{
+		rowCurrent = rowsToRemoveList.get(rowIndex);
 		Tile tile = Tile.getDummyTileRed(rowCurrent, colCurrent);
-		ControllerField.getInstance().setTile(tile,true);
+		cf.setTile(tile,true);
 
 		colCurrent++;
 		if (colCurrent >= GlobalData.COLS)
 		{
+			colCurrent = 0;
 			rowIndex++;
+
 			if (rowIndex >= rowsToRemoveCount)
 			{
-				resetAnimation();
+				rowIndex = 0;
 				mode = RemovalMode.ANIMATION_STEP_TWO;
 			}
 		}
@@ -145,16 +142,18 @@ public class ControllerLineRemoval
 
 	private void doAnimationStepTwo()
 	{
-		Tile tile = Tile.getDummyTileWhite(rowCurrent, colCurrent);
-		ControllerField.getInstance().setTile(tile, true);
+		rowCurrent = rowsToRemoveList.get(rowIndex);
+		cf.clearTile(rowCurrent, colCurrent, true);
 
 		colCurrent++;
 		if (colCurrent >= GlobalData.COLS)
 		{
+			colCurrent = 0;
 			rowIndex++;
+
 			if (rowIndex >= rowsToRemoveCount)
 			{
-				resetAnimation();
+				rowIndex = 0;
 				mode = RemovalMode.ANIMATION_STEP_THREE;
 			}
 		}

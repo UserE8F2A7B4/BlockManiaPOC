@@ -181,7 +181,6 @@ public class BlockManiaPOC extends JFrame
 		cont.add(btn09);
 
 		init();
-		// controllerMain.setReferenceToGUI(this);
 
 		X = 400;
 		Y = 200;

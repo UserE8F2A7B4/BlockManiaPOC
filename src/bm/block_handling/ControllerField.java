@@ -94,12 +94,16 @@ public class ControllerField
 	{
 		clearTiles(currentTiles);
 		setTiles(newTiles);
-		// TODO Update canvas.
 
+		updateCanvas();
+	}
+
+	private void updateCanvas()
+	{
 		CanvasFieldText.getInstance().renderField(field);
-
 		ControllerView.getInstance().renderField(field);
 	}
+
 
 	public void clearAllTiles()
 	{
@@ -113,7 +117,17 @@ public class ControllerField
 	{
 		for (Tile tile : tiles)
 		{
-			field[tile.getRow()][tile.getCol()] = null;
+			clearTile(tile.getRow(), tile.getCol(), false);
+		}
+	}
+
+	public void clearTile(int row, int col, boolean updateCanvas)
+	{
+		field[row][col] = null;
+
+		if (updateCanvas)
+		{
+			updateCanvas();
 		}
 	}
 
@@ -124,7 +138,7 @@ public class ControllerField
 			setTile(tile, false);
 		}
 
-		// updateCanvas();
+		updateCanvas();
 	}
 
 	public void setTile(Tile tile, boolean updateCanvas)
@@ -133,7 +147,7 @@ public class ControllerField
 
 		if (updateCanvas)
 		{
-			// updateCanvas();
+			updateCanvas();
 		}
 
 	}

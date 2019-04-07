@@ -68,6 +68,10 @@ public class ControllerBlockHandling
 		{
 			return blockProcessor.tryToMoveBlockDown();
 		}
+		else if (input == BlockManiaPOC.UserInput.MOVE_UP)
+		{
+			return blockProcessor.tryToMoveBlockUp();
+		}
 		else if (input == BlockManiaPOC.UserInput.MOVE_LEFT)
 		{
 			return blockProcessor.tryToMoveBlockLeft();

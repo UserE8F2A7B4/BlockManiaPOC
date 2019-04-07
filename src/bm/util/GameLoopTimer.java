@@ -6,7 +6,7 @@ public class GameLoopTimer implements Runnable
 {
 	private FlowMain flow = FlowMain.getInstance();
 
-	private final static int SLEEP_TIME = 750; // Maximum sleep-time. Default = 50.
+	private final static int SLEEP_TIME = 50; // Maximum sleep-time. Default = 50.
 	private long period;
 
 	private Thread gameThread;

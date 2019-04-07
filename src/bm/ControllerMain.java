@@ -7,16 +7,8 @@ import bm.util.GlobalData;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ControllerMain
 {
-	// private BlockManiaPOC gui;
-	// private ControllerBlockHandling controllerBlockHandling;
-	// private ControllerLineRemoval controllerLineRemoval;
-	// private ControllerPreview controllerPreview;
-	// private ControllerField controllerField;
-	// private BlockProcessor blockProcessor;
-
 	private UserInput request = UserInput.NONE;
 	private GameState gameState;
 
@@ -73,18 +65,28 @@ public class ControllerMain
 	{
 		// Maak een row aan op het veld.
 
-		// changeGameState(GameState.LINE_REMOVAL);
-
 		List<Tile> tilesEmpty = new ArrayList<>();
 		List<Tile> tilesNew = new ArrayList<>();
 
 		for (int i = 0 ; i < GlobalData.COLS ; i++)
 		{
-			tilesNew.add(new Tile(2, i,15));
+			tilesNew.add(new Tile(4, i,15));
+		}
+
+		for (int i = 0 ; i < GlobalData.COLS ; i++)
+		{
+			tilesNew.add(new Tile(5, i,15));
+		}
+
+		for (int i = 0 ; i < GlobalData.COLS ; i++)
+		{
+			tilesNew.add(new Tile(7, i,15));
 		}
 
 		ControllerField cf = ControllerField.getInstance();
 		cf.tryToPlaceNewTilesOnField(tilesEmpty, tilesNew);
+
+		changeGameState(GameState.LINE_REMOVAL);
 
 	}
 

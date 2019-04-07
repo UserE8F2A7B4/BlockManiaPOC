@@ -120,24 +120,26 @@ public class FlowMain
 
 	private void flowLineRemoval()
 	{
-		System.out.println("game tick line removal");
+		//		System.out.println("game tick line removal");
+		//
+		//		if (cl.is_animatie_01_nog_bezig())
+		//		{
+		//			cl.update_animatie_01();
+		//		}
+		//		else if (cl.is_animatie_02_nog_bezig())
+		//		{
+		//			cl.update_animatie_02();
+		//		}
+		//		else
+		//		{
+		//			cl.verwijder_de_volledige_regels();
+		//			cl.verplaats_de_overgebleven_regels_naar_beneden();
+		//
+		//			cm.updateScore();
+		//			cm.changeGameState(GameState.BLOCK_HANDLING);
+		//		}
 
-		if (cl.is_animatie_01_nog_bezig())
-		{
-			cl.update_animatie_01();
-		}
-		else if (cl.is_animatie_02_nog_bezig())
-		{
-			cl.update_animatie_02();
-		}
-		else
-		{
-			cl.verwijder_de_volledige_regels();
-			cl.verplaats_de_overgebleven_regels_naar_beneden();
-
-			cm.updateScore();
-			cm.changeGameState(GameState.BLOCK_HANDLING);
-		}
+		cl.handleGameTick();
 	}
 
 }

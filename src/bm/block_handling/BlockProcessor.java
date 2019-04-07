@@ -156,17 +156,18 @@ public class BlockProcessor
 		}
 	}
 
-	public void tryToMoveBlockUp()
+	public boolean tryToMoveBlockUp()
 	{
 		newTiles = block.getTilesWithOffset(-1, 0);
 
 		if (tryToPlaceNewTilesOnField())
 		{
 			block.decrementOffsetRow();
+			return true;
 		}
 		else
 		{
-			System.out.println("Cannot move Up.");
+			return false;
 		}
 	}
 
