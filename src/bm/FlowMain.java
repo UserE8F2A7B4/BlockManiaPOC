@@ -47,9 +47,21 @@ public class FlowMain
 			}
 	}
 
+
+	boolean linesCreated;
+
 	private void flowBlockHandling()
 	{
 		System.out.println("game tick block handling");
+
+
+		if (!linesCreated)
+		{
+			linesCreated = true;
+			cm.testRowRemoval();
+			return;
+		}
+
 
 		if (!cb.staat_er_een_block_op_de_preview())
 		{

@@ -80,13 +80,13 @@ public class ControllerLineRemoval
 
 	public void handleGameTick()
 	{
-		if (pauseAnimation.isPausing())
-		{
-			System.err.println("SKIP --- ControllerLineRemoval.handleGameTick");
-			return;
-		}
-
-		System.err.println("HANDLE --- ControllerLineRemoval.handleGameTick");
+		//		if (pauseAnimation.isPausing())
+		//		{
+		//			System.err.println("SKIP --- ControllerLineRemoval.handleGameTick");
+		//			return;
+		//		}
+		//
+		//		System.err.println("HANDLE --- ControllerLineRemoval.handleGameTick");
 
 		if (mode == RemovalMode.IDLE)
 		{
