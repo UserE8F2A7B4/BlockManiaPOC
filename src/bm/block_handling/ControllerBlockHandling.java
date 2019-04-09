@@ -43,8 +43,8 @@ public class ControllerBlockHandling
 
 	public void plaats_een_nieuw_willekeurig_block_op_de_preview()
 	{
-		// controllerPreview.loadNextBlock(); // .loadRandomBlock();
-		controllerPreview.loadNextBlock();
+		controllerPreview.loadRandomBlock();
+		// controllerPreview.loadNextBlock();
 	}
 
 	public boolean probeer_het_previewblock_te_verplaatsen_naar_het_veld()

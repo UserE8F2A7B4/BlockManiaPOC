@@ -48,36 +48,6 @@ public class ControllerLineRemoval
 		mode = RemovalMode.IDLE;
 	}
 
-	//---
-
-	public boolean is_animatie_01_nog_bezig()
-	{
-		return true;
-	}
-
-	public void update_animatie_01()
-	{
-	}
-
-	public boolean is_animatie_02_nog_bezig()
-	{
-		return true;
-	}
-
-	public void update_animatie_02()
-	{
-	}
-
-	public void verwijder_de_volledige_regels()
-	{
-	}
-
-	public void verplaats_de_overgebleven_regels_naar_beneden()
-	{
-	}
-
-	//---
-
 	public void handleGameTick()
 	{
 		//		if (pauseAnimation.isPausing())

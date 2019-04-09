@@ -167,6 +167,7 @@ public class BlockProcessor
 		}
 		else
 		{
+			System.out.println("Cannot move Up.");
 			return false;
 		}
 	}

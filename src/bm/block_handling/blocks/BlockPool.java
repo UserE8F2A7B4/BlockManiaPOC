@@ -26,6 +26,9 @@ public abstract class BlockPool
 		int highest = (GlobalData.getGameMode() == GameMode.CLASSIC) ? MAX_INDEX_STANDARD_BLOCKS : MAX_INDEX_ALL_BLOCKS;
 
 		int random = wheel.nextInt(highest - lowest + 1) + lowest; // Returns a number between 'lowest' and 'highest', (both inclusive).
+
+		System.out.println(String.format("random : %s ", random));
+
 		Block randomBlock = getBlock(random);
 
 		return randomBlock;

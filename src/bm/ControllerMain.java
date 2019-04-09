@@ -76,18 +76,18 @@ public class ControllerMain
 			tilesNew.add(new Tile(14, i,15));
 			tilesNew.add(new Tile(12, i,15));
 
-			tilesNew.add(new Tile(0, i,15));
-			tilesNew.add(new Tile(1, i,15));
-			tilesNew.add(new Tile(2, i,15));
+//			tilesNew.add(new Tile(0, i,15));
+//			tilesNew.add(new Tile(1, i,15));
+//			tilesNew.add(new Tile(2, i,15));
 		}
 
-		tilesNew.add(new Tile(15, 0,15));
-		tilesNew.add(new Tile(15, 1,15));
-		tilesNew.add(new Tile(15, 3,15));
-
-		tilesNew.add(new Tile(13, 3,15));
-		tilesNew.add(new Tile(13, 5,15));
-		tilesNew.add(new Tile(13, 6,15));
+//		tilesNew.add(new Tile(15, 0,15));
+//		tilesNew.add(new Tile(15, 1,15));
+//		tilesNew.add(new Tile(15, 3,15));
+//
+//		tilesNew.add(new Tile(13, 3,15));
+//		tilesNew.add(new Tile(13, 5,15));
+//		tilesNew.add(new Tile(13, 6,15));
 
 		ControllerField cf = ControllerField.getInstance();
 		cf.tryToPlaceNewTilesOnField(tilesEmpty, tilesNew);

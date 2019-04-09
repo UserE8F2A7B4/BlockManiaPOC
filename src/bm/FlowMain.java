@@ -39,29 +39,29 @@ public class FlowMain
 
 	public void handleGameTick()
 	{
-			switch (cm.getGameState())
-			{
-				case BLOCK_HANDLING : flowBlockHandling() ; break;
-				case LINE_REMOVAL   : flowLineRemoval() ; break;
-				default             : assert false : "Invalid game-state"; break;
-			}
+    switch (cm.getGameState())
+    {
+      case BLOCK_HANDLING : flowBlockHandling() ; break;
+      case LINE_REMOVAL   : flowLineRemoval() ; break;
+      default             : assert false : "Invalid game-state"; break;
+    }
 	}
 
 
-	boolean linesCreated;
+	private boolean isRepeating;
+	private int isMoving;
+	private int movementDelay = 2;
 
 	private void flowBlockHandling()
 	{
-		System.out.println("game tick block handling");
+		// System.out.println("game tick block handling");
 
-
-		if (!linesCreated)
-		{
-			linesCreated = true;
-			cm.testRowRemoval();
-			return;
-		}
-
+		//		if (!linesCreated)
+		//		{
+		//			linesCreated = true;
+		//			cm.testRowRemoval();
+		//			return;
+		//		}
 
 		if (!cb.staat_er_een_block_op_de_preview())
 		{
@@ -88,9 +88,31 @@ public class FlowMain
 			else
 			{
 				final UserInput input = cm.getUserRequest();
-				if (input != UserInput.NONE)
+				if (input == UserInput.NONE)
 				{
-					if (input == UserInput.MOVE_DOWN)
+					isRepeating = false;
+					isMoving = 0;
+				}
+				else if (input == UserInput.START_GAME)
+				{
+					System.out.println("START_GAME");
+				}
+				else if (input == UserInput.NEXT_BLOCK)
+				{
+					if (!isRepeating)
+					{
+						isRepeating = true;
+						cb.plaats_een_nieuw_willekeurig_block_op_de_preview();
+					}
+				}
+				else if (input == UserInput.MOVE_LEFT || input == UserInput.MOVE_RIGHT || input == UserInput.ROTATE || input == UserInput.FLIP || input == UserInput.MOVE_UP)
+				{
+					cb.probeer_actie_uit_te_voeren_op_het_block(input);
+				}
+				else if (input == UserInput.MOVE_DOWN)
+				{
+					isMoving++;
+					if (isMoving == 1 || isMoving > movementDelay)
 					{
 						if (cb.probeer_actie_uit_te_voeren_op_het_block(UserInput.MOVE_DOWN))
 						{
@@ -105,14 +127,6 @@ public class FlowMain
 							}
 						}
 					}
-					else // Move left or right or flip or rotate.
-					{
-						cb.probeer_actie_uit_te_voeren_op_het_block(input);
-					}
-				}
-				else // Er is [geen] user-input.
-				{
-					// Geen actie.
 				}
 			}
 		}
@@ -132,25 +146,6 @@ public class FlowMain
 
 	private void flowLineRemoval()
 	{
-		//		System.out.println("game tick line removal");
-		//
-		//		if (cl.is_animatie_01_nog_bezig())
-		//		{
-		//			cl.update_animatie_01();
-		//		}
-		//		else if (cl.is_animatie_02_nog_bezig())
-		//		{
-		//			cl.update_animatie_02();
-		//		}
-		//		else
-		//		{
-		//			cl.verwijder_de_volledige_regels();
-		//			cl.verplaats_de_overgebleven_regels_naar_beneden();
-		//
-		//			cm.updateScore();
-		//			cm.changeGameState(GameState.BLOCK_HANDLING);
-		//		}
-
 		cl.handleGameTick();
 	}
 
