@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import bm.FlowMain;
 import bm.block_handling.blocks.Tile;
 import bm.util.GlobalData;
 import bm.view.CanvasFieldText;
@@ -12,6 +13,7 @@ import bm.view.ControllerView;
 public class ControllerField
 {
 	private Tile[][] field = new Tile[GlobalData.ROW_COUNT][GlobalData.COL_COUNT];
+	private Tile[][] fieldPrevious = new Tile[GlobalData.ROW_COUNT][GlobalData.COL_COUNT];
 
 	private static ControllerField instance;
 	public static ControllerField getInstance()
@@ -99,11 +101,70 @@ public class ControllerField
 	{
 		CanvasFieldText.getInstance().renderField(field);
 		ControllerView.getInstance().renderField(field);
+
+		// Er is iets gewijzigd aan het veld.
+		
+		// Vergelijk [fieldPrevious] met [field] en sla de verschillen op.
+		// Copieer de inhoud van [field] naar [fieldPrevious].
+
+		vergelijkFields();
+		copyField();
 	}
+	
+	private void vergelijkFields()
+	{
+		System.out.println("---");
+
+		for (int row = 0 ; row < GlobalData.ROW_MAX ; row++)
+		{
+			for (int col = 0; col < GlobalData.COL_MAX; col++)
+			{
+				Tile tilePrevious = fieldPrevious[row][col];
+				Tile tileCurrent = field[row][col];
+
+				long gameTickCounter = FlowMain.gameTickCounter;
+
+
+				if (tileCurrent == null && tilePrevious == null)
+				{
+					// Do nothing.
+				}
+				else if (tileCurrent != null && tilePrevious != null)
+				{
+					if (tileCurrent.getBlockId() != tilePrevious.getBlockId())
+					{
+						System.out.println(String.format("Result : r:%s / c:%s / b:%s / t:%s ", row, col, tileCurrent.getBlockId(), gameTickCounter ));
+					}
+				}
+				else if (tileCurrent == null)
+				{
+					System.out.println(String.format("Result : r:%s / c:%s / b:%s / t:%s ", row, col, -1, gameTickCounter ));
+				}
+				else if (tilePrevious == null)
+				{
+					System.out.println(String.format("Result : r:%s / c:%s / b:%s / t:%s ", row, col, tileCurrent.getBlockId(), gameTickCounter ));
+				}
+
+			}
+		}
+	}
+
+	private void copyField()
+	{
+		for (int row = 0 ; row < GlobalData.ROW_MAX ; row++)
+		{
+			for (int col = 0; col < GlobalData.COL_MAX; col++)
+			{
+				Tile tileCurrent = field[row][col];
+				fieldPrevious[row][col] = tileCurrent;
+			}
+		}
+	}
+
 
 	public void clearAllTiles()
 	{
-		for (int row = 0 ; row < field.length ; row++)
+		for (int row = 0 ; row < GlobalData.ROW_MAX ; row++)
 		{
 			Arrays.fill(field[row], null);
 		}
@@ -146,25 +207,6 @@ public class ControllerField
 			updateCanvas();
 		}
 	}
-
-	// Deze is nodig om te checken of het block gedraaid of gespiegeld kan gaan worden
-	// en of het block de onderkant bereikt heeft.
-	//
-	//	private boolean areTilesWithinBoundaries(List<Tile> tiles)
-	//	{
-	//		// Check if all tiles are within the boundaries of the gamefield.
-	//		boolean areWithin = true;
-	//
-	//		for (Tile tile : tiles)
-	//		{
-	//			if (!isWithinBoundaries(tile.getRow(), tile.getCol()))
-	//			{
-	//				areWithin = false;
-	//				break;
-	//			}
-	//		}
-	//		return areWithin;
-	//	}
 
 	public boolean hasCompletedRows()
 	{

@@ -13,6 +13,12 @@ public class FlowMain
 	private ControllerBlockHandling cb;
 	private ControllerLineRemoval cl;
 
+	private boolean isRepeating;
+	private int isMoving;
+	private final static int MOVEMENT_DELAY = 2;
+
+	public static long gameTickCounter;
+
 	public static FlowMain getInstance()
 	{
 		if (instance == null)
@@ -39,6 +45,8 @@ public class FlowMain
 
 	public void handleGameTick()
 	{
+		gameTickCounter++;
+
     switch (cm.getGameState())
     {
       case BLOCK_HANDLING : flowBlockHandling() ; break;
@@ -46,11 +54,6 @@ public class FlowMain
       default             : assert false : "Invalid game-state"; break;
     }
 	}
-
-
-	private boolean isRepeating;
-	private int isMoving;
-	private int movementDelay = 2;
 
 	private void flowBlockHandling()
 	{
@@ -105,14 +108,26 @@ public class FlowMain
 						cb.plaats_een_nieuw_willekeurig_block_op_de_preview();
 					}
 				}
-				else if (input == UserInput.MOVE_LEFT || input == UserInput.MOVE_RIGHT || input == UserInput.ROTATE || input == UserInput.FLIP || input == UserInput.MOVE_UP)
+				else if (input == UserInput.ROTATE || input == UserInput.FLIP)
 				{
-					cb.probeer_actie_uit_te_voeren_op_het_block(input);
+					if (!isRepeating)
+					{
+						isRepeating = true;
+						cb.probeer_actie_uit_te_voeren_op_het_block(input);
+					}
+				}
+				else if (input == UserInput.MOVE_LEFT || input == UserInput.MOVE_RIGHT || input == UserInput.MOVE_UP)
+				{
+					isMoving++;
+					if (isMoving == 1 || isMoving > MOVEMENT_DELAY)
+					{
+						cb.probeer_actie_uit_te_voeren_op_het_block(input);
+					}
 				}
 				else if (input == UserInput.MOVE_DOWN)
 				{
 					isMoving++;
-					if (isMoving == 1 || isMoving > movementDelay)
+					if (isMoving == 1 || isMoving > MOVEMENT_DELAY)
 					{
 						if (cb.probeer_actie_uit_te_voeren_op_het_block(UserInput.MOVE_DOWN))
 						{

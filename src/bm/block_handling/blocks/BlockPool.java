@@ -27,7 +27,7 @@ public abstract class BlockPool
 
 		int random = wheel.nextInt(highest - lowest + 1) + lowest; // Returns a number between 'lowest' and 'highest', (both inclusive).
 
-		System.out.println(String.format("random : %s ", random));
+		// System.out.println(String.format("random : %s ", random));
 
 		Block randomBlock = getBlock(random);
 
