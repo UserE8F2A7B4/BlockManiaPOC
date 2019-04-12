@@ -63,7 +63,7 @@ public class ControllerMain
 		final UserInput input = getUserRequest();
 		if (input == UserInput.START_GAME)
 		{
-			System.out.println("START_GAME");
+			// System.out.println("START_GAME");
 
 			cup.changeGameState(ControllerUserPlay.GameStateUserPlay.BLOCK_HANDLING);
 			changeGameState(GameStateMain.USER_PLAYING);

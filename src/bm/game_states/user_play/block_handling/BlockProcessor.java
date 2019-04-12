@@ -46,8 +46,6 @@ public class BlockProcessor
 		block = null;
 	}
 
-	//  Level 2.
-
 	public boolean tryToPlaceNewBlockOnField()
 	{
 		loadBlockFromPreview();
@@ -59,7 +57,7 @@ public class BlockProcessor
 		}
 		else
 		{
-			System.out.println("Cannot Place New Block.");
+			// System.out.println("Cannot Place New Block.");
 			return false;
 		}
 	}
@@ -138,7 +136,7 @@ public class BlockProcessor
 		}
 		else
 		{
-			System.out.println("Cannot move Left.");
+			// System.out.println("Cannot move Left.");
 			return false;
 		}
 	}
@@ -153,7 +151,7 @@ public class BlockProcessor
 		}
 		else
 		{
-			System.out.println("Cannot move Right.");
+			// System.out.println("Cannot move Right.");
 			return false;
 		}
 	}
@@ -169,7 +167,7 @@ public class BlockProcessor
 		}
 		else
 		{
-			System.out.println("Cannot move Up.");
+			// System.out.println("Cannot move Up.");
 			return false;
 		}
 	}
@@ -200,7 +198,7 @@ public class BlockProcessor
 		}
 		else
 		{
-			System.out.println("Cannot Rotate.");
+			// System.out.println("Cannot Rotate.");
 			return false;
 		}
 	}
@@ -216,7 +214,7 @@ public class BlockProcessor
 		}
 		else
 		{
-			System.out.println("Cannot Flip.");
+			// System.out.println("Cannot Flip.");
 			return false;
 		}
 	}
@@ -230,7 +228,7 @@ public class BlockProcessor
 		}
 		else
 		{
-			System.out.println("Cannot Place New Tiles.");
+			// System.out.println("Cannot Place New Tiles.");
 			return false;
 		}
 	}

@@ -91,10 +91,10 @@ public class ControllerField
 
 	private void placeNewTilesOnField(List<Tile> currentTiles, List<Tile> newTiles)
 	{
+		System.out.println("placeNewTilesOnField");
+
 		clearTiles(currentTiles);
 		setTiles(newTiles);
-
-		updateCanvas();
 	}
 
 	private void updateCanvas()
@@ -102,34 +102,34 @@ public class ControllerField
 		CanvasFieldText.getInstance().renderField(field);
 		ControllerView.getInstance().renderField(field);
 
-		// Er is iets gewijzigd aan het veld.
+		// Er is iets gewijzigd aan het veld, dus :
 		
 		// Vergelijk [fieldPrevious] met [field] en sla de verschillen op.
 		// Copieer de inhoud van [field] naar [fieldPrevious].
 
-		// vergelijkFields();
-		// copyField();
+		vergelijkFields();
+		copyField();
 	}
 	
 	private void vergelijkFields()
 	{
 		System.out.println("---");
 
-		for (int row = 0 ; row < GlobalData.ROW_MAX ; row++)
+		for (int row = 0 ; row < GlobalData.ROW_COUNT ; row++)
 		{
-			for (int col = 0; col < GlobalData.COL_MAX; col++)
+			for (int col = 0; col < GlobalData.COL_COUNT; col++)
 			{
 				Tile tilePrevious = fieldPrevious[row][col];
 				Tile tileCurrent = field[row][col];
 
-				long gameTickCounter = ControllerUserPlay.gameTickCounter;
-
-
 				if (tileCurrent == null && tilePrevious == null)
 				{
-					// Do nothing.
+					continue;
 				}
-				else if (tileCurrent != null && tilePrevious != null)
+
+				final long gameTickCounter = ControllerUserPlay.gameTickCounter;
+
+				if (tileCurrent != null && tilePrevious != null)
 				{
 					if (tileCurrent.getBlockId() != tilePrevious.getBlockId())
 					{
@@ -140,24 +140,19 @@ public class ControllerField
 				{
 					System.out.println(String.format("Result : r:%s / c:%s / b:%s / t:%s ", row, col, -1, gameTickCounter ));
 				}
-				else if (tilePrevious == null)
+				else
 				{
 					System.out.println(String.format("Result : r:%s / c:%s / b:%s / t:%s ", row, col, tileCurrent.getBlockId(), gameTickCounter ));
 				}
-
 			}
 		}
 	}
 
 	private void copyField()
 	{
-		for (int row = 0 ; row < GlobalData.ROW_MAX ; row++)
+		for (int row = 0 ; row < GlobalData.ROW_COUNT ; row++)
 		{
-			for (int col = 0; col < GlobalData.COL_MAX; col++)
-			{
-				Tile tileCurrent = field[row][col];
-				fieldPrevious[row][col] = tileCurrent;
-			}
+			System.arraycopy(field[row], 0, fieldPrevious[row], 0, GlobalData.COL_COUNT);
 		}
 	}
 
@@ -248,6 +243,8 @@ public class ControllerField
 
 	public void verplaatsBovenliggendeTegelsNaarBeneden(int rowTarget)
 	{
+		boolean tilesFound = false;
+
 		for (int row = rowTarget - 1 ; row > GlobalData.ROW_MIN ; row--) // Search from bottom to top.
 		{
 			for (int col = 0 ; col < GlobalData.COL_COUNT ; col++)
@@ -256,9 +253,14 @@ public class ControllerField
 				if (tile != null)
 				{
 					verplaatsTegelNaarBeneden(tile);
+					tilesFound = true;
 				}
 			}
-			updateCanvas();
+
+			if (tilesFound)
+			{
+				updateCanvas();
+			}
 		}
 	}
 

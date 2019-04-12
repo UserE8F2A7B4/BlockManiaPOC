@@ -11,9 +11,9 @@ public class ControllerBlockHandling
 {
 	private static ControllerBlockHandling instance;
 
-	private ControllerField controllerField;
-	private ControllerPreview controllerPreview;
-	private BlockProcessor blockProcessor;
+	private ControllerField cf;
+	private ControllerPreview cp;
+	private BlockProcessor bp;
 
 	public static ControllerBlockHandling getInstance()
 	{
@@ -30,29 +30,29 @@ public class ControllerBlockHandling
 
 	public void init()
 	{
-		controllerField = ControllerField.getInstance();
-		controllerPreview = ControllerPreview.getInstance();
-		blockProcessor = BlockProcessor.getInstance();
+		cf = ControllerField.getInstance();
+		cp = ControllerPreview.getInstance();
+		bp = BlockProcessor.getInstance();
 	}
 
 	public boolean staat_er_een_block_op_de_preview()
 	{
-		return controllerPreview.hasBlock();
+		return cp.hasBlock();
 	}
 
 	public void plaats_een_nieuw_willekeurig_block_op_de_preview()
 	{
-		controllerPreview.loadRandomBlock();
+		cp.loadRandomBlock();
 	}
 
 	public boolean probeer_het_previewblock_te_verplaatsen_naar_het_veld()
 	{
-		return blockProcessor.tryToPlaceNewBlockOnField();
+		return bp.tryToPlaceNewBlockOnField();
 	}
 
 	public boolean staat_er_een_block_op_het_veld()
 	{
-		return blockProcessor.hasBlock();
+		return bp.hasBlock();
 	}
 
 	public boolean is_het_tijd_voor_een_move_down()
@@ -64,28 +64,28 @@ public class ControllerBlockHandling
 	{
 		if (input == UserInput.MOVE_DOWN)
 		{
-			return blockProcessor.tryToMoveBlockDown();
+			return bp.tryToMoveBlockDown();
 		}
 		else if (input == UserInput.MOVE_UP)
 		{
-			// return blockProcessor.tryToMoveBlockUp();
-			return blockProcessor.tryToRotateBlock();
+			// return bp.tryToMoveBlockUp();
+			return bp.tryToRotateBlock();
 		}
 		else if (input == UserInput.MOVE_LEFT)
 		{
-			return blockProcessor.tryToMoveBlockLeft();
+			return bp.tryToMoveBlockLeft();
 		}
 		else if (input == UserInput.MOVE_RIGHT)
 		{
-			return blockProcessor.tryToMoveBlockRight();
+			return bp.tryToMoveBlockRight();
 		}
 		else if (input == UserInput.FLIP)
 		{
-			return blockProcessor.tryToFlipBlock();
+			return bp.tryToFlipBlock();
 		}
 		else if (input == UserInput.ROTATE)
 		{
-			return blockProcessor.tryToRotateBlock();
+			return bp.tryToRotateBlock();
 		}
 		else
 		{
@@ -95,21 +95,21 @@ public class ControllerBlockHandling
 
 	public void verwijder_het_block_uit_het_veld()
 	{
-		blockProcessor.removeBlock();
+		bp.removeBlock();
 	}
 
 	public boolean zijn_er_volledig_gevulde_regels_ontstaan()
 	{
-		return controllerField.hasCompletedRows();
+		return cf.hasCompletedRows();
 	}
 
 	public void handleGameOver()
 	{
-		JOptionPane.showMessageDialog(null, "GAME OVER !..", "BlockMania", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Game Over !..", "BlockMania", JOptionPane.INFORMATION_MESSAGE);
 
-		blockProcessor.removeBlock();
-		controllerPreview.clearBlock();
-		controllerField.clearAllTiles();
+		bp.removeBlock();
+		cp.clearBlock();
+		cf.clearAllTiles();
 
 		ControllerMain.getInstance().changeGameState(ControllerMain.GameStateMain.IDLE);
 	}
