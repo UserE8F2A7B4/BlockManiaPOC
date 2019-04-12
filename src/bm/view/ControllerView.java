@@ -1,6 +1,7 @@
 package bm.view;
 
-import bm.block_handling.blocks.Tile;
+import bm.util.blocks.Tile;
+import bm.view.field.label.CanvasFieldLabel;
 
 public class ControllerView
 {

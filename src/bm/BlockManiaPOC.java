@@ -1,9 +1,8 @@
 package bm;
 
-import bm.block_handling.BlockProcessor;
-import bm.block_handling.ControllerField;
-import bm.block_handling.ControllerPreview;
-import bm.util.GameLoopTimer;
+import bm.algemeen.ControllerMain;
+import bm.game_states.user_play.ControllerUserPlay;
+import bm.util.game_loop.GameLoopTimer;
 import bm.util.GlobalData;
 import bm.util.Util;
 
@@ -12,7 +11,6 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 public class BlockManiaPOC extends JFrame
@@ -106,9 +104,6 @@ public class BlockManiaPOC extends JFrame
 		cm = ControllerMain.getInstance();
 		cm.init();
 
-    FlowMain flow = FlowMain.getInstance();
-		flow.init();
-
     GameLoopTimer timer = GameLoopTimer.getInstance();
 		timer.init();
 		timer.start();
@@ -160,8 +155,8 @@ public class BlockManiaPOC extends JFrame
 		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_F,    "FLIP_PRESS",     (actionEvent) -> cm.setUserRequest(UserInput.FLIP));
 		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_F,    "FLIP_RELEASE",   (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 
-		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_S,    "START_PRESS",    (actionEvent) -> cm.setUserRequest(UserInput.START_GAME));
-		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_S,    "START_RELEASE",  (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_F9,    "START_PRESS",    (actionEvent) -> cm.setUserRequest(UserInput.START_GAME));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_F9,    "START_RELEASE",  (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 
 		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_N,    "NEXT_PRESS",     (actionEvent) -> cm.setUserRequest(UserInput.NEXT_BLOCK));
 		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_N,    "NEXT_RELEASE",   (actionEvent) -> cm.setUserRequest(UserInput.NONE));

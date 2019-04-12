@@ -10,8 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
-import bm.block_handling.blocks.BlockPool;
-import bm.block_handling.blocks.Tile;
+import bm.util.blocks.BlockPool;
+import bm.util.blocks.Tile;
 
 import javax.swing.*;
 
@@ -76,7 +76,6 @@ public class Util
 	{
 		createKeyBinding(im, am, keyCode, id, actionListener, true);
 	}
-
 
 	private static void createKeyBinding(InputMap im, ActionMap am, int keyCode, String id, ActionListener actionListener, boolean onKeyRelease)
 	{
