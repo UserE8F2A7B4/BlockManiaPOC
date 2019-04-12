@@ -107,8 +107,8 @@ public class ControllerField
 		// Vergelijk [fieldPrevious] met [field] en sla de verschillen op.
 		// Copieer de inhoud van [field] naar [fieldPrevious].
 
-		vergelijkFields();
-		copyField();
+		// vergelijkFields();
+		// copyField();
 	}
 	
 	private void vergelijkFields()
@@ -217,7 +217,7 @@ public class ControllerField
 	public List<Integer> getCompletedRows()
 	{
 		List<Integer> completedRows = new ArrayList<>(15); // '15' stands for '3x long block'.
-		for (int row = GlobalData.ROW_MAX ; row >= GlobalData.ROW_MIN ; row--) // Search from bottom to top.
+		for (int row = GlobalData.ROW_MAX ; row > GlobalData.ROW_MIN ; row--) // Search from bottom to top.
 		{
 			if (!isLocationEmpty(row, GlobalData.COL_MIN) && !isLocationEmpty(row, GlobalData.COL_MAX) && isRowCompleted(row))
 			{
@@ -248,9 +248,9 @@ public class ControllerField
 
 	public void verplaatsBovenliggendeTegelsNaarBeneden(int rowTarget)
 	{
-		for (int row = rowTarget - 1 ; row >= GlobalData.ROW_MIN ; row--) // Search from bottom to top.
+		for (int row = rowTarget - 1 ; row > GlobalData.ROW_MIN ; row--) // Search from bottom to top.
 		{
-			for (int col = 0 ; col < GlobalData.COL_MAX ; col++)
+			for (int col = 0 ; col < GlobalData.COL_COUNT ; col++)
 			{
 				Tile tile = field[row][col];
 				if (tile != null)

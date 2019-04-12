@@ -50,14 +50,14 @@ public class ControllerPreview
 
 	public void loadRandomBlock()
 	{
-		block = BlockPool.getRandomBlock();
+		// block = BlockPool.getRandomBlock();
+		block = BlockPool.getFixedBlock();
 		render();
 	}
 
 	public void loadNextBlock()
 	{
-		// block = BlockPool.getNextBlock();
-		block = BlockPool.getFixedBlock();
+		block = BlockPool.getNextBlock();
 		render();
 	}
 

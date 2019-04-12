@@ -44,7 +44,6 @@ public class ControllerBlockHandling
 	public void plaats_een_nieuw_willekeurig_block_op_de_preview()
 	{
 		controllerPreview.loadRandomBlock();
-		// controllerPreview.loadNextBlock();
 	}
 
 	public boolean probeer_het_previewblock_te_verplaatsen_naar_het_veld()
@@ -70,7 +69,8 @@ public class ControllerBlockHandling
 		}
 		else if (input == BlockManiaPOC.UserInput.MOVE_UP)
 		{
-			return blockProcessor.tryToMoveBlockUp();
+			// return blockProcessor.tryToMoveBlockUp();
+			return blockProcessor.tryToRotateBlock();
 		}
 		else if (input == BlockManiaPOC.UserInput.MOVE_LEFT)
 		{

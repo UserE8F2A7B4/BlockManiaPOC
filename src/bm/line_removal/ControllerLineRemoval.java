@@ -92,6 +92,7 @@ public class ControllerLineRemoval
 		rowsToRemoveList = cf.getCompletedRows();
 		rowsToRemoveCount = rowsToRemoveList.size();
 
+		rowIndex = 0;
 		rowCurrent = rowsToRemoveList.get(rowIndex);
 	}
 
@@ -135,6 +136,26 @@ public class ControllerLineRemoval
 		}
 	}
 
+	//	private void doAnimationStepTwo()
+	//	{
+	//		rowCurrent = rowsToRemoveList.get(rowIndex);
+	//		cf.clearTile(rowCurrent, colCurrent, true);
+	//
+	//		colCurrent--;
+	//		if (colCurrent <= GlobalData.COL_MIN)
+	//		{
+	//			colCurrent = GlobalData.COL_MAX;
+	//			rowIndex++;
+	//
+	//			if (rowIndex >= rowsToRemoveCount)
+	//			{
+	//				rowIndex = 0;
+	//				Collections.sort(rowsToRemoveList);
+	//				mode = RemovalMode.REMOVE_LINES;
+	//			}
+	//		}
+	//	}
+
 	private void removeLines()
 	{
 		rowCurrent = rowsToRemoveList.get(rowIndex);
@@ -143,6 +164,7 @@ public class ControllerLineRemoval
 		rowIndex++;
 		if (rowIndex >= rowsToRemoveCount)
 		{
+			rowIndex = 0;
 			mode = RemovalMode.DONE;
 		}
 	}
