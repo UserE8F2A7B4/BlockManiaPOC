@@ -5,17 +5,20 @@ import java.util.List;
 import bm.util.blocks.Block;
 import bm.util.blocks.BlockPool;
 import bm.util.blocks.Tile;
+import bm.view.field.label.CanvasFieldLabel;
+import bm.view.preview.label.CanvasPreviewLabel;
 import bm.view.preview.text.CanvasPreviewText;
 
 public class ControllerPreview
 {
+	private static ControllerPreview instance;
+
 	private Block block;
-	private Tile[][] field;
+	// private Tile[][] field;
 
 	private final static int ROWS = 9;
 	private final static int COLS = 9;
 
-	private static ControllerPreview instance;
 	public static ControllerPreview getInstance()
 	{
 		if (instance == null)
@@ -27,14 +30,11 @@ public class ControllerPreview
 
 	private ControllerPreview()
 	{
-		loadNextBlock();
+		loadRandomBlock();
 	}
 
 	public Block getBlock()
 	{
-		field = new Tile[ROWS][COLS];
-		CanvasPreviewText.getInstance().renderPreview(field);
-
 		return block;
 	}
 
@@ -50,31 +50,33 @@ public class ControllerPreview
 
 	public void loadRandomBlock()
 	{
-		// block = BlockPool.getRandomBlock();
-		block = BlockPool.getFixedBlock();
-		render();
+		block = BlockPool.getRandomBlock();
+		// block = BlockPool.getFixedBlock();
+
+		setTiles();
 	}
 
 	public void loadNextBlock()
 	{
 		block = BlockPool.getNextBlock();
-		render();
+		setTiles();
 	}
 
-	private void render()
+	private void setTiles()
 	{
-		field = new Tile[ROWS][COLS];
-		setTiles(block.getTiles());
-
-		CanvasPreviewText.getInstance().renderPreview(field);
-	}
-
-	private void setTiles(List<Tile> tiles)
-	{
-		for (Tile tile : tiles)
+		Tile[][] field = new Tile[ROWS][COLS];
+		for (Tile tile : block.getTiles())
 		{
 			field[tile.getRow()][tile.getCol()] = tile;
 		}
+
+		updateCanvas(field);
+	}
+
+	private void updateCanvas(Tile[][] field)
+	{
+		CanvasPreviewText.getInstance().renderPreview(field);
+		CanvasPreviewLabel.getInstance().renderPreview(field);
 	}
 
 }

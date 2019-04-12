@@ -19,7 +19,7 @@ public class ControllerMain
 		IDLE, USER_PLAYING, DEMO_PLAYING
 	}
 
-	private GameLoopPause pausing = new GameLoopPause(30);
+	private GameLoopPause pausing = new GameLoopPause(60);
 
 	public static ControllerMain getInstance()
 	{

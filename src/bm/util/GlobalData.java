@@ -28,12 +28,14 @@ public abstract class GlobalData
 	public final static int ROW_MAX = ROW_COUNT - 1;
 	public final static int COL_MAX = COL_COUNT - 1;
 
-	public final static int GAME_FIELD_WIDTH  = COL_COUNT * BLOCK_SIZE;
-	public final static int GAME_FIELD_HEIGHT = ROW_COUNT * BLOCK_SIZE;
+	public final static int FIELD_WIDTH = COL_COUNT * BLOCK_SIZE;
+	public final static int FIELD_HEIGHT = ROW_COUNT * BLOCK_SIZE;
 
-	public final static int TILE_COLOR_RED = 100; // TODO waarom zijn dit niet gewoon Colors ?
+	public final static int PREVIEW_WIDTH = 6 * BLOCK_SIZE;
+	public final static int PREVIEW_HEIGHT = 6 * BLOCK_SIZE;
+
+	public final static int TILE_COLOR_RED = 100; // TODO waarom zijn dit niet gewoon [Colors] ?
 	public final static int TILE_COLOR_WHITE = 101;
-
 
 	//	public static void setGameMode(GameMode mode)
 	//	{

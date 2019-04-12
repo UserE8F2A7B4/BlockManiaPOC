@@ -6,6 +6,7 @@ import bm.util.blocks.Tile;
 public class CanvasPreviewText
 {
 	private static CanvasPreviewText instance;
+
 	public static CanvasPreviewText getInstance()
 	{
 		if (instance == null)

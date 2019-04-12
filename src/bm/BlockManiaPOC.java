@@ -1,7 +1,6 @@
 package bm;
 
 import bm.algemeen.ControllerMain;
-import bm.game_states.user_play.ControllerUserPlay;
 import bm.util.game_loop.GameLoopTimer;
 import bm.util.GlobalData;
 import bm.util.Util;
@@ -15,7 +14,7 @@ import java.awt.event.KeyEvent;
 
 public class BlockManiaPOC extends JFrame
 {
-	private final static int FRAME_WIDTH = 600;
+	private final static int FRAME_WIDTH = 700;
 	private final static int FRAME_HEIGHT = 700;
 
   private static JTextPane txtCanvasPreview, txtCanvasField;
@@ -65,9 +64,9 @@ public class BlockManiaPOC extends JFrame
 		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
 		doc.setParagraphAttributes(0, doc.getLength(), center, false);
 
-		X += 20 + txtCanvasField.getWidth();
-		width = 50;
-		height = 50;
+		X += 60 + txtCanvasField.getWidth();
+		width = GlobalData.PREVIEW_WIDTH + 4;
+		height = GlobalData.PREVIEW_HEIGHT + 4;
 
 		lblCanvasPreview = new JLabel();
 		lblCanvasPreview.setBounds(X, Y, width, height);
@@ -77,8 +76,8 @@ public class BlockManiaPOC extends JFrame
 		cont.add(lblCanvasPreview);
 
 		X += 20 + lblCanvasPreview.getWidth();
-		width = GlobalData.GAME_FIELD_WIDTH + 4;
-		height = GlobalData.GAME_FIELD_HEIGHT + 4;
+		width = GlobalData.FIELD_WIDTH + 4;
+		height = GlobalData.FIELD_HEIGHT + 4;
 
 		lblCanvasField = new JLabel();
 		lblCanvasField.setBounds(X, Y, width, height);

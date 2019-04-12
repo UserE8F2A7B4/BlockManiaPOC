@@ -6,6 +6,7 @@ import bm.util.blocks.Tile;
 public class CanvasFieldText
 {
 	private static CanvasFieldText instance;
+
 	public static CanvasFieldText getInstance()
 	{
 		if (instance == null)

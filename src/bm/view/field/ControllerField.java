@@ -7,15 +7,16 @@ import java.util.List;
 import bm.game_states.user_play.ControllerUserPlay;
 import bm.util.blocks.Tile;
 import bm.util.GlobalData;
+import bm.view.field.label.CanvasFieldLabel;
 import bm.view.field.text.CanvasFieldText;
-import bm.view.ControllerView;
 
 public class ControllerField
 {
+	private static ControllerField instance;
+
 	private Tile[][] field = new Tile[GlobalData.ROW_COUNT][GlobalData.COL_COUNT];
 	private Tile[][] fieldPrevious = new Tile[GlobalData.ROW_COUNT][GlobalData.COL_COUNT];
 
-	private static ControllerField instance;
 	public static ControllerField getInstance()
 	{
 		if (instance == null)
@@ -97,20 +98,6 @@ public class ControllerField
 		setTiles(newTiles);
 	}
 
-	private void updateCanvas()
-	{
-		CanvasFieldText.getInstance().renderField(field);
-		ControllerView.getInstance().renderField(field);
-
-		// Er is iets gewijzigd aan het veld, dus :
-		
-		// Vergelijk [fieldPrevious] met [field] en sla de verschillen op.
-		// Copieer de inhoud van [field] naar [fieldPrevious].
-
-		vergelijkFields();
-		copyField();
-	}
-	
 	private void vergelijkFields()
 	{
 		System.out.println("---");
@@ -269,6 +256,20 @@ public class ControllerField
 		field[tile.getRow()][tile.getCol()] = null;
 		tile.setRow(tile.getRow() + 1);
 		field[tile.getRow()][tile.getCol()] = tile;
+	}
+
+	private void updateCanvas()
+	{
+		CanvasFieldText.getInstance().renderField(field);
+		CanvasFieldLabel.getInstance().renderField(field);
+
+		// Er is iets gewijzigd aan het veld, dus :
+
+		// Vergelijk [fieldPrevious] met [field] en sla de verschillen op.
+		// Copieer de inhoud van [field] naar [fieldPrevious].
+
+		vergelijkFields();
+		copyField();
 	}
 
 }
