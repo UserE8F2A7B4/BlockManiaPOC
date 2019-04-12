@@ -107,7 +107,9 @@ public class ControllerBlockHandling
 	{
 		JOptionPane.showMessageDialog(null, "GAME OVER !..", "BlockMania", JOptionPane.INFORMATION_MESSAGE);
 
-		ControllerField.getInstance().clearAllTiles();
+		blockProcessor.removeBlock();
+		controllerPreview.clearBlock();
+		controllerField.clearAllTiles();
 
 		ControllerMain.getInstance().changeGameState(ControllerMain.GameStateMain.IDLE);
 	}
