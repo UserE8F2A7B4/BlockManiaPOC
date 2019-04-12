@@ -91,7 +91,7 @@ public class ControllerField
 
 	private void placeNewTilesOnField(List<Tile> currentTiles, List<Tile> newTiles)
 	{
-		System.out.println("placeNewTilesOnField");
+		// System.out.println("placeNewTilesOnField");
 
 		clearTiles(currentTiles);
 		setTiles(newTiles);
