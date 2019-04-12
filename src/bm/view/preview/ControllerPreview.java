@@ -1,11 +1,8 @@
 package bm.view.preview;
 
-import java.util.List;
-
 import bm.util.blocks.Block;
 import bm.util.blocks.BlockPool;
 import bm.util.blocks.Tile;
-import bm.view.field.label.CanvasFieldLabel;
 import bm.view.preview.label.CanvasPreviewLabel;
 import bm.view.preview.text.CanvasPreviewText;
 

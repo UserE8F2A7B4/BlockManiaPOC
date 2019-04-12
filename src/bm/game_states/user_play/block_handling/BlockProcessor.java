@@ -98,11 +98,11 @@ public class BlockProcessor
 		return offsetRow;
 	}
 
-	private int calculateOffsetCol()
-	{
-		int offsetCol = (GlobalData.COL_COUNT - getBlockWidth()) / 2; // To center the block.
-		return offsetCol;
-	}
+	//	private int calculateOffsetCol()
+	//	{
+	//		int offsetCol = (GlobalData.COL_COUNT - getBlockWidth()) / 2; // To center the block.
+	//		return offsetCol;
+	//	}
 
 	private int getBlockWidth()
 	{

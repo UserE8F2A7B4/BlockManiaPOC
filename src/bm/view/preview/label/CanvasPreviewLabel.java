@@ -30,7 +30,7 @@ public class CanvasPreviewLabel
 		init();
 	}
 
-	public void init()
+	private void init()
 	{
 		image = UtilView.createImage(GlobalData.PREVIEW_WIDTH, GlobalData.PREVIEW_HEIGHT);
 		canvas = UtilView.createCanvas(image);
@@ -42,13 +42,13 @@ public class CanvasPreviewLabel
 		canvas.drawString("View-preview", 2, 2);
 	}
 
-	public void clearField()
+	private void clearField()
 	{
 		canvas.setColor(Color.GREEN);
 		canvas.fillRect(0,0, GlobalData.PREVIEW_WIDTH, GlobalData.PREVIEW_HEIGHT);
 	}
 
-	public void drawTile(Tile tile)
+	private void drawTile(Tile tile)
 	{
 		if (tile != null)
 		{
@@ -60,11 +60,11 @@ public class CanvasPreviewLabel
 	{
 		clearField();
 
-		for (int row = 0 ; row < field.length ; row++)
+		for (Tile[] row : field)
 		{
-			for (int col = 0 ; col < field[row].length ; col++)
+			for (Tile tile : row)
 			{
-				drawTile(field[row][col]);
+				drawTile(tile);
 			}
 		}
 

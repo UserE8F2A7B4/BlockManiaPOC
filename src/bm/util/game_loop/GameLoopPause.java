@@ -52,7 +52,7 @@ public class GameLoopPause
 		}
 	}
 
-	public void reset()
+	private void reset()
 	{
 		counter = ticksToPause;
 	}

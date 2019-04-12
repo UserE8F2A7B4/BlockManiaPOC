@@ -24,12 +24,10 @@ public class CanvasPreviewText
 	{
 		StringBuilder sb = new StringBuilder();
 
-		for (int row = 0 ; row < field.length ; row++)
+		for (Tile[] row : field)
 		{
-			for (int col = 0 ; col < field[row].length ; col++)
+			for (Tile tile : row)
 			{
-				Tile tile = field[row][col];
-
 				if (tile == null)
 				{
 					sb.append("∙");

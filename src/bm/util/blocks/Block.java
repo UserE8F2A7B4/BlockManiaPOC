@@ -146,10 +146,10 @@ public abstract class Block
 		offsetRow--;
 	}
 
-	public void setOffsetColumnBase(int offset)
-	{
-		this.offsetColumnBase = offset;
-	}
+	//	public void setOffsetColumnBase(int offset)
+	//	{
+	//		this.offsetColumnBase = offset;
+	//	}
 
 	public void incrementOffsetColumn()
 	{

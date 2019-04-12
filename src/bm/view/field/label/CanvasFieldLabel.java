@@ -32,7 +32,7 @@ public class CanvasFieldLabel
 		init();
 	}
 
-	public void init()
+	private void init()
 	{
 		image = UtilView.createImage(GlobalData.FIELD_WIDTH, GlobalData.FIELD_HEIGHT);
 		canvas = UtilView.createCanvas(image);
@@ -44,13 +44,13 @@ public class CanvasFieldLabel
 		canvas.drawString("View-field", 5, 15);
 	}
 
-	public void clearField()
+	private void clearField()
 	{
 		canvas.setColor(Color.GREEN);
 		canvas.fillRect(0,0, GlobalData.FIELD_WIDTH, GlobalData.FIELD_HEIGHT);
 	}
 
-	public void drawTile(Tile tile)
+	private void drawTile(Tile tile)
 	{
 		if (tile != null)
 		{
@@ -62,11 +62,11 @@ public class CanvasFieldLabel
 	{
 		clearField();
 
-		for (int row = 0 ; row < field.length ; row++)
+		for (Tile[] row : field)
 		{
-			for (int col = 0 ; col < field[row].length ; col++)
+			for (Tile tile : row)
 			{
-				drawTile(field[row][col]);
+				drawTile(tile);
 			}
 		}
 

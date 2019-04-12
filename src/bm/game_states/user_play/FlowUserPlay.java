@@ -12,13 +12,10 @@ public class FlowUserPlay
 	private ControllerMain cm;
 	private ControllerUserPlay cup;
 	private ControllerBlockHandling cb;
-	private ControllerLineRemoval cl;
 
 	private final static int MOVEMENT_DELAY = 2;
 	private boolean isRepeating;
 	private int isMoving;
-
-	public static long gameTickCounter;
 
 	public static FlowUserPlay getInstance()
 	{
@@ -40,8 +37,6 @@ public class FlowUserPlay
 
 		cb = ControllerBlockHandling.getInstance();
 		cb.init();
-
-		cl = ControllerLineRemoval.getInstance();
 	}
 
 	public void handleGameTick()

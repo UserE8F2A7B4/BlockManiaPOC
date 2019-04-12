@@ -14,7 +14,7 @@ public class ControllerField
 {
 	private static ControllerField instance;
 
-	private Tile[][] field = new Tile[GlobalData.ROW_COUNT][GlobalData.COL_COUNT];
+	private Tile[][] field         = new Tile[GlobalData.ROW_COUNT][GlobalData.COL_COUNT];
 	private Tile[][] fieldPrevious = new Tile[GlobalData.ROW_COUNT][GlobalData.COL_COUNT];
 
 	public static ControllerField getInstance()

@@ -24,8 +24,8 @@ public class BlockManiaPOC extends JFrame
 
   public enum UserInput
 	{
-		NONE, START_GAME, NEXT_BLOCK, ROTATE, FLIP, MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN;
-  }
+		NONE, START_GAME, NEXT_BLOCK, ROTATE, FLIP, MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN
+	}
 
 	public BlockManiaPOC()
 	{
