@@ -1,4 +1,4 @@
-package bm.view.field;
+package bm.game_states.user_play.Canvas.Field;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,26 +7,24 @@ import java.util.List;
 import bm.game_states.user_play.ControllerUserPlay;
 import bm.util.blocks.Tile;
 import bm.util.GlobalData;
-import bm.view.field.label.CanvasFieldLabel;
-import bm.view.field.text.CanvasFieldText;
 
-public class ControllerField
+public class ControllerFieldUserPlay
 {
-	private static ControllerField instance;
+	private static ControllerFieldUserPlay instance;
 
 	private Tile[][] field         = new Tile[GlobalData.ROW_COUNT][GlobalData.COL_COUNT];
 	private Tile[][] fieldPrevious = new Tile[GlobalData.ROW_COUNT][GlobalData.COL_COUNT];
 
-	public static ControllerField getInstance()
+	public static ControllerFieldUserPlay getInstance()
 	{
 		if (instance == null)
 		{
-			instance = new ControllerField();
+			instance = new ControllerFieldUserPlay();
 		}
 		return instance;
 	}
 
-	private ControllerField()
+	private ControllerFieldUserPlay()
 	{
 	}
 
@@ -260,8 +258,8 @@ public class ControllerField
 
 	private void updateCanvas()
 	{
-		CanvasFieldText.getInstance().renderField(field);
-		CanvasFieldLabel.getInstance().renderField(field);
+		CanvasFieldUserPlayText.getInstance().renderField(field);
+		CanvasFieldUserPlayLabel.getInstance().renderField(field);
 
 		// Er is iets gewijzigd aan het veld, dus :
 

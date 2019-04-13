@@ -1,22 +1,22 @@
-package bm.view.preview.text;
+package bm.game_states.user_play.Canvas.Preview;
 
 import bm.BlockManiaPOC;
 import bm.util.blocks.Tile;
 
-public class CanvasPreviewText
+public class CanvasPreviewUserPlayText
 {
-	private static CanvasPreviewText instance;
+	private static CanvasPreviewUserPlayText instance;
 
-	public static CanvasPreviewText getInstance()
+	public static CanvasPreviewUserPlayText getInstance()
 	{
 		if (instance == null)
 		{
-			instance = new CanvasPreviewText();
+			instance = new CanvasPreviewUserPlayText();
 		}
 		return instance;
 	}
 
-	private CanvasPreviewText()
+	private CanvasPreviewUserPlayText()
 	{
 	}
 

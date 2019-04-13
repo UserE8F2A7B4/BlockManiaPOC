@@ -1,19 +1,18 @@
 package bm.game_states.user_play.block_handling;
 
-import bm.view.field.ControllerField;
-import bm.view.preview.ControllerPreview;
+import bm.game_states.user_play.Canvas.Field.ControllerFieldUserPlay;
+import bm.game_states.user_play.Canvas.Preview.ControllerPreviewUserPlay;
 import bm.util.blocks.Block;
 import bm.util.blocks.Block.RotationMode;
 import bm.util.blocks.Tile;
-import bm.util.GlobalData;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BlockProcessor
 {
-	private ControllerField controllerField;
-	private ControllerPreview controllerPreview;
+	private ControllerFieldUserPlay controllerField;
+	private ControllerPreviewUserPlay controllerPreview;
 
 	private Block block;
 
@@ -32,8 +31,8 @@ public class BlockProcessor
 
 	private BlockProcessor()
 	{
-		controllerField = ControllerField.getInstance();
-		controllerPreview = ControllerPreview.getInstance();
+		controllerField = ControllerFieldUserPlay.getInstance();
+		controllerPreview = ControllerPreviewUserPlay.getInstance();
 	}
 
 	public boolean hasBlock()

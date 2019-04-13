@@ -2,7 +2,7 @@ package bm.game_states.user_play;
 
 import bm.util.GlobalData;
 import bm.util.blocks.Tile;
-import bm.view.field.ControllerField;
+import bm.game_states.user_play.Canvas.Field.ControllerFieldUserPlay;
 
 import bm.game_states.user_play.line_removal.ControllerLineRemoval;
 
@@ -97,7 +97,7 @@ public class ControllerUserPlay
 //		tilesNew.add(new Tile(13, 5,15));
 //		tilesNew.add(new Tile(13, 6,15));
 
-		ControllerField cf = ControllerField.getInstance();
+		ControllerFieldUserPlay cf = ControllerFieldUserPlay.getInstance();
 		cf.tryToPlaceNewTilesOnField(tilesEmpty, tilesNew);
 
 		changeGameState(GameStateUserPlay.LINE_REMOVAL);

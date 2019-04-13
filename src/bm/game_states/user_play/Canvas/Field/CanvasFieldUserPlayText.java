@@ -1,22 +1,22 @@
-package bm.view.field.text;
+package bm.game_states.user_play.Canvas.Field;
 
 import bm.BlockManiaPOC;
 import bm.util.blocks.Tile;
 
-public class CanvasFieldText
+public class CanvasFieldUserPlayText
 {
-	private static CanvasFieldText instance;
+	private static CanvasFieldUserPlayText instance;
 
-	public static CanvasFieldText getInstance()
+	public static CanvasFieldUserPlayText getInstance()
 	{
 		if (instance == null)
 		{
-			instance = new CanvasFieldText();
+			instance = new CanvasFieldUserPlayText();
 		}
 		return instance;
 	}
 
-	private CanvasFieldText()
+	private CanvasFieldUserPlayText()
 	{
 	}
 

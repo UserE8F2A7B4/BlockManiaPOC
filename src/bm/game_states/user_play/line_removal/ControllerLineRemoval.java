@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import bm.game_states.user_play.ControllerUserPlay;
-import bm.view.field.ControllerField;
+import bm.game_states.user_play.Canvas.Field.ControllerFieldUserPlay;
 import bm.util.blocks.Tile;
 import bm.util.game_loop.GameLoopPause;
 import bm.util.GlobalData;
@@ -13,7 +13,7 @@ public class ControllerLineRemoval
 {
 	private static ControllerLineRemoval instance;
 
-	private ControllerField cf;
+	private ControllerFieldUserPlay cf;
 
 	private RemovalMode mode;
 	private enum RemovalMode
@@ -27,7 +27,7 @@ public class ControllerLineRemoval
 	private int rowCurrent, colCurrent;
 	private int rowIndex;
 
-	private GameLoopPause pauseAnimation = new GameLoopPause(2); // Skip 10 game-ticks.
+	private GameLoopPause pauseAnimation = new GameLoopPause(2);
 
 	public static ControllerLineRemoval getInstance()
 	{
@@ -44,7 +44,7 @@ public class ControllerLineRemoval
 
 	public void init()
 	{
-		cf = ControllerField.getInstance();
+		cf = ControllerFieldUserPlay.getInstance();
 		mode = RemovalMode.IDLE;
 	}
 
