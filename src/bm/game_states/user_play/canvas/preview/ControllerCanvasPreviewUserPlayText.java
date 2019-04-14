@@ -3,26 +3,28 @@ package bm.game_states.user_play.canvas.preview;
 import bm.BlockManiaPOC;
 import bm.util.blocks.Tile;
 
-public class CanvasPreviewUserPlayText
+public class ControllerCanvasPreviewUserPlayText
 {
-	private static CanvasPreviewUserPlayText instance;
+	private static ControllerCanvasPreviewUserPlayText instance;
 
-	public static CanvasPreviewUserPlayText getInstance()
+	private StringBuilder sb = new StringBuilder();
+
+	public static ControllerCanvasPreviewUserPlayText getInstance()
 	{
 		if (instance == null)
 		{
-			instance = new CanvasPreviewUserPlayText();
+			instance = new ControllerCanvasPreviewUserPlayText();
 		}
 		return instance;
 	}
 
-	private CanvasPreviewUserPlayText()
+	private ControllerCanvasPreviewUserPlayText()
 	{
 	}
 
-	public void renderPreview(Tile[][] field)
+	public void drawTiles(Tile[][] field)
 	{
-		StringBuilder sb = new StringBuilder();
+		sb.setLength(0);
 
 		for (Tile[] row : field)
 		{
@@ -39,7 +41,12 @@ public class CanvasPreviewUserPlayText
 			}
 			sb.append("\n");
 		}
+	}
 
+	public void renderPreview()
+	{
 		BlockManiaPOC.getTxtCanvasPreview().setText(sb.toString());
 	}
+
+
 }

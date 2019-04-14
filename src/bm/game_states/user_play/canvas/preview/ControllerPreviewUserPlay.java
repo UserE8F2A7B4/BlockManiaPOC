@@ -1,15 +1,16 @@
 package bm.game_states.user_play.canvas.preview;
 
+import bm.util.CanvasHandling;
 import bm.util.blocks.Block;
 import bm.util.blocks.BlockPool;
 import bm.util.blocks.Tile;
 
-public class ControllerPreviewUserPlay
+public class ControllerPreviewUserPlay implements CanvasHandling
 {
 	private static ControllerPreviewUserPlay instance;
 
-	private CanvasPreviewUserPlayText ct;
-	private CanvasPreviewUserPlayLabel cl;
+	private ControllerCanvasPreviewUserPlayText ct;
+	private ControllerCanvasPreviewUserPlayLabel cl;
 
 
 	private Block block;
@@ -32,10 +33,15 @@ public class ControllerPreviewUserPlay
 
 	public void init()
 	{
-		ct = CanvasPreviewUserPlayText.getInstance();
-		cl = CanvasPreviewUserPlayLabel.getInstance();
-
+		initCanvas();
 		loadRandomBlock();
+	}
+
+	@Override
+	public void initCanvas()
+	{
+		ct = ControllerCanvasPreviewUserPlayText.getInstance();
+		cl = ControllerCanvasPreviewUserPlayLabel.getInstance();
 	}
 
 	public Block getBlock()
@@ -75,13 +81,16 @@ public class ControllerPreviewUserPlay
 			field[tile.getRow()][tile.getCol()] = tile;
 		}
 
-		updateCanvas(field);
+		ct.drawTiles(field);
+		cl.drawTiles(field);
+		render();
 	}
 
-	private void updateCanvas(Tile[][] field)
+	@Override
+	public void render()
 	{
-		ct.renderPreview(field);
-		cl.renderPreview(field);
+		ct.renderPreview();
+		cl.renderPreview();
 	}
 
 }

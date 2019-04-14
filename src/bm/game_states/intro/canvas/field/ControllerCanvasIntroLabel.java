@@ -2,25 +2,25 @@ package bm.game_states.intro.canvas.field;
 
 import bm.BlockManiaPOC;
 import bm.util.GlobalData;
-import bm.view.CanvasBase;
+import bm.view.ControllerCanvasBase;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class CanvasIntroLabel extends CanvasBase
+public class ControllerCanvasIntroLabel extends ControllerCanvasBase
 {
-	private static CanvasIntroLabel instance;
+	private static ControllerCanvasIntroLabel instance;
 
-	public static CanvasIntroLabel getInstance()
+	public static ControllerCanvasIntroLabel getInstance()
 	{
 		if (instance == null)
 		{
-			instance = new CanvasIntroLabel();
+			instance = new ControllerCanvasIntroLabel();
 		}
 		return instance;
 	}
 
-	private CanvasIntroLabel()
+	private ControllerCanvasIntroLabel()
 	{
 		super(GlobalData.FIELD_WIDTH, GlobalData.FIELD_HEIGHT, Color.CYAN);
 	}

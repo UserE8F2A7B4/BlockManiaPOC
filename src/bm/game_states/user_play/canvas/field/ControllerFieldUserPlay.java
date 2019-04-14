@@ -8,7 +8,7 @@ import bm.game_states.user_play.ControllerUserPlay;
 import bm.util.blocks.Tile;
 import bm.util.GlobalData;
 
-public class ControllerFieldUserPlay
+public class ControllerFieldUserPlay // implements CanvasHandling FIXME
 {
 	private static ControllerFieldUserPlay instance;
 
@@ -259,7 +259,7 @@ public class ControllerFieldUserPlay
 	private void updateCanvas()
 	{
 		CanvasFieldUserPlayText.getInstance().renderField(field);
-		CanvasFieldUserPlayLabel.getInstance().drawTiles(field);
+		ControllerCanvasFieldUserPlayLabel.getInstance().drawTiles(field);
 
 		// Er is iets gewijzigd aan het veld, dus :
 

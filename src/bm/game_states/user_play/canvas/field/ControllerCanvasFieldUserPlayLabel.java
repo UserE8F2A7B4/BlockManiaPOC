@@ -3,29 +3,30 @@ package bm.game_states.user_play.canvas.field;
 import bm.BlockManiaPOC;
 import bm.util.GlobalData;
 import bm.util.blocks.Tile;
-import bm.view.CanvasBase;
+import bm.view.ControllerCanvasBase;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class CanvasFieldUserPlayLabel extends CanvasBase
+public class ControllerCanvasFieldUserPlayLabel extends ControllerCanvasBase
 {
-	private static CanvasFieldUserPlayLabel instance;
+	private static ControllerCanvasFieldUserPlayLabel instance;
 
-	public static CanvasFieldUserPlayLabel getInstance()
+	public static ControllerCanvasFieldUserPlayLabel getInstance()
 	{
 		if (instance == null)
 		{
-			instance = new CanvasFieldUserPlayLabel();
+			instance = new ControllerCanvasFieldUserPlayLabel();
 		}
 		return instance;
 	}
 
-	private CanvasFieldUserPlayLabel()
+	private ControllerCanvasFieldUserPlayLabel()
 	{
 		super(GlobalData.FIELD_WIDTH, GlobalData.FIELD_HEIGHT, Color.GREEN);
 	}
 
+	@Override
 	public void drawTiles(Tile[][] field)
 	{
 		super.drawTiles(field);

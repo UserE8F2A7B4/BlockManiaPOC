@@ -1,12 +1,11 @@
 package bm.view;
 
 import bm.util.blocks.Tile;
-import bm.view.UtilView;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public abstract class CanvasBase
+public abstract class ControllerCanvasBase
 {
 	protected Graphics2D canvas;
 	protected BufferedImage image;
@@ -14,7 +13,7 @@ public abstract class CanvasBase
 	private int width, height;
 	private Color color;
 
-	public CanvasBase(int w, int h, Color c)
+	public ControllerCanvasBase(int w, int h, Color c)
 	{
 		width = w;
 		height = h;
@@ -27,7 +26,7 @@ public abstract class CanvasBase
 		canvas.fillRect(0,0, width, height);
 	}
 
-	public void clearField()
+	public void clearCanvas()
 	{
 		canvas.setColor(color);
 		canvas.fillRect(0,0, width, height);
@@ -35,7 +34,7 @@ public abstract class CanvasBase
 
 	public void drawTiles(Tile[][] field)
 	{
-		clearField();
+		clearCanvas();
 
 		for (Tile[] row : field)
 		{
