@@ -1,33 +1,33 @@
-package bm.game_states.title_screen;
+package bm.game_states.intro.canvas.field;
 
 import bm.util.game_loop.GameLoopPause;
 
-public class ControllerTitleScreen
+public class ControllerFieldIntro
 {
-	private static ControllerTitleScreen instance;
+	private static ControllerFieldIntro instance;
 
 	private GameLoopPause pause = new GameLoopPause(3);
 
-	private CanvasTitleScreen tsc;
+	private CanvasIntroLabel tsc;
 
 	private int Y;
 
-	public static ControllerTitleScreen getInstance()
+	public static ControllerFieldIntro getInstance()
 	{
 		if (instance == null)
 		{
-			instance = new ControllerTitleScreen();
+			instance = new ControllerFieldIntro();
 		}
 		return instance;
 	}
 
-	private ControllerTitleScreen()
+	private ControllerFieldIntro()
 	{
 	}
 
 	public void init()
 	{
-		tsc = CanvasTitleScreen.getInstance();
+		tsc = CanvasIntroLabel.getInstance();
 		Y = 40;
 	}
 
@@ -43,7 +43,14 @@ public class ControllerTitleScreen
 			{
 				Y = 40;
 			}
+
+			updateCanvas();
 		}
+	}
+
+	private void updateCanvas()
+	{
+		tsc.renderIntro();
 	}
 
 }

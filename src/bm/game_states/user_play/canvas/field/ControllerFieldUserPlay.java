@@ -1,4 +1,4 @@
-package bm.game_states.user_play.Canvas.Field;
+package bm.game_states.user_play.canvas.field;
 
 import java.util.ArrayList;
 import java.util.Arrays;

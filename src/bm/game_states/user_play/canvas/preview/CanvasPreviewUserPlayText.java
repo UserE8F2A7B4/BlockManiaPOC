@@ -1,4 +1,4 @@
-package bm.game_states.user_play.Canvas.Preview;
+package bm.game_states.user_play.canvas.preview;
 
 import bm.BlockManiaPOC;
 import bm.util.blocks.Tile;

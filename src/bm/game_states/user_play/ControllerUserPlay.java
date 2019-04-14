@@ -2,7 +2,7 @@ package bm.game_states.user_play;
 
 import bm.util.GlobalData;
 import bm.util.blocks.Tile;
-import bm.game_states.user_play.Canvas.Field.ControllerFieldUserPlay;
+import bm.game_states.user_play.canvas.field.ControllerFieldUserPlay;
 
 import bm.game_states.user_play.line_removal.ControllerLineRemoval;
 

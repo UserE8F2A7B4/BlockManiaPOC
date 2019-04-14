@@ -1,4 +1,4 @@
-package bm.game_states.title_screen;
+package bm.game_states.intro.canvas.field;
 
 import bm.BlockManiaPOC;
 import bm.util.GlobalData;
@@ -7,20 +7,20 @@ import bm.view.CanvasBase;
 import javax.swing.*;
 import java.awt.*;
 
-public class CanvasTitleScreen extends CanvasBase
+public class CanvasIntroLabel extends CanvasBase
 {
-	private static CanvasTitleScreen instance;
+	private static CanvasIntroLabel instance;
 
-	public static CanvasTitleScreen getInstance()
+	public static CanvasIntroLabel getInstance()
 	{
 		if (instance == null)
 		{
-			instance = new CanvasTitleScreen();
+			instance = new CanvasIntroLabel();
 		}
 		return instance;
 	}
 
-	private CanvasTitleScreen()
+	private CanvasIntroLabel()
 	{
 		super(GlobalData.FIELD_WIDTH, GlobalData.FIELD_HEIGHT, Color.CYAN);
 	}
@@ -29,10 +29,9 @@ public class CanvasTitleScreen extends CanvasBase
 	{
 		canvas.setColor(Color.BLACK);
 		canvas.drawString(text, X, Y);
-		renderTitleScreen();
 	}
 
-	private void renderTitleScreen()
+	public void renderIntro()
 	{
 		BlockManiaPOC.getLblCanvasField().setIcon(new ImageIcon(image));
 	}

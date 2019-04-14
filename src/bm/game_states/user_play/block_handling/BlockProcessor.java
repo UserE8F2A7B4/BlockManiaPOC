@@ -1,7 +1,7 @@
 package bm.game_states.user_play.block_handling;
 
-import bm.game_states.user_play.Canvas.Field.ControllerFieldUserPlay;
-import bm.game_states.user_play.Canvas.Preview.ControllerPreviewUserPlay;
+import bm.game_states.user_play.canvas.field.ControllerFieldUserPlay;
+import bm.game_states.user_play.canvas.preview.ControllerPreviewUserPlay;
 import bm.util.blocks.Block;
 import bm.util.blocks.Block.RotationMode;
 import bm.util.blocks.Tile;

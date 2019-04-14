@@ -2,8 +2,8 @@ package bm.game_states.user_play.block_handling;
 
 import bm.BlockManiaPOC.UserInput;
 import bm.algemeen.ControllerMain;
-import bm.game_states.user_play.Canvas.Field.ControllerFieldUserPlay;
-import bm.game_states.user_play.Canvas.Preview.ControllerPreviewUserPlay;
+import bm.game_states.user_play.canvas.field.ControllerFieldUserPlay;
+import bm.game_states.user_play.canvas.preview.ControllerPreviewUserPlay;
 
 import javax.swing.*;
 
@@ -31,7 +31,10 @@ public class ControllerBlockHandling
 	public void init()
 	{
 		cf = ControllerFieldUserPlay.getInstance();
+
 		cp = ControllerPreviewUserPlay.getInstance();
+		cp.init();
+
 		bp = BlockProcessor.getInstance();
 	}
 
@@ -111,7 +114,7 @@ public class ControllerBlockHandling
 		cp.clearBlock();
 		cf.clearAllTiles();
 
-		ControllerMain.getInstance().changeGameState(ControllerMain.GameStateMain.TITLE_SCREEN);
+		ControllerMain.getInstance().changeGameState(ControllerMain.GameStateMain.INTRO);
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import bm.game_states.user_play.ControllerUserPlay;
-import bm.game_states.user_play.Canvas.Field.ControllerFieldUserPlay;
+import bm.game_states.user_play.canvas.field.ControllerFieldUserPlay;
 import bm.util.blocks.Tile;
 import bm.util.game_loop.GameLoopPause;
 import bm.util.GlobalData;

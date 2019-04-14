@@ -1,7 +1,7 @@
 package bm.algemeen;
 
 import bm.BlockManiaPOC.UserInput;
-import bm.game_states.title_screen.ControllerTitleScreen;
+import bm.game_states.intro.canvas.field.ControllerFieldIntro;
 import bm.game_states.user_play.ControllerUserPlay;
 import bm.util.game_loop.GameLoopPause;
 
@@ -11,14 +11,14 @@ public class ControllerMain
 
 	private UserInput request = UserInput.NONE;
 
-	private ControllerTitleScreen cts;
+	private ControllerFieldIntro cts;
 	private ControllerUserPlay cup;
 
 	private GameStateMain gameStateMain;
 
 	public enum GameStateMain
 	{
-		TITLE_SCREEN, USER_PLAYING, DEMO_PLAYING
+		INTRO, USER_PLAY, DEMO_PLAY
 	}
 
 	private GameLoopPause pausing = new GameLoopPause(60);
@@ -38,9 +38,9 @@ public class ControllerMain
 
 	public void init()
 	{
-		gameStateMain = GameStateMain.TITLE_SCREEN;
+		gameStateMain = GameStateMain.INTRO;
 
-		cts = ControllerTitleScreen.getInstance();
+		cts = ControllerFieldIntro.getInstance();
 		cts.init();
 
 		cup = ControllerUserPlay.getInstance();
@@ -66,27 +66,20 @@ public class ControllerMain
 	public void handleGameTick()
 	{
 		final UserInput input = getUserRequest();
-		if (input == UserInput.START_GAME)
+		if (input == UserInput.USER_PLAY)
 		{
 			cup.changeGameState(ControllerUserPlay.GameStateUserPlay.BLOCK_HANDLING);
-			changeGameState(GameStateMain.USER_PLAYING);
+			changeGameState(GameStateMain.USER_PLAY);
 		}
 		
     switch (gameStateMain)
     {
-      case TITLE_SCREEN : cts.handleGameTick() ; break;
-      case USER_PLAYING : cup.handleGameTick() ; break;
-      case DEMO_PLAYING : break;
-      default           : throw new RuntimeException("Invalid game-State-Main.");
+      case INTRO     : cts.handleGameTick() ; break;
+      case USER_PLAY : cup.handleGameTick() ; break;
+      case DEMO_PLAY : break;
+      default        : throw new RuntimeException("Invalid game-State-Main.");
     }
 	}
 
-//	private void handleIdle()
-//	{
-//		if (!pausing.isPausing())
-//		{
-//			System.out.println("Game idle. Press 'F9' to play.");
-//		}
-//	}
 
 }

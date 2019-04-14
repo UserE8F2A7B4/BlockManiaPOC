@@ -1,4 +1,4 @@
-package bm.game_states.user_play.Canvas.Preview;
+package bm.game_states.user_play.canvas.preview;
 
 import bm.util.blocks.Block;
 import bm.util.blocks.BlockPool;
@@ -8,8 +8,11 @@ public class ControllerPreviewUserPlay
 {
 	private static ControllerPreviewUserPlay instance;
 
+	private CanvasPreviewUserPlayText ct;
+	private CanvasPreviewUserPlayLabel cl;
+
+
 	private Block block;
-	// private Tile[][] field;
 
 	private final static int ROWS = 9;
 	private final static int COLS = 9;
@@ -25,6 +28,13 @@ public class ControllerPreviewUserPlay
 
 	private ControllerPreviewUserPlay()
 	{
+	}
+
+	public void init()
+	{
+		ct = CanvasPreviewUserPlayText.getInstance();
+		cl = CanvasPreviewUserPlayLabel.getInstance();
+
 		loadRandomBlock();
 	}
 
@@ -70,8 +80,8 @@ public class ControllerPreviewUserPlay
 
 	private void updateCanvas(Tile[][] field)
 	{
-		CanvasPreviewUserPlayText.getInstance().renderPreview(field);
-		CanvasPreviewUserPlayLabel.getInstance().renderPreview(field);
+		ct.renderPreview(field);
+		cl.renderPreview(field);
 	}
 
 }

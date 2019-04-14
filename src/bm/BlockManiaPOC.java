@@ -24,7 +24,7 @@ public class BlockManiaPOC extends JFrame
 
   public enum UserInput
 	{
-		NONE, START_GAME, NEXT_BLOCK, ROTATE, FLIP, MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN
+		NONE, INTRO, USER_PLAY, DEMO_PLAY, NEXT_BLOCK, ROTATE, FLIP, MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN
 	}
 
 	public BlockManiaPOC()
@@ -136,29 +136,37 @@ public class BlockManiaPOC extends JFrame
 
 	private void addKeyBindings(InputMap inputMap, ActionMap actionMap)
 	{
-		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_UP,   "UP_PRESS",       (actionEvent) -> cm.setUserRequest(UserInput.MOVE_UP));
-		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_UP,   "UP_RELEASE",     (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_UP,   "UP_press",       (actionEvent) -> cm.setUserRequest(UserInput.MOVE_UP));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_UP,   "UP_release",     (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 
-		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_DOWN, "DOWN_PRESS",     (actionEvent) -> cm.setUserRequest(UserInput.MOVE_DOWN));
-		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_DOWN, "DOWN_RELEASE",   (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_DOWN, "DOWN_press",     (actionEvent) -> cm.setUserRequest(UserInput.MOVE_DOWN));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_DOWN, "DOWN_release",   (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 
-		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_LEFT, "LEFT_PRESS",     (actionEvent) -> cm.setUserRequest(UserInput.MOVE_LEFT));
-		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_LEFT, "LEFT_RELEASE",   (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_LEFT, "LEFT_press",     (actionEvent) -> cm.setUserRequest(UserInput.MOVE_LEFT));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_LEFT, "LEFT_release",   (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 
-		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_RIGHT,"RIGHT_PRESS",    (actionEvent) -> cm.setUserRequest(UserInput.MOVE_RIGHT));
-		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_RIGHT,"RIGHT_RELEASE",  (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_RIGHT,"RIGHT_press",    (actionEvent) -> cm.setUserRequest(UserInput.MOVE_RIGHT));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_RIGHT,"RIGHT_release",  (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 
-		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_R,    "ROTATE_PRESS",   (actionEvent) -> cm.setUserRequest(UserInput.ROTATE));
-		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_R,    "ROTATE_RELEASE", (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_R,    "ROTATE_press",   (actionEvent) -> cm.setUserRequest(UserInput.ROTATE));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_R,    "ROTATE_release", (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 
-		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_F,    "FLIP_PRESS",     (actionEvent) -> cm.setUserRequest(UserInput.FLIP));
-		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_F,    "FLIP_RELEASE",   (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_F,    "FLIP_press",     (actionEvent) -> cm.setUserRequest(UserInput.FLIP));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_F,    "FLIP_release",   (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 
-		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_F9,    "START_PRESS",    (actionEvent) -> cm.setUserRequest(UserInput.START_GAME));
-		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_F9,    "START_RELEASE",  (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_N,    "NEXT_press",     (actionEvent) -> cm.setUserRequest(UserInput.NEXT_BLOCK));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_N,    "NEXT_release",   (actionEvent) -> cm.setUserRequest(UserInput.NONE));
 
-		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_N,    "NEXT_PRESS",     (actionEvent) -> cm.setUserRequest(UserInput.NEXT_BLOCK));
-		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_N,    "NEXT_RELEASE",   (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_F8,   "INTRO_press",       (actionEvent) -> cm.setUserRequest(UserInput.INTRO));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_F8,   "INTRO_release",     (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_F9,   "USER_PLAY_press",   (actionEvent) -> cm.setUserRequest(UserInput.USER_PLAY));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_F9,   "USER_PLAY_release", (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+
+		Util.createKeyBindingOnKeyPress(  inputMap, actionMap, KeyEvent.VK_F10,  "DEMO_PLAY_press",   (actionEvent) -> cm.setUserRequest(UserInput.DEMO_PLAY));
+		Util.createKeyBindingOnKeyRelease(inputMap, actionMap, KeyEvent.VK_F10,  "DEMO_PLAY_release", (actionEvent) -> cm.setUserRequest(UserInput.NONE));
+
 	}
 
 }
