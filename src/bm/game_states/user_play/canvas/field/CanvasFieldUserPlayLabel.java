@@ -26,9 +26,9 @@ public class CanvasFieldUserPlayLabel extends CanvasBase
 		super(GlobalData.FIELD_WIDTH, GlobalData.FIELD_HEIGHT, Color.GREEN);
 	}
 
-	public void renderField(Tile[][] field)
+	public void drawTiles(Tile[][] field)
 	{
-		super.renderField(field);
+		super.drawTiles(field);
 		BlockManiaPOC.getLblCanvasField().setIcon(new ImageIcon(image));
 	}
 

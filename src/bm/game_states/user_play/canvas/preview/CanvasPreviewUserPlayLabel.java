@@ -26,9 +26,17 @@ public class CanvasPreviewUserPlayLabel extends CanvasBase
 		super(GlobalData.PREVIEW_WIDTH, GlobalData.PREVIEW_HEIGHT, Color.MAGENTA);
 	}
 
+//
+//	public void drawTiles(Tile[][] field)
+//	{
+//
+//	}
+
+
+
 	public void renderPreview(Tile[][] field)
 	{
-		super.renderField(field);
+		super.drawTiles(field);
 		BlockManiaPOC.getLblCanvasPreview().setIcon(new ImageIcon(image));
 	}
 

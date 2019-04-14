@@ -1,14 +1,15 @@
 package bm.game_states.intro.canvas.field;
 
+import bm.util.GameTickHandling;
 import bm.util.game_loop.GameLoopPause;
 
-public class ControllerFieldIntro
+public class ControllerFieldIntro implements GameTickHandling
 {
 	private static ControllerFieldIntro instance;
 
 	private GameLoopPause pause = new GameLoopPause(3);
 
-	private CanvasIntroLabel tsc;
+	private CanvasIntroLabel ci;
 
 	private int Y;
 
@@ -27,16 +28,21 @@ public class ControllerFieldIntro
 
 	public void init()
 	{
-		tsc = CanvasIntroLabel.getInstance();
+		initCanvas();
 		Y = 40;
+	}
+
+	public void initCanvas()
+	{
+		ci = CanvasIntroLabel.getInstance();
 	}
 
 	public void handleGameTick()
 	{
 		if (pause.hasExpired())
 		{
-			tsc.clearField();
-			tsc.drawString("Press 'F9' to play.", 20, Y);
+			ci.clearField();
+			ci.drawString("Press 'F9' to play.", 20, Y);
 			Y += 10;
 
 			if (Y == 150)
@@ -48,9 +54,9 @@ public class ControllerFieldIntro
 		}
 	}
 
-	private void updateCanvas()
+	public void updateCanvas()
 	{
-		tsc.renderIntro();
+		ci.renderIntro();
 	}
 
 }

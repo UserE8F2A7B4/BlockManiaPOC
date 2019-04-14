@@ -6,7 +6,7 @@ import bm.view.UtilView;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class CanvasBase
+public abstract class CanvasBase
 {
 	protected Graphics2D canvas;
 	protected BufferedImage image;
@@ -33,7 +33,7 @@ public class CanvasBase
 		canvas.fillRect(0,0, width, height);
 	}
 
-	public void renderField(Tile[][] field)
+	public void drawTiles(Tile[][] field)
 	{
 		clearField();
 

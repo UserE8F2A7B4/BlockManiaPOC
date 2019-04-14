@@ -259,7 +259,7 @@ public class ControllerFieldUserPlay
 	private void updateCanvas()
 	{
 		CanvasFieldUserPlayText.getInstance().renderField(field);
-		CanvasFieldUserPlayLabel.getInstance().renderField(field);
+		CanvasFieldUserPlayLabel.getInstance().drawTiles(field);
 
 		// Er is iets gewijzigd aan het veld, dus :
 
