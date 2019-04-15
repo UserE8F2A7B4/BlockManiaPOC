@@ -5,7 +5,7 @@ import bm.util.blocks.Tile;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public abstract class ControllerCanvasBase
+public abstract class CanvasBase
 {
 	protected Graphics2D canvas;
 	protected BufferedImage image;
@@ -13,7 +13,14 @@ public abstract class ControllerCanvasBase
 	private int width, height;
 	private Color color;
 
-	public ControllerCanvasBase(int w, int h, Color c)
+	protected StringBuilder canvasText;
+
+	public CanvasBase()
+	{
+		canvasText = new StringBuilder();
+	}
+
+	public CanvasBase(int w, int h, Color c)
 	{
 		width = w;
 		height = h;
@@ -52,5 +59,30 @@ public abstract class ControllerCanvasBase
 			UtilView.addTile(canvas, tile);
 		}
 	}
+
+	//---
+
+	public void drawTilesAsText(Tile[][] field)
+	{
+		canvasText.setLength(0);
+
+		for (Tile[] row : field)
+		{
+			for (Tile tile : row)
+			{
+				if (tile == null)
+				{
+					canvasText.append("∙");
+				}
+				else
+				{
+					canvasText.append("■");
+				}
+			}
+			canvasText.append("\n");
+		}
+	}
+
+	public abstract void render();
 
 }

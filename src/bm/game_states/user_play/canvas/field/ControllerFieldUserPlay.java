@@ -5,15 +5,19 @@ import java.util.Arrays;
 import java.util.List;
 
 import bm.game_states.user_play.ControllerUserPlay;
+import bm.util.CanvasHandling;
 import bm.util.blocks.Tile;
 import bm.util.GlobalData;
 
-public class ControllerFieldUserPlay // implements CanvasHandling FIXME
+public class ControllerFieldUserPlay implements CanvasHandling
 {
 	private static ControllerFieldUserPlay instance;
 
 	private Tile[][] field         = new Tile[GlobalData.ROW_COUNT][GlobalData.COL_COUNT];
 	private Tile[][] fieldPrevious = new Tile[GlobalData.ROW_COUNT][GlobalData.COL_COUNT];
+
+	private CanvasFieldUserPlayText ct;
+	private CanvasFieldUserPlayLabel cl;
 
 	public static ControllerFieldUserPlay getInstance()
 	{
@@ -26,6 +30,13 @@ public class ControllerFieldUserPlay // implements CanvasHandling FIXME
 
 	private ControllerFieldUserPlay()
 	{
+	}
+
+	@Override
+	public void initCanvas()
+	{
+		ct = CanvasFieldUserPlayText.getInstance();
+		cl = CanvasFieldUserPlayLabel.getInstance();
 	}
 
 	public boolean tryToPlaceNewTilesOnField(List<Tile> currentTiles, List<Tile> newTiles)
@@ -258,16 +269,24 @@ public class ControllerFieldUserPlay // implements CanvasHandling FIXME
 
 	private void updateCanvas()
 	{
-		CanvasFieldUserPlayText.getInstance().renderField(field);
-		ControllerCanvasFieldUserPlayLabel.getInstance().drawTiles(field);
+		ct.drawTilesAsText(field);
+		cl.drawTiles(field);
+
+		render();
 
 		// Er is iets gewijzigd aan het veld, dus :
-
 		// Vergelijk [fieldPrevious] met [field] en sla de verschillen op.
 		// Copieer de inhoud van [field] naar [fieldPrevious].
 
 		vergelijkFields();
 		copyField();
+	}
+
+	@Override
+	public void render()
+	{
+		ct.render();
+		cl.render();
 	}
 
 }

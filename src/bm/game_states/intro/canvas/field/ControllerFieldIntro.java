@@ -9,7 +9,7 @@ public class ControllerFieldIntro implements CanvasHandling
 
 	private GameLoopPause pause = new GameLoopPause(3);
 
-	private ControllerCanvasIntroLabel ci;
+	private CanvasIntroLabel ci;
 
 	private int Y;
 
@@ -35,7 +35,7 @@ public class ControllerFieldIntro implements CanvasHandling
 	@Override
 	public void initCanvas()
 	{
-		ci = ControllerCanvasIntroLabel.getInstance();
+		ci = CanvasIntroLabel.getInstance();
 	}
 
 	public void handleGameTick()
@@ -58,7 +58,7 @@ public class ControllerFieldIntro implements CanvasHandling
 	@Override
 	public void render()
 	{
-		ci.renderIntro();
+		ci.render();
 	}
 
 }

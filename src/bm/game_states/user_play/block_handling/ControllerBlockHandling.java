@@ -31,6 +31,7 @@ public class ControllerBlockHandling
 	public void init()
 	{
 		cf = ControllerFieldUserPlay.getInstance();
+		cf.initCanvas();
 
 		cp = ControllerPreviewUserPlay.getInstance();
 		cp.init();

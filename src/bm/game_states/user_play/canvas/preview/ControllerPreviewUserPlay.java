@@ -9,8 +9,8 @@ public class ControllerPreviewUserPlay implements CanvasHandling
 {
 	private static ControllerPreviewUserPlay instance;
 
-	private ControllerCanvasPreviewUserPlayText ct;
-	private ControllerCanvasPreviewUserPlayLabel cl;
+	private CanvasPreviewUserPlayText ct;
+	private CanvasPreviewUserPlayLabel cl;
 
 
 	private Block block;
@@ -40,8 +40,8 @@ public class ControllerPreviewUserPlay implements CanvasHandling
 	@Override
 	public void initCanvas()
 	{
-		ct = ControllerCanvasPreviewUserPlayText.getInstance();
-		cl = ControllerCanvasPreviewUserPlayLabel.getInstance();
+		ct = CanvasPreviewUserPlayText.getInstance();
+		cl = CanvasPreviewUserPlayLabel.getInstance();
 	}
 
 	public Block getBlock()
@@ -81,7 +81,7 @@ public class ControllerPreviewUserPlay implements CanvasHandling
 			field[tile.getRow()][tile.getCol()] = tile;
 		}
 
-		ct.drawTiles(field);
+		ct.drawTilesAsText(field);
 		cl.drawTiles(field);
 		render();
 	}
@@ -89,8 +89,8 @@ public class ControllerPreviewUserPlay implements CanvasHandling
 	@Override
 	public void render()
 	{
-		ct.renderPreview();
-		cl.renderPreview();
+		ct.render();
+		cl.render();
 	}
 
 }

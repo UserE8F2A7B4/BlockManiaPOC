@@ -1,9 +1,9 @@
 package bm.game_states.user_play.canvas.field;
 
 import bm.BlockManiaPOC;
-import bm.util.blocks.Tile;
+import bm.view.CanvasBase;
 
-public class CanvasFieldUserPlayText
+public class CanvasFieldUserPlayText extends CanvasBase
 {
 	private static CanvasFieldUserPlayText instance;
 
@@ -20,27 +20,10 @@ public class CanvasFieldUserPlayText
 	{
 	}
 
-	public void renderField(Tile[][] field)
+	@Override
+	public void render()
 	{
-		StringBuilder sb = new StringBuilder();
-
-		for (Tile[] row : field)
-		{
-			for (Tile tile : row)
-			{
-				if (tile == null)
-				{
-					sb.append("∙");
-				}
-				else
-				{
-					sb.append("■");
-				}
-			}
-			sb.append("\n");
-		}
-
-		BlockManiaPOC.getTxtCanvasField().setText(sb.toString());
+		BlockManiaPOC.getTxtCanvasField().setText(canvasText.toString());
 	}
 
 }
